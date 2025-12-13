@@ -16,11 +16,14 @@
     </div>
 
     <nav class="navbar">
+        {%if request.session.login_id%}
+        <a class="cta" href="/donate">Donate</a>
+        {%else%}
         <a href="/">HOME</a>
+        <a href="/about">ABOUT</a>
         <a href="/login">LOGIN</a>
         <a href="/register_ngo">REGISTER</a>
-        <a href="/about">ABOUT</a>
-        <a class="cta" href="/donate">Donate</a>
+        {%endif%}
     </nav>
 </header>
 

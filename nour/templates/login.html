@@ -4,6 +4,7 @@
   <section>
     <div class="login">
       <form action="login_success.html" method="post" class="login_form">
+          {% csrf_token %}
         <h1 class="login_title">Login</h1>
 
         <div class="login__inputs">
@@ -30,7 +31,7 @@
 
         <div class="login__register">
           Don't have an account?
-          <a href="register_ngo.html">Register.</a>
+          <a href="/register_ngo">Register.</a>
         </div>
       </form>
     </div>
