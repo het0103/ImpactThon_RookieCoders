@@ -62,7 +62,7 @@ body {
     border-radius: 30px;
     border: none;
     background: rgba(255,255,255,0.25);
-    color: #fff;
+    color: #000000;
     backdrop-filter: blur(6px);
 }
 
@@ -441,7 +441,7 @@ h3 {
     border-radius: 8px;
     border: none;
     background: rgba(255,255,255,0.15);
-    color: #fff;
+    color: #000000;
 }
 
 .donate-btn-page {

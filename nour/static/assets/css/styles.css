@@ -78,7 +78,7 @@ section{
   text-align: center;
   margin-bottom: 14px;
   font-size: 22px;
-  color: #ffffff;
+  color: #000;
   font-weight: 600;
 }
 
@@ -96,7 +96,6 @@ section{
 .login_passwo,
 .login_label {
   font-size: 13px;
-  color: #f0f0f0;
 }
 
 /* Transparent Inputs */
@@ -104,7 +103,9 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="tel"],
-select {
+select,textarea {
+  color: #000;            /* make typed text black */
+  caret-color: #000;      /* caret black */
   padding: 10px 12px;
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: 6px;
@@ -112,15 +113,17 @@ select {
   font-size: 14px;
 
   background: rgba(255,255,255,0.25);
-  color: #ffffff;
 }
-
-input::placeholder {
-  color: #e8e8e8;
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #666;
+  opacity: 1;
 }
 
 input:focus, select:focus {
-  border-color: #ffffff;
+  border-color: #000;
+    caret-color: #000;
   box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
 }
 

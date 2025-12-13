@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import register_ngo
 
-# Register your models here.
+class displayngo(admin.ModelAdmin):
+    list_display = ['name', 'email', 'mobile', 'addr', 'pincode','password', 'timestamp']
+
+admin.site.register(register_ngo, displayngo)

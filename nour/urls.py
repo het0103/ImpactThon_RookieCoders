@@ -1,6 +1,12 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('',views.index, name='index'),
+    path('',index),
+    path('about', about),
+    path('login', loginpage),
+    path('verifyuser', verifyuser),
+    path('register_ngo',register),
+    path('verifyuser', verifyuser),
+    # path('logout', logout),
 ]
