@@ -1,0 +1,197 @@
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: url("https://picsum.photos/300/240?random=11") center/cover no-repeat;
+  color: #222;
+}
+/* STICKY NAVBAR */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.9rem;
+    font-weight: bold;
+}
+
+.navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #eee;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #ffdd57;
+    transition: cubic-bezier(0.23, 1, 0.320, 1);
+    text-decoration: underline rgb(209, 188, 94);
+}
+
+.cta {
+    background: #ffb300;
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: #000 !important;
+}
+section{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+
+/* Transparent Glass Login Box */
+.login {
+  width: 360px;
+  padding: 22px;
+  border-radius: 14px;
+
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+
+/* form layout */
+.login_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login_title {
+  text-align: center;
+  margin-bottom: 14px;
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* input groups */
+.login__inputs { margin-bottom: 14px; }
+
+.login__box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.login_email,
+.login_passwo,
+.login_label {
+  font-size: 13px;
+  color: #f0f0f0;
+}
+
+/* Transparent Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select {
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.25);
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #e8e8e8;
+}
+
+input:focus, select:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
+}
+
+/* checkbox row */
+.login__check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.login__check-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login__check-input { width: 16px; height: 16px; }
+
+.login__forgot {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* main button */
+.logine__button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.logine__button:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* small helper elements */
+.login__resister {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.login__resister a { color: #ffffff; text-decoration: underline; }
+
+/* OTP helpers */
+.otp-methods { display:flex; gap:12px; margin-top:6px; }
+.otp-actions { display:flex; gap:10px; align-items:center; margin-top:8px; }
+
+.small-btn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  cursor: pointer;
+}
+
+.otp-status { font-size: 13px; color: #eee; }
+.otp-result { margin-top:8px; font-size:13px; color: #fff; }
+
+/* responsive tweak */
+@media (max-width: 420px) {
+  .login { width: 92%; padding: 16px; }
+}
