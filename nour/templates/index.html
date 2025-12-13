@@ -1,5 +1,233 @@
-{%extends 'base.html'%}
-{%load static%}
-{%block content%}
-<!--write the code here without head and body tags -->
-{%endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NourishNet-NGO</title>
+    <link rel="stylesheet" href="apdatedWH.css">
+</head>
+
+<body>
+    <link rel="stylesheet" href="where.js">
+
+<!-- HEADER STICKY NAVBAR -->
+<header class="sticky-header">
+    <div class="logo">
+        <div class="brand">NourishNet-NGO</div>
+    </div>
+
+    <nav class="navbar">
+        <a href="index.html">HOME</a>
+        <a href="login.html">LOGIN</a>
+        <a href="register.html">REGISTER</a>
+        <a href="about.html">ABOUT</a>
+        <a class="cta" href="donate.html">Donate</a>
+    </nav>
+</header>
+
+<!-- SEARCH BAR -->
+<div class="search-container">
+    <input type="text" class="search-input" placeholder="Search for programs, news, or how to help...">
+</div>
+
+<!-- MAIN CONTENT GRID -->
+<main class="main-grid">
+
+    <!-- LEFT SLIDER SECTION -->
+    <section class="left">
+        <h2 class="section-title">Recent Activities</h2>
+        <div class="sliding-container">
+            
+            <!-- CARD 1 -->
+            <div class="grid-item">
+                <img class="item-image" src="https://picsum.photos/300/240?random=11">
+                <div class="item-info">
+                    <h3>Healthy Meal Drive</h3>
+                    <p>Distributed 500+ meals in rural health camps.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="grid-item">
+                <img class="item-image" src="https://picsum.photos/300/240?random=12">
+                <div class="item-info">
+                    <h3>School Nutrition Program</h3>
+                    <p>Helping underprivileged students with meals.</p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="grid-item">
+                <img class="item-image" src="https://picsum.photos/300/240?random=13">
+                <div class="item-info">
+                    <h3>Food Donation Camps</h3>
+                    <p>Partnered with 50+ local restaurants.</p>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="grid-item">
+                <img class="item-image" src="https://picsum.photos/300/240?random=14">
+                <div class="item-info">
+                    <h3>Community Program</h3>
+                    <p>Volunteers working daily to end hunger.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RIGHT SIDE GALLERY -->
+    <section class="right">
+        <h2 class="section-title">Latest Contributions</h2>
+
+        <div class="right-card">
+            <img src="https://picsum.photos/300/220?random=21">
+            <h3>Meal Donation</h3>
+            <p>120 families received fresh cooked meals.</p>
+        </div>
+
+        <div class="right-card">
+            <img src="https://picsum.photos/300/220?random=22">
+            <h3>New Volunteers Joined</h3>
+            <p>35 new volunteers registered this week.</p>
+        </div>
+
+        <div class="right-card">
+            <img src="https://picsum.photos/300/220?random=23">
+            <h3>Food Bank Update</h3>
+            <p>Storage restocked with healthy grains.</p>
+        </div>
+
+    </section>
+</main>
+
+<!-- 3 CONTAINERS BEFORE FOOTER -->
+<section class="three-box-section">
+
+    <div class="three-box">
+        <img src="https://picsum.photos/200/150?random=31">
+        <h3>NGO’s</h3>
+        <p>Partner NGOs helping us deliver food to people in need.</p>
+    </div>
+
+    <div class="three-box">
+        <img src="https://picsum.photos/200/150?random=32">
+        <h3>Food Collection Places</h3>
+        <p>Pick-up points where citizens can donate extra food.</p>
+    </div>
+
+    <div class="three-box">
+        <img src="https://picsum.photos/200/150?random=33">
+        <h3>Donate For</h3>
+        <p>Your donation supports hundreds of families every week.</p>
+    </div>
+
+</section>
+<!-- ACCHIVEMENTS DISPLAY -->
+<div class="container">
+        
+        <section class="impact-section">
+            <h1>Our Impact So Far</h1>
+            <p>Every meal saved is a step towards a hunger-free world</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">50,000+</span>
+                    <p class="stat-label">Meals Saved</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #27ae60;">200+</span>
+                    <p class="stat-label">Partner NGOs</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #27ae60;">500+</span>
+                    <p class="stat-label">Active Donors</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #27ae60;">25+</span>
+                    <p class="stat-label">Cities Covered</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="feature-grid">
+            
+            <div class="feature-card">
+                <div class="icon-box donor-icon">♥</div>
+                <h2>For Donors</h2>
+                <ul class="feature-list">
+                    <li><span class="checkmark donor-check">✓</span> Quick donation posting in under 60 seconds</li>
+                    <li><span class="checkmark donor-check">✓</span> Real-time pickup tracking</li>
+                    <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
+                    <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
+                </ul>
+                <a href="#" class="btn btn-donor">Explore Donor Dashboard &nbsp; →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box ngo-icon">👥</div>
+                <h2>For NGOs</h2>
+                <ul class="feature-list">
+                    <li><span class="checkmark ngo-check">✓</span> Real-time notifications for nearby donations</li>
+                    <li><span class="checkmark ngo-check">✓</span> Distance-based filtering</li>
+                    <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
+                    <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
+                </ul>
+                <a href="#" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
+            </div>
+
+        </div>
+    </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+
+    <!-- Left Column -->
+    <div class="footer-left">
+
+      <h3>Locations</h3>
+      <p>Ahmedabad, Gujarat</p>
+      <p>Gandhinagar, Gujarat</p>
+      <p>Surat, Gujarat</p>
+      <p>Vadodara, Gujarat</p>
+
+      <h3>Made By</h3>
+      <p>Developed by LDRP–KSV Students</p>
+
+      <h3>Team Emails</h3>
+      <ul class="email-list">
+        <li>person1@yourngo.org</li>
+        <li>person2@yourngo.org</li>
+        <li>person3@yourngo.org</li>
+        <li>person4@yourngo.org</li>
+        <li>person5@yourngo.org</li>
+      </ul>
+
+    </div>
+
+    <!-- Right Column -->
+    <div class="footer-right">
+
+      <h3>Contact Us</h3>
+      <p>Phone: +91 98765 43210</p>
+      <p>Email: info@yourngo.org</p>
+      <p>Address: LDRP Campus, Gandhinagar, Gujarat</p>
+
+      <h3>Terms & Conditions</h3>
+      <p>
+        By using this website, you agree to our terms and privacy policies.
+        All information is for public awareness. Misuse of content is prohibited.
+      </p>
+
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 Your NGO Name. All Rights Reserved.</p>
+</footer>
+
+
+
+</body>
+</html>
