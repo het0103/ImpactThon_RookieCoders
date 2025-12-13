@@ -33,20 +33,24 @@ def verifyuser(request):
     if request.method == "POST":
         useremail = request.POST.get("email")
         password = request.POST.get("password")
-        print(useremail)
-        print(password)
         try:
             userdata = register_ngo.objects.get(email=useremail, password=password)
             request.session["login_id"] = userdata.id
             request.session["login_email"] = userdata.email
             request.session.save()
-            print("Login Successful")
             return redirect(index)
         except:
-            print("invalid Details")
             return redirect(loginpage)
-
     return render(request, "login.html")
+
+def logout(request):
+    try:
+        del request.session["login_id"]
+        del request.session["login_email"]
+        print("Logout Successful")
+        return redirect(index)
+    except:
+        pass
 
 def about(request):
     return render(request, 'about.html')

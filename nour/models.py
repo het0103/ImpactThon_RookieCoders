@@ -8,8 +8,3 @@ class register_ngo(models.Model):
     pincode = models.IntegerField()
     password=models.CharField(max_length=20)
     timestamp=models.DateTimeField(auto_now=True)
-
-class login(models.Model):
-    email = models.EmailField()
-    password = models.CharField(max_length=20)
-    timestamp = models.DateTimeField(auto_now=True)
