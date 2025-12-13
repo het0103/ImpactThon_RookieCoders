@@ -3,11 +3,15 @@
 {% load static %}
 {% block content %}
 {% if error %}
-    <div style="color:red; margin-bottom:10px; background-color:#fff;">
+    <div class="error">
         {{ error }}
     </div>
 {% endif %}
-  <section>
+<div class="auth-page">
+  <section style="display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;">
     <div class="login">
       <form class="login_form" id="regForm" method="post" action="/register_ngo">
         {% csrf_token %}

@@ -1,39 +1,37 @@
-{%extends 'base.html'%}
-{%load static%}
-{%block content%}
-  <section>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+{% endif %}
+<div class="auth-page">
+  <section class="auth-section">
     <div class="login">
       <form action="/verifyuser" method="post" class="login_form">
-          {% csrf_token %}
+        {% csrf_token %}
         <h1 class="login_title">Login</h1>
 
-        <div class="login__inputs">
-          <div class="login__box">
-            <label for="email" class="login_email">Email Id:</label>
-            <input class="login_email" type="email" name="email" id="email" placeholder="Enter Email" required />
-          </div>
-
-          <div class="login__box">
-            <label for="password" class="login_password">Password:</label>
-            <input class="login_password" type="password" name="password" id="password" placeholder="password" required />
-          </div>
+        <div class="login__box">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Enter Email" required>
         </div>
 
-        <div class="login__check">
-          <div class="login__check-box">
-            <input type="checkbox" name="remember" id="user-check" class="login__check-input" />
-            <label for="user-check" class="login__check-label">Remember Me</label>
-          </div>
-          <a href="#" class="login__forgot">Forgot Password?</a>
+        <div class="login__box">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter Password" required>
         </div>
 
         <button type="submit" class="login__button">Login</button>
 
         <div class="login__register">
-          Don't have an account?
-          <a href="/register_ngo">Register Here</a>
+          Don’t have an account?
+          <a href="/register_ngo">Register</a>
         </div>
       </form>
     </div>
   </section>
-{%endblock%}
+</div>
+{% endblock %}

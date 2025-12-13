@@ -40,14 +40,13 @@ def verifyuser(request):
             request.session.save()
             return redirect(index)
         except:
-            return redirect(loginpage)
+            return render(request, "login.html", {"error": "Password is not Correct"})
     return render(request, "login.html")
 
 def logout(request):
     try:
         del request.session["login_id"]
         del request.session["login_email"]
-        print("Logout Successful")
         return redirect(index)
     except:
         pass
