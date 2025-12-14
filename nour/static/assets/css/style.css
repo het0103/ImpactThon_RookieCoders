@@ -54,20 +54,20 @@ body {
 }
 
 /* SEARCH BAR */
-.search-container {
-    text-align: center;
-    padding: 20px 0;
-}
+/*.search-container {*/
+/*    text-align: center;*/
+/*    padding: 20px 0;*/
+/*}*/
 
-.search-input {
-    width: min(90%, 550px);
-    padding: 12px 18px;
-    border-radius: 30px;
-    border: none;
-    background: rgba(255,255,255,0.25);
-    color: #000000;
-    backdrop-filter: blur(6px);
-}
+/*.search-input {*/
+/*    width: min(90%, 550px);*/
+/*    padding: 12px 18px;*/
+/*    border-radius: 30px;*/
+/*    border: none;*/
+/*    background: rgba(255,255,255,0.25);*/
+/*    color: #000000;*/
+/*    backdrop-filter: blur(6px);*/
+/*}*/
 
 /* MAIN GRID */
 .main-grid {
@@ -333,27 +333,7 @@ body {
 
         .btn:hover { opacity: 0.9; }
 
-        /* --- RESPONSIVENESS --- */
-        @media (max-width: 992px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
 
-        @media (max-width: 600px) {
-            .impact-section {
-                padding: 20px;
-            }
-            .impact-section h1 {
-                font-size: 1.8rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .feature-card {
-                padding: 25px;
-            }
-        }
 
 /* FOOTER */
 footer {
@@ -506,50 +486,27 @@ h3 {
 
 /* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
 
-/* Tablets & Medium Screens */
-@media (max-width: 900px) {
-
+/* ===================== RESPONSIVE (ALL DEVICES) ===================== */
+@media (max-width: 768px) {
+    /* Header */
     .sticky-header {
-
+        flex-direction: row;
+        gap: 10px;
+        text-align: center;
+        padding: 12px 20px;
     }
 
-    .three-box-section {
-        flex-wrap: wrap;
-        gap: 15px;
+    .navbar a {
+        margin-left: 12px;
     }
 
-    .three-box {
-        max-width: 48%;
+    /* Main Grid */
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding: 15px;
     }
 
-    .search-input {
-        width: 80%;
-    }
-}
-
-/* Mobile Landscape & Phablets */
-@media (max-width: 650px) {
-
-    .sticky-header {
-
-    }
-
-    .three-box {
-        max-width: 100%;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-    }
-}
-
-/* Small Mobile Phones (≤ 480px) */
-@media (max-width: 480px) {
-
-    .brand {
-        font-size: 1.4rem;
-    }
-
+    /* Slider */
     .sliding-container {
         gap: 12px;
     }
@@ -559,12 +516,32 @@ h3 {
         height: 300px;
     }
 
-    .search-input {
-        padding: 10px 14px;
+    /* Section Titles */
+    .section-title {
+        font-size: 1.3rem;
     }
 
-    .donate-container,
-    .developer-grid {
+    /* Three Box Section */
+    .three-box-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .three-box {
+        max-width: 100%;
+    }
+
+    /* Feature Grid */
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    /* Donate Page */
+    .donate-container {
         flex-direction: column;
         text-align: center;
     }
@@ -572,10 +549,53 @@ h3 {
     .donate-right {
         padding: 15px;
     }
+
+    /* About Page */
+    .developer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Auth Pages */
+    .auth-page .login {
+        width: 92%;
+        padding: 16px;
+    }
+
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-section {
+        padding: 20px;
+    }
+
+    .impact-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+
+    .hamburger,
+    .menu-toggle,
+    .navbar-toggler {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar {
+        display: none; /* hide full menu on mobile */
+    }
+
 }
-
-
-
 
 /*!* ===================== SEARCH ===================== *!*/
 /*.search-container {*/
@@ -603,7 +623,12 @@ h3 {
     background: url("https://picsum.photos/300/240?random=11") center/cover no-repeat;
     min-height: 100vh;
 }
-
+.auth-register{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 .auth-section {
     display: flex;
     justify-content: center;
@@ -693,15 +718,8 @@ h3 {
     text-decoration: underline;
 }
 
-/*!* Responsive *!*/
-/*@media (max-width: 420px) {*/
-/*    .auth-page .login {*/
-/*        width: 92%;*/
-/*        padding: 16px;*/
-/*    }*/
-/*}*/
-/*.error{*/
-/*    color:red;*/
-/*    margin-bottom:10px;*/
-/*    background-color:#fff;*/
-/*}*/
+.error{
+    color:red;
+    margin-bottom:10px;
+    background-color:#fff;
+}
