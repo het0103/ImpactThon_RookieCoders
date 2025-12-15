@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #eef2f3;
+}
+hr {
+    border: none;
+    height: 5px;
+    background: #c46262;
+    margin: 10px;
+}
+
+/* STICKY NAVBAR */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px) red;
+    background: #176b5b;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: bold;
+}
+
+.navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    color: #eee;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #ffdd57;
+}
+
+.cta {
+    background: #ffb300;
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: #000 !important;
+}
+
+
+
+body{
+  margin:0;
+  background:#f4f6f8;
+  font-family:Segoe UI;
+}
+
+header{
+  background:#176b5b;
+  color:#fff;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.grid{
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+
+.alert{
+  border-left:6px solid red;
+}
+
+button{
+  margin-top:10px;
+  padding:8px;
+  background:#176b5b;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+.pickup{
+    border-left:6px solid #176b5b;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.pickup button{
+    background: #c32626;
+    color: #000;
+}

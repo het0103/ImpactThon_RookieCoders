@@ -3,73 +3,60 @@
 {%block content%}
 <!-- MAIN CONTENT GRID -->
 <main class="main-grid">
+    <!-- Page Entry Overlay -->
+    <div class="page-entry" id="pageEntry">
 
-    <!-- LEFT SLIDER SECTION -->
-    <section class="left">
-        <h2 class="section-title">Recent Activities</h2>
-        <div class="sliding-container">
-
-            <!-- CARD 1 -->
-            <div class="grid-item">
-                <img class="item-image" src="https://picsum.photos/300/240?random=11">
-                <div class="item-info">
-                    <h3>Healthy Meal Drive</h3>
-                    <p>Distributed 500+ meals in rural health camps.</p>
-                </div>
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="grid-item">
-                <img class="item-image" src="https://picsum.photos/300/240?random=12">
-                <div class="item-info">
-                    <h3>School Nutrition Program</h3>
-                    <p>Helping underprivileged students with meals.</p>
-                </div>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="grid-item">
-                <img class="item-image" src="https://picsum.photos/300/240?random=13">
-                <div class="item-info">
-                    <h3>Food Donation Camps</h3>
-                    <p>Partnered with 50+ local restaurants.</p>
-                </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div class="grid-item">
-                <img class="item-image" src="https://picsum.photos/300/240?random=14">
-                <div class="item-info">
-                    <h3>Community Program</h3>
-                    <p>Volunteers working daily to end hunger.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- RIGHT SIDE GALLERY -->
-    <section class="right">
-        <h2 class="section-title">Latest Contributions</h2>
-
-        <div class="right-card">
-            <img src="https://picsum.photos/300/220?random=21">
-            <h3>Meal Donation</h3>
-            <p>120 families received fresh cooked meals.</p>
+        <div class="glass-box">
+            <img src="fav.jpg" alt="Logo" class="entry-logo-img">
+            <h1 class="entry-title">NourishNet</h1>
+            <p class="entry-tagline">Together Against Hunger</p>
         </div>
 
-        <div class="right-card">
-            <img src="https://picsum.photos/300/220?random=22">
-            <h3>New Volunteers Joined</h3>
-            <p>35 new volunteers registered this week.</p>
-        </div>
+    </div>
 
-        <div class="right-card">
-            <img src="https://picsum.photos/300/220?random=23">
-            <h3>Food Bank Update</h3>
-            <p>Storage restocked with healthy grains.</p>
-        </div>
+    <!--  SLIDER SECTION -->
+    <section class="left-section">
+        <h1 class="left-title">Our Honrabales Initiatives</h1>
+        <p class="left-subtitle">
+            NourishNet delivers hope through food programs and community partnerships.
+        </p>
 
+        <div class="scroll-wrapper">
+            <div class="scroll-track" id="scrollTrack">
+
+                <!-- ORIGINAL SET -->
+                <div class="left-card">
+                    <img src="https://picsum.photos/400/300?random=1">
+                    <h3>Community Feeding</h3>
+                    <p>Daily meal distribution for families in need.</p>
+                </div>
+
+                <div class="left-card">
+                    <img src="https://picsum.photos/400/300?random=2">
+                    <h3>School Nutrition</h3>
+                    <p>Nutritious meals for underprivileged children.</p>
+                </div>
+
+                <div class="left-card">
+                    <img src="https://picsum.photos/400/300?random=3">
+                    <h3>Food Collection Drives</h3>
+                    <p>Collecting surplus food from hotels and events.</p>
+                </div>
+
+                <div class="left-card">
+                    <img src="https://picsum.photos/400/300?random=4">
+                    <h3>Volunteer Network</h3>
+                    <p>Thousands of volunteers across cities.</p>
+                </div>
+
+                <div class="left-card">
+                    <img src="https://picsum.photos/400/300?random=5">
+                    <h3>Emergency Relief</h3>
+                    <p>Rapid food support during disasters.</p>
+                </div>
+
+            </div>
+        </div>
     </section>
 </main>
 
@@ -98,57 +85,57 @@
 <!-- ACCHIVEMENTS DISPLAY -->
 <div class="container">
 
-        <section class="impact-section">
-            <h1>Our Impact So Far</h1>
-            <p>Every meal saved is a step towards a hunger-free world</p>
+    <section class="impact-section">
+        <h1>Our Impact So Far</h1>
+        <p>Every meal saved is a step towards a hunger-free world</p>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">50,000+</span>
-                    <p class="stat-label">Meals Saved</p>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" style="color: #27ae60;">200+</span>
-                    <p class="stat-label">Partner NGOs</p>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" style="color: #27ae60;">500+</span>
-                    <p class="stat-label">Active Donors</p>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" style="color: #27ae60;">25+</span>
-                    <p class="stat-label">Cities Covered</p>
-                </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">50,000+</span>
+                <p class="stat-label">Meals Saved</p>
             </div>
-        </section>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <div class="icon-box donor-icon">♥</div>
-                <h2>For Donors</h2>
-                <ul class="feature-list">
-                    <li><span class="checkmark donor-check">✓</span> Quick donation posting in under 60 seconds</li>
-                    <li><span class="checkmark donor-check">✓</span> Real-time pickup tracking</li>
-                    <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
-                    <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
-                </ul>
-                <a href="#" class="btn btn-donor">Explore Donor Dashboard &nbsp; →</a>
+            <div class="stat-card">
+                <span class="stat-number" style="color: #27ae60;">200+</span>
+                <p class="stat-label">Partner NGOs</p>
             </div>
-
-            <div class="feature-card">
-                <div class="icon-box ngo-icon">👥</div>
-                <h2>For NGOs</h2>
-                <ul class="feature-list">
-                    <li><span class="checkmark ngo-check">✓</span> Real-time notifications for nearby donations</li>
-                    <li><span class="checkmark ngo-check">✓</span> Distance-based filtering</li>
-                    <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
-                    <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
-                </ul>
-                <a href="#" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
+            <div class="stat-card">
+                <span class="stat-number" style="color: #27ae60;">500+</span>
+                <p class="stat-label">Active Donors</p>
             </div>
-
+            <div class="stat-card">
+                <span class="stat-number" style="color: #27ae60;">25+</span>
+                <p class="stat-label">Cities Covered</p>
+            </div>
         </div>
-    </div>
-{%endblock%}
+    </section>
 
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="icon-box donor-icon">♥</div>
+            <h2>For Donors</h2>
+            <ul class="feature-list">
+                <li><span class="checkmark donor-check">✓</span> Quick donation posting in under 60 seconds</li>
+                <li><span class="checkmark donor-check">✓</span> Real-time pickup tracking</li>
+                <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
+                <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
+            </ul>
+            <a href="#" class="btn btn-donor">Explore Donor Dashboard &nbsp; →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon-box ngo-icon">👥</div>
+            <h2>For NGOs</h2>
+            <ul class="feature-list">
+                <li><span class="checkmark ngo-check">✓</span> Real-time notifications for nearby donations</li>
+                <li><span class="checkmark ngo-check">✓</span> Distance-based filtering</li>
+                <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
+                <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
+            </ul>
+            <a href="#" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
+        </div>
+        <script src="demo-index.js"></script>
+
+    </div>
+</div>
+{%endblock%}
