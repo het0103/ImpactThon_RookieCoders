@@ -60,8 +60,8 @@ def donor_home(request):
     if "login_id" not in request.session:
         return redirect('loginpage')
     
-    return render(request, 'donar/donor_home.html')
+    return render(request, 'donor/donor_home.html')
 
 def donor_demo(request):
     # Demo page without login requirement for testing
-    return render(request, 'donar/donor_demo.html')
+    return render(request, 'donor/donor_demo.html')
