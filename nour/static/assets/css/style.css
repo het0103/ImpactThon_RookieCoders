@@ -573,118 +573,6 @@ h3 {
     margin-bottom: 15px;
 }
 
-/* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
-
-/* ===================== RESPONSIVE (ALL DEVICES) ===================== */
-@media (max-width: 768px) {
-
-    .footer-container {
-        grid-template-columns: 1fr 1fr;
-    }
-    /* Header */
-    .sticky-header {
-        flex-direction: row;
-        gap: 10px;
-        text-align: center;
-        padding: 12px 20px;
-    }
-
-    .navbar a {
-        margin-left: 12px;
-    }
-
-    /* Main Grid */
-    .main-grid {
-        grid-template-columns: 1fr;
-        padding: 15px;
-    }
-
-    /* Slider */
-    .sliding-container {
-        gap: 12px;
-    }
-
-    .grid-item {
-        flex: 0 0 85%;
-        height: 300px;
-    }
-
-    /* Section Titles */
-    .section-title {
-        font-size: 1.3rem;
-    }
-
-    /* Three Box Section */
-    .three-box-section {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .three-box {
-        max-width: 100%;
-    }
-
-    /* Feature Grid */
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .feature-card {
-        padding: 25px;
-    }
-
-    /* Donate Page */
-    .donate-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .donate-right {
-        padding: 15px;
-    }
-
-    /* About Page */
-    .developer-grid {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    /* Auth Pages */
-    .auth-page .login {
-        width: 92%;
-        padding: 16px;
-    }
-
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .impact-section {
-        padding: 20px;
-    }
-
-    .impact-section h1 {
-        font-size: 1.8rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .feature-card {
-        padding: 25px;
-    }
-
-
-    .hamburger,
-    .menu-toggle,
-    .navbar-toggler {
-        display: block;
-        cursor: pointer;
-    }
-}
-
 /*!* ===================== SEARCH ===================== *!*/
 /*.search-container {*/
 /*    text-align: center;*/
@@ -812,4 +700,198 @@ h3 {
     color: red;
     margin-bottom: 10px;
     background-color: #fff;
+}
+/*================================================
+               responsiveness end
+================================================ */
+/* =========================================================
+   GLOBAL RESPONSIVE SAFETY
+   - Fix zoom issues
+   - Prevent horizontal scroll
+   - Make images flexible
+========================================================= */
+html {
+  font-size: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* =========================================================
+   STICKY NAVBAR – RESPONSIVE & ZOOM SAFE
+   - Prevents breaking on zoom
+   - Wraps links properly on small screens
+========================================================= */
+@media (max-width: 900px) {
+  .sticky-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .navbar a {
+    margin-left: 0;
+    font-size: 0.85rem;
+  }
+}
+
+
+/* =========================================================
+   PAGE ENTRY / INTRO ANIMATION – MOBILE FRIENDLY
+   - Prevents overflow
+   - Keeps logo & text centered
+========================================================= */
+@media (max-width: 600px) {
+  .glass-box {
+    padding: 25px 20px;
+  }
+
+  .entry-title {
+    font-size: 1.4rem;
+  }
+
+  .entry-tagline {
+    font-size: 0.8rem;
+  }
+
+  .entry-logo-img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+/* =========================================================
+   LEFT AUTO SCROLL SLIDER – RESPONSIVE
+   - Card size adapts
+   - No cut effect on zoom
+========================================================= */
+@media (max-width: 768px) {
+  .scroll-track {
+    gap: 16px;
+  }
+
+  .left-card {
+    width: 220px;
+  }
+
+  .left-card img {
+    height: 140px;
+  }
+}
+
+
+/* =========================================================
+   THREE BOX SECTION – STACK ON SMALL DEVICES
+   - Prevents squeezing
+   - Clean vertical layout
+========================================================= */
+@media (max-width: 900px) {
+  .three-box-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .three-box {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   IMPACT SECTION & STATS GRID – RESPONSIVE
+   - Adjust padding
+   - Reduce columns gradually
+========================================================= */
+@media (max-width: 900px) {
+  .impact-section {
+    padding: 25px 18px;
+  }
+
+  .impact-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   FEATURE CARDS – MOBILE READABILITY
+   - Text & spacing optimization
+========================================================= */
+@media (max-width: 768px) {
+  .feature-card {
+    padding: 22px;
+  }
+
+  .feature-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .feature-list li {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* =========================================================
+   AUTH / LOGIN / REGISTER PAGES – SMALL SCREENS
+   - Perfect fit on mobile
+   - No overflow on zoom
+========================================================= */
+@media (max-width: 420px) {
+  .auth-page .login {
+    width: 94%;
+    padding: 16px;
+  }
+
+  .login_title {
+    font-size: 18px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   FOOTER – RESPONSIVE GRID
+   - Single column on mobile
+========================================================= */
+@media (max-width: 700px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    margin-bottom: 20px;
+  }
 }
