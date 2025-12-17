@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="static/assets/css/style.css">
         <link rel="stylesheet" href="static/assets/css/nourishnet.css">
-        <link rel="stylesheet" href="static/assets/css/donor/donor.css">
+        <link rel="stylesheet" href="static/assets/css/donor.css">
 
     </head>
     <body>
@@ -20,7 +20,7 @@
     </div>
     <nav class="navbar">
         {%if request.session.login_id%}
-        <a class="cta" href="/donate">Donate</a>
+        <a class="cta" href="/donor">Donate</a>
         <a href="/">HOME</a>
         <a href="/about">ABOUT</a>
         <a href="/logout">LOGOUT</a>
@@ -81,11 +81,11 @@
 
   </div>
 
-  <p class="footer-bottom">© 2025 Your NGO Name. All Rights Reserved.</p>
+  <p class="footer-bottom">© 2025 NourishNet. All Rights Reserved.</p>
 </footer>
 
     <script src="static/assets/js/where.js"></script>
-    <script src="static/assets/js/donar/donar.js"></script>
+    <script src="static/assets/js/donor.js"></script>
     <script src="static/assets/js/nourishnet.js"></script>
     <script src="static/assets/js/demo-index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

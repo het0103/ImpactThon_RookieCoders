@@ -46,7 +46,7 @@ nour/
 │   ├── css/donar/
 │   │   └── donar.css        # All donor-specific styles
 │   └── js/donar/
-│       └── donar.js         # All donor-specific JavaScript
+│       └── donor.js         # All donor-specific JavaScript
 ```
 
 ## URLs Added

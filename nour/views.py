@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+# import requests
 
 def index(request):
     return render(request, "index.html")
@@ -38,30 +39,31 @@ def verifyuser(request):
             request.session["login_id"] = userdata.id
             request.session["login_email"] = userdata.email
             request.session.save()
-            return redirect('donor_home')
+            return redirect(index)
         except:
-            return render(request, "login.html", {"error": "Password is not Correct"})
-    return render(request, "login.html")
+            return redirect(loginpage)
 
 def logout(request):
     try:
         del request.session["login_id"]
         del request.session["login_email"]
-        return redirect('index')
+        return redirect(index)
     except:
         pass
-    return redirect('index')
 
 def about(request):
     return render(request, 'about.html')
 
-def donor_home(request):
-    # Check if user is logged in
-    if "login_id" not in request.session:
-        return redirect('loginpage')
-    
-    return render(request, 'donor/donor_home.html')
+def donor(request):
+    return render(request, 'donor.html')
 
-def donor_demo(request):
-    # Demo page without login requirement for testing
-    return render(request, 'donor/donor_demo.html')
+# def donor_home(request):
+#     # Check if user is logged in
+#     if "login_id" not in request.session:
+#         return redirect('loginpage')
+#
+#     return render(request, 'donor/donor.html')
+#
+# def donor_demo(request):
+#     # Demo page without login requirement for testing
+#     return render(request, 'donor/donor_demo.html')

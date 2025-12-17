@@ -7,7 +7,7 @@ urlpatterns = [
     path('login', loginpage),
     path('verifyuser', verifyuser),
     path('register_ngo',register),
-    path('logout', logout),
-    path('donor-home', donor_home),
-    path('donor-demo', donor_demo),
+    path('logout', logout,name='logout'),
+    path('donor', donor),
+    # path('donor-demo', donor_demo),
 ]

@@ -1,11 +1,11 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donor Dashboard - NourishNet</title>
-    <link rel="stylesheet" href="{% static 'assets/css/donar/donar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/donor.css' %}">
 </head>
 <body>
     <div class="donor-container">
@@ -23,6 +23,7 @@
         <!-- Navigation -->
         <nav class="donor-nav">
             <ul>
+                <a href="/">Home</a>
                 <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
                 <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
                 <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
@@ -128,6 +129,6 @@
         </div>
     </div>
 
-    <script src="{% static 'assets/js/donar/donar.js' %}"></script>
+    <script src="{% static 'assets/js/donor.js' %}"></script>
 </body>
 </html>
