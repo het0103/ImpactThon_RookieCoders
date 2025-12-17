@@ -108,6 +108,7 @@ body {
     flex-direction: row;
     gap: 10px;
     text-align: center;
+    width: 100%;
 }
 
 .brand {
@@ -677,12 +678,6 @@ h3 {
         display: block;
         cursor: pointer;
     }
-
-    .navbar {
-        display: none;
-        /* hide full menu on mobile */
-    }
-
 }
 
 /*!* ===================== SEARCH ===================== *!*/
