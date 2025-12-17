@@ -1,63 +1,63 @@
 
-/* ========= REAL CUT-FREE INFINITE LOOP ========= */
+// /* ========= REAL CUT-FREE INFINITE LOOP ========= */
 
 
-const track = document.getElementById("scrollTrack");
+// const track = document.getElementById("scrollTrack");
 
-/* Duplicate content */
-track.innerHTML += track.innerHTML;
+// /* Duplicate content */
+// track.innerHTML += track.innerHTML;
 
-let scrollPos = 0;
-let speed = 0.5; // adjust for speed
+// let scrollPos = 0;
+// let speed = 0.5; // adjust for speed
 
-function animateScroll() {
-  scrollPos += speed;
+// function animateScroll() {
+//   scrollPos += speed;
 
-  if (scrollPos >= track.scrollWidth / 2) {
-    scrollPos = 0;
-  }
+//   if (scrollPos >= track.scrollWidth / 2) {
+//     scrollPos = 0;
+//   }
 
-  track.style.transform = `translateX(${-scrollPos}px)`;
-  requestAnimationFrame(animateScroll);
-}
+//   track.style.transform = `translateX(${-scrollPos}px)`;
+//   requestAnimationFrame(animateScroll);
+// }
 
-animateScroll();
+// animateScroll();
 
-/* Pause on hover */
-track.addEventListener("mouseenter", () => speed = 0);
-track.addEventListener("mouseleave", () => speed = 0.5);
+// /* Pause on hover */
+// track.addEventListener("mouseenter", () => speed = 0);
+// track.addEventListener("mouseleave", () => speed = 0.5);
 
-/* Accessibility: respect reduced motion */
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  speed = 0;
-}
-let currentOtp = null;
-let otpVerified = false;
+// /* Accessibility: respect reduced motion */
+// if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+//   speed = 0;
+// }
+// let currentOtp = null;
+// let otpVerified = false;
 
-function randomOtp() {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
-const entry = document.getElementById("pageEntry");
-const content = document.querySelector(".page-content");
+// function randomOtp() {
+//   return Math.floor(100000 + Math.random() * 900000).toString();
+// }
+// const entry = document.getElementById("pageEntry");
+// const content = document.querySelector(".page-content");
 
-if (sessionStorage.getItem("entryPlayed")) {
-  // Already played → skip animation
-  if (entry) entry.remove();
-  content.style.opacity = "1";
-} else {
-  // First time → play animation
-  sessionStorage.setItem("entryPlayed", "true");
+// if (sessionStorage.getItem("entryPlayed")) {
+//   // Already played → skip animation
+//   if (entry) entry.remove();
+//   content.style.opacity = "1";
+// } else {
+//   // First time → play animation
+//   sessionStorage.setItem("entryPlayed", "true");
 
-  setTimeout(() => {
-    entry.style.opacity = "0";
-    entry.style.transition = "opacity 0.6s ease";
-  }, 1200);
+//   setTimeout(() => {
+//     entry.style.opacity = "0";
+//     entry.style.transition = "opacity 0.6s ease";
+//   }, 1200);
 
-  setTimeout(() => {
-    entry.remove();
-    content.style.opacity = "1";
-  }, 1800);
-}
+//   setTimeout(() => {
+//     entry.remove();
+//     content.style.opacity = "1";
+//   }, 1800);
+// }
 
 function sendOtp() {
   // choose method
@@ -139,3 +139,114 @@ function handleRegister(e) {
   currentOtp = null;
   otpVerified = false;
 }
+/* =========================================================
+   PAGE ENTRY / INTRO ANIMATION (RUN ONCE)
+   - Shows intro only first time
+   - Skips on refresh or page revisit
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const pageEntry = document.getElementById("pageEntry");
+
+  if (!pageEntry) return;
+
+  const hasVisited = sessionStorage.getItem("nourishnet_intro_seen");
+
+  if (hasVisited) {
+    pageEntry.style.display = "none";
+  } else {
+    sessionStorage.setItem("nourishnet_intro_seen", "true");
+
+    setTimeout(() => {
+      pageEntry.style.opacity = "0";
+      pageEntry.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        pageEntry.style.display = "none";
+      }, 700);
+    }, 2200);
+  }
+});
+
+
+/* =========================================================
+   AUTO SCROLL SLIDER (INFINITE LOOP FEEL)
+   - Smooth horizontal auto scroll
+   - No cut effect
+========================================================= */
+const scrollTrack = document.getElementById("scrollTrack");
+
+if (scrollTrack) {
+  let scrollSpeed = 0.5; // adjust speed here
+  let pos = 0;
+
+  function autoScroll() {
+    pos += scrollSpeed;
+
+    if (pos >= scrollTrack.scrollWidth / 2) {
+      pos = 0;
+    }
+
+    scrollTrack.style.transform = `translateX(-${pos}px)`;
+    requestAnimationFrame(autoScroll);
+  }
+
+  // Duplicate cards once for seamless loop
+  scrollTrack.innerHTML += scrollTrack.innerHTML;
+
+  autoScroll();
+}
+
+
+/* =========================================================
+   PAUSE SLIDER ON HOVER (DESKTOP UX)
+========================================================= */
+let isPaused = false;
+
+if (scrollTrack) {
+  scrollTrack.addEventListener("mouseenter", () => {
+    isPaused = true;
+  });
+
+  scrollTrack.addEventListener("mouseleave", () => {
+    isPaused = false;
+  });
+}
+
+
+/* =========================================================
+   RESPONSIVE RESIZE FIX
+   - Resets slider position on resize or zoom
+========================================================= */
+window.addEventListener("resize", () => {
+  if (scrollTrack) {
+    scrollTrack.style.transform = "translateX(0)";
+  }
+});
+
+
+/* =========================================================
+   NAVBAR SAFETY (MOBILE / ZOOM)
+   - Ensures navbar never overflows
+========================================================= */
+const navbar = document.querySelector(".navbar");
+
+function fixNavbar() {
+  if (!navbar) return;
+
+  if (window.innerWidth < 900) {
+    navbar.style.justifyContent = "center";
+  } else {
+    navbar.style.justifyContent = "flex-end";
+  }
+}
+
+fixNavbar();
+window.addEventListener("resize", fixNavbar);
+
+
+/* =========================================================
+   ACCESSIBILITY & SAFETY
+   - Prevent accidental horizontal scroll
+========================================================= */
+document.body.style.overflowX = "hidden";
+
