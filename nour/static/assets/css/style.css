@@ -184,7 +184,6 @@ body {
     border-radius: 14px;
     padding: 14px;
     text-align: center;
-    /* box-shadow:0 8px 22px rgba(0,0,0,0.25); */
     transition: transform 0.3s;
 }
 
@@ -532,6 +531,12 @@ h3 {
 }
 
 /* -------- ABOUT PAGE -------- */
+.about-body{
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(to right, #c9c2a1, #8cc1c5 , #2cc457);
+    min-height: 100vh;
+    color: #fff;
+}
 .about-section {
     padding: 40px;
     text-align: center;

@@ -271,3 +271,8 @@ function setupLocationAutocomplete() {
         });
     }
 }
+this.donations.push(donation);
+localStorage.setItem('donations', JSON.stringify(this.donations));
+donation.status = "completed";
+localStorage.setItem("donations", JSON.stringify(this.donations));
+ 

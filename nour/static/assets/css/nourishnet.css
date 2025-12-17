@@ -1,103 +1,145 @@
 body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: #eef2f3;
-}
-hr {
-    border: none;
-    height: 5px;
-    background: #c46262;
-    margin: 10px;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #49aa8a;
+  color: #333;
 }
 
-/* STICKY NAVBAR */
+/* HEADER */
 .sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(12px) red;
-    background: #176b5b;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px) saturate(180%);
+  background: #176b5b;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .brand {
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
-    font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
 }
 
 .navbar a {
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: clamp(0.8rem, 2.5vw, 1rem);
-    color: #eee;
-    transition: 0.3s;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #eee;
+  font-weight: 600;
 }
 
 .navbar a:hover {
-    color: #ffdd57;
+  color: #ffdd57;
 }
 
 .cta {
-    background: #ffb300;
-    padding: 8px 15px;
-    border-radius: 8px;
-    color: #000 !important;
+  background: #ffb300;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: #000 !important;
 }
 
-
-
-body{
-  margin:0;
-  background:#f4f6f8;
-  font-family:Segoe UI;
+/* DASH HEADER */
+header h2 {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-header{
-  background:#176b5b;
-  color:#fff;
-  padding:15px 25px;
-  display:flex;
-  justify-content:space-between;
+#time {
+  margin-right: 20px;
+  font-weight: bold;
 }
 
-.grid{
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
+/* GRID */
+.grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-.card{
-  background:#fff;
-  padding:18px;
-  border-radius:12px;
-  box-shadow:0 6px 15px rgba(0,0,0,.1);
+/* CARDS */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, .1);
 }
 
-.alert{
-  border-left:6px solid red;
+.card h3 {
+  margin-top: 0;
+  color: #176b5b;
 }
 
-button{
-  margin-top:10px;
-  padding:8px;
-  background:#176b5b;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
+/* ACTIVITY / ALERTS */
+.card ul {
+  padding-left: 18px;
 }
-.pickup{
-    border-left:6px solid #176b5b;
-    display: flex;
+
+.card li {
+  margin-bottom: 8px;
+}
+
+.alert {
+  background: #ffdddd;
+  border-left: 6px solid #f44336;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.activity {
+  background: #e7f3fe;
+  border-left: 6px solid #2196F3;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* PENDING PICKUPS */
+.pending {
+  background: #c3a4a4;
+  margin: 20px;
+  border-left: 6px solid #85082a;
+}
+
+.pickup {
+  background: #faffe3ad;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 6px solid #f2ff42;
+}
+
+.pickup button {
+  margin-top: 8px;
+  padding: 8px;
+  background: linear-gradient(to right, #176b5b, #0f4f42);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pickup button:hover {
+  background: #54dec2;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sticky-header {
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
+  }
 }
-.pickup button{
-    background: #c32626;
-    color: #000;
+
+.grid {
+  grid-template-columns: 1fr;
 }
