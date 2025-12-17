@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Pickup Confirmed</title>
-  <link rel="stylesheet" href="nourishnet.css">
-</head>
-<body>
-     <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="logo">
-            <div class="brand">NourishNet-DASHBOARD</div>
-        </div>
-
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="login.html">LOGIN</a>
-            <a href="register.html">REGISTER</a>
-            <a href="about.html">ABOUT</a>
-            <a class="cta" href="donate.html">Donate</a>
-        </nav>
-    </header>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <br><br>
 
 <div class="pickup">
@@ -41,11 +23,8 @@
     <p>Vehicle: Bike</p>
   </div>
 </div>
-
-<script>
-document.getElementById("pid").innerText =
-  "PK-" + localStorage.getItem("pickupId");
-</script>
-
-</body>
-</html>
+{% endblock %}
+<!--<script>-->
+<!--document.getElementById("pid").innerText =-->
+<!--  "PK-" + localStorage.getItem("pickupId");-->
+<!--</script>-->
