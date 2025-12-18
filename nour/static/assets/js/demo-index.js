@@ -167,20 +167,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 /* =========================================================
    AUTO SCROLL SLIDER (INFINITE LOOP FEEL)
    - Smooth horizontal auto scroll
    - No cut effect
+   - Pause on image hover
 ========================================================= */
+
 const scrollTrack = document.getElementById("scrollTrack");
+let isPaused = false;
 
 if (scrollTrack) {
-  let scrollSpeed = 0.5; // adjust speed here
+  let scrollSpeed = 0.5;
   let pos = 0;
 
+  // Duplicate content for seamless loop
+  scrollTrack.innerHTML += scrollTrack.innerHTML;
+
+  // 🔹 Pause when mouse is over ANY image
+  const images = scrollTrack.querySelectorAll("img");
+
+  images.forEach(img => {
+    img.addEventListener("mouseenter", () => {
+      isPaused = true;
+    });
+
+    img.addEventListener("mouseleave", () => {
+      isPaused = false;
+    });
+  });
+
   function autoScroll() {
-    pos += scrollSpeed;
+    if (!isPaused) {
+      pos += scrollSpeed;
+    }
 
     if (pos >= scrollTrack.scrollWidth / 2) {
       pos = 0;
@@ -190,28 +210,8 @@ if (scrollTrack) {
     requestAnimationFrame(autoScroll);
   }
 
-  // Duplicate cards once for seamless loop
-  scrollTrack.innerHTML += scrollTrack.innerHTML;
-
   autoScroll();
 }
-
-
-/* =========================================================
-   PAUSE SLIDER ON HOVER (DESKTOP UX)
-========================================================= */
-let isPaused = false;
-
-if (scrollTrack) {
-  scrollTrack.addEventListener("mouseenter", () => {
-    isPaused = true;
-  });
-
-  scrollTrack.addEventListener("mouseleave", () => {
-    isPaused = false;
-  });
-}
-
 
 /* =========================================================
    RESPONSIVE RESIZE FIX
