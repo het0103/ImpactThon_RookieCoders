@@ -313,6 +313,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    margin-bottom: 20px;
 }
 
 .feature-card {
@@ -408,7 +409,7 @@ body {
 }
 
 .btn-ngo {
-    background: #3498db;
+    background: linear-gradient(to right, #2980b9, #27ae60);
 }
 
 .btn:hover {
@@ -429,7 +430,7 @@ footer {
     max-width: 1100px;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
 }
 
