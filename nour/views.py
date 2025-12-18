@@ -57,6 +57,8 @@ def about(request):
 def donor(request):
     return render(request, 'donor.html')
 
+def nourishnet(request):
+    return render(request, 'nourishnet.html')
 # def donor_home(request):
 #     # Check if user is logged in
 #     if "login_id" not in request.session:

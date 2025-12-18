@@ -9,5 +9,5 @@ urlpatterns = [
     path('register_ngo',register),
     path('logout', logout,name='logout'),
     path('donor', donor),
-    # path('donor-demo', donor_demo),
+    path('nourishnet', nourishnet),
 ]

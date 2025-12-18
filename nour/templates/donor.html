@@ -23,11 +23,17 @@
         <!-- Navigation -->
         <nav class="donor-nav">
             <ul>
+                {%if request.session.login_id%}
                 <a href="/">Home</a>
                 <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
                 <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
                 <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
                 <li><a href="{% url 'logout' %}" style="color: #e74c3c;">Logout</a></li>
+                {%else%}
+                <a href="/">Home</a>
+                <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
+                {%endif%}
             </ul>
         </nav>
 
@@ -55,7 +61,7 @@
                     <div class="card-label">Pending Pickups</div>
                 </div>
             </div>
-
+            {%if request.session.login_id%}
             <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 <h2 style="color: #2c3e50; margin-bottom: 20px;">Quick Actions</h2>
                 <p style="color: #666; margin-bottom: 20px;">Start making a difference today!</p>
@@ -63,6 +69,7 @@
                 <a href="#" class="btn nav-link" data-page="donate">Make a Donation</a>
                 <a href="#" class="btn" style="background: #27ae60; margin-left: 10px;" data-page="donations">View My Donations</a>
             </div>
+            {%endif%}
         </div>
 
         <!-- Donate Section -->
