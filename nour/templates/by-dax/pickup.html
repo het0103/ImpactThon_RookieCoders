@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pickup Details - NourishNet</title>
+<link rel="stylesheet" href="donor_new.css">
+<style>
+/* Override some styles for pickup page */
+body {
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  padding: 2rem;
+}
+
+.pickup-container {
+  max-width: 800px;
+  margin: 5rem auto 2rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.pickup-header {
+  background: var(--gradient);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.pickup-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.pickup-header p {
+  margin: 1rem 0 0 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.pickup-content {
+  padding: 2rem;
+}
+
+.pickup-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.pickup-section h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.detail-value {
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-pending {
+  background: rgba(247, 127, 0, 0.1);
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}
+
+.status-completed {
+  background: rgba(45, 106, 79, 0.1);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.status-in-transit {
+  background: rgba(78, 205, 196, 0.1);
+  color: var(--electric-blue);
+  border: 1px solid var(--electric-blue);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--shadow-hover);
+}
+
+.btn-success {
+  background: var(--success);
+}
+
+.btn-secondary {
+  background: var(--text-secondary);
+}
+
+.contact-info {
+  background: rgba(78, 205, 196, 0.1);
+  border: 1px solid var(--electric-blue);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-info h4 {
+  color: var(--electric-blue);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.contact-info p {
+  margin: 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.driver-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.driver-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="brand">NourishNet</div>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="donor_home.html">DONOR DASHBOARD</a>
+            <a href="ngo_dashboard.html">NGO DASHBOARD</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+        </nav>
+    </header>
+
+    <div class="pickup-container">
+        <div class="pickup-header">
+            <h1>Pickup Details</h1>
+            <p>Track your food donation pickup</p>
+        </div>
+
+        <div class="pickup-content">
+            <!-- ORDER INFO -->
+            <div class="pickup-section">
+                <h3>📦 Order Information</h3>
+                <div class="detail-row">
+                    <span class="detail-label">Order ID:</span>
+                    <span class="detail-value" id="orderId">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Food Type:</span>
+                    <span class="detail-value" id="foodType">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Quantity:</span>
+                    <span class="detail-value" id="quantity">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Pickup Location:</span>
+                    <span class="detail-value" id="location">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Pickup Time:</span>
+                    <span class="detail-value" id="pickupTime">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status-badge" id="status">Loading...</span>
+                </div>
+            </div>
+
+            <!-- NGO INFO -->
+            <div class="pickup-section">
+                <h3>🏢 NGO Information</h3>
+                <div class="detail-row">
+                    <span class="detail-label">NGO Name:</span>
+                    <span class="detail-value" id="ngoName">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">NGO Contact:</span>
+                    <span class="detail-value" id="ngoContact">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">NGO Address:</span>
+                    <span class="detail-value" id="ngoAddress">-</span>
+                </div>
+            </div>
+
+            <!-- DRIVER INFO -->
+            <div class="pickup-section">
+                <h3>🚗 Driver Information</h3>
+                <div class="driver-info">
+                    <div class="driver-photo" id="driverPhoto">👨</div>
+                    <div>
+                        <div class="detail-row" style="margin-bottom: 0.5rem; border: none;">
+                            <span class="detail-label">Driver Name:</span>
+                            <span class="detail-value" id="driverName">-</span>
+                        </div>
+                        <div class="detail-row" style="margin-bottom: 0.5rem; border: none;">
+                            <span class="detail-label">Phone:</span>
+                            <span class="detail-value" id="driverPhone">-</span>
+                        </div>
+                        <div class="detail-row" style="border: none;">
+                            <span class="detail-label">Rating:</span>
+                            <span class="detail-value" id="driverRating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Vehicle Type:</span>
+                    <span class="detail-value" id="vehicleType">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">License Plate:</span>
+                    <span class="detail-value" id="licensePlate">-</span>
+                </div>
+            </div>
+
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+                <h4>📞 Emergency Contact</h4>
+                <p><strong>NGO Hotline:</strong> <span id="ngoHotline">-</span></p>
+                <p><strong>Driver Direct:</strong> <span id="driverDirect">-</span></p>
+                <p><strong>Support:</strong> 1800-NOURISH-NET</p>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="action-buttons">
+                <button class="btn btn-success" id="confirmPickupBtn">Confirm Pickup</button>
+                <button class="btn btn-secondary" id="contactDriverBtn">Contact Driver</button>
+                <a href="donor_home.html" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="pickup.js"></script>
+
+</body>
+</html>
