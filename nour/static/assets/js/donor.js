@@ -67,7 +67,7 @@ class DonorApp {
     submitDonation() {
         const form = document.getElementById('donation-form');
         const formData = new FormData(form);
-        
+
         const donation = {
             id: Date.now(),
             foodType: formData.get('food-type'),
@@ -81,12 +81,15 @@ class DonorApp {
         this.donations.push(donation);
         localStorage.setItem('donations', JSON.stringify(this.donations));
 
+        // Update NGO Dashboard data
+        this.updateNGODashboard(donation);
+
         // Show success message
         this.showSuccessMessage('Donation submitted successfully!');
-        
+
         // Reset form
         form.reset();
-        
+
         // Update dashboard
         this.updateDashboard();
     }
@@ -94,7 +97,7 @@ class DonorApp {
     updateDashboard() {
         const today = new Date().toISOString().split('T')[0];
         const currentMonth = new Date().getMonth();
-        
+
         // Calculate statistics
         const todaysDonations = this.donations.filter(d => d.date === today).length;
         const monthlyDonations = this.donations.filter(d => {
@@ -125,7 +128,7 @@ class DonorApp {
         if (this.donations.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="5" style="text-align: center; padding: 40px; color: #666;">
+                    <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
                         No donations found. <a href="#" class="nav-link" data-page="donate">Make your first donation</a>
                     </td>
                 </tr>
@@ -145,6 +148,9 @@ class DonorApp {
                         ${donation.status.charAt(0).toUpperCase() + donation.status.slice(1)}
                     </span>
                 </td>
+                <td>
+                    <button class="pickup-info-btn" onclick="window.open('pickup.html?id=${donation.id}', '_self')">View Info</button>
+                </td>
             `;
             tbody.appendChild(row);
         });
@@ -152,10 +158,10 @@ class DonorApp {
 
     formatDate(dateString) {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'short', 
-            day: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
         });
     }
 
@@ -164,7 +170,7 @@ class DonorApp {
         if (successDiv) {
             successDiv.textContent = message;
             successDiv.style.display = 'block';
-            
+
             setTimeout(() => {
                 successDiv.style.display = 'none';
             }, 3000);
@@ -177,6 +183,10 @@ class DonorApp {
         if (donation) {
             donation.status = 'completed';
             localStorage.setItem('donations', JSON.stringify(this.donations));
+
+            // Update NGO Dashboard when pickup is completed
+            this.updateNGOPickupStatus(donationId, 'confirmed');
+
             this.updateDashboard();
             if (this.currentPage === 'donations') {
                 this.loadDonations();
@@ -184,51 +194,101 @@ class DonorApp {
         }
     }
 
-    // Generate dummy data for demo
-    generateDummyData() {
-        if (this.donations.length === 0) {
-            const dummyDonations = [
-                {
-                    id: 1,
-                    foodType: 'Cooked Rice',
-                    quantity: '5 kg',
-                    pickupTime: '18:00',
-                    pickupLocation: 'Main Street Restaurant',
-                    date: '2025-12-10',
-                    status: 'completed'
-                },
-                {
-                    id: 2,
-                    foodType: 'Fresh Vegetables',
-                    quantity: '3 kg',
-                    pickupTime: '16:30',
-                    pickupLocation: 'Green Market',
-                    date: '2025-12-12',
-                    status: 'completed'
-                },
-                {
-                    id: 3,
-                    foodType: 'Bread',
-                    quantity: '20 pieces',
-                    pickupTime: '20:00',
-                    pickupLocation: 'City Bakery',
-                    date: '2025-12-14',
-                    status: 'pending'
-                }
-            ];
+    // Update NGO Dashboard data when donation is made
+    updateNGODashboard(donation) {
+        let ngoData = JSON.parse(localStorage.getItem('ngoDashboardData'));
 
-            this.donations = dummyDonations;
-            localStorage.setItem('donations', JSON.stringify(this.donations));
+        // Initialize NGO data if it doesn't exist
+        if (!ngoData) {
+            ngoData = {
+                stats: {
+                    totalDonations: 0,
+                    pendingPickups: 0,
+                    activeDonors: 0,
+                    completedPickups: 0
+                },
+                activities: [],
+                alerts: [],
+                pickups: []
+            };
         }
+
+        // Update stats
+        ngoData.stats.totalDonations += 1;
+        ngoData.stats.pendingPickups += 1;
+
+        // Add to activities
+        const activity = {
+            id: Date.now(),
+            type: 'donation',
+            title: 'New donation received',
+            description: `${donation.foodType} - ${donation.quantity} from ${donation.pickupLocation}`,
+            time: 'Just now',
+            icon: 'utensils'
+        };
+        ngoData.activities.unshift(activity);
+
+        // Create pickup entry for NGO dashboard
+        const pickupDateTime = `${donation.date}T${donation.pickupTime}`;
+        const pickupEntry = {
+            id: donation.id,
+            donorName: donation.pickupLocation, // Using location as donor name for demo
+            address: donation.pickupLocation,
+            dateTime: pickupDateTime,
+            foodType: donation.foodType,
+            quantity: this.parseQuantity(donation.quantity),
+            status: 'pending',
+            urgency: 'normal'
+        };
+        ngoData.pickups.push(pickupEntry);
+
+        // Save updated NGO data
+        localStorage.setItem('ngoDashboardData', JSON.stringify(ngoData));
+    }
+
+    // Update NGO Dashboard when pickup status changes
+    updateNGOPickupStatus(donationId, status) {
+        let ngoData = JSON.parse(localStorage.getItem('ngoDashboardData'));
+        if (!ngoData) return;
+
+        const pickup = ngoData.pickups.find(p => p.id === donationId);
+        if (pickup) {
+            pickup.status = status;
+
+            // Update stats
+            if (status === 'confirmed') {
+                ngoData.stats.pendingPickups -= 1;
+                ngoData.stats.completedPickups += 1;
+
+                // Add completion activity
+                const activity = {
+                    id: Date.now(),
+                    type: 'pickup',
+                    title: 'Pickup completed',
+                    description: `Pickup completed for ${pickup.donorName}`,
+                    time: 'Just now',
+                    icon: 'check-circle'
+                };
+                ngoData.activities.unshift(activity);
+            }
+
+            localStorage.setItem('ngoDashboardData', JSON.stringify(ngoData));
+        }
+    }
+
+    // Parse quantity string to number for NGO dashboard
+    parseQuantity(quantityString) {
+        const match = quantityString.match(/(\d+)/);
+        return match ? parseInt(match[1]) : 1;
     }
 }
 
-// Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the app when DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
     const app = new DonorApp();
-    
+
     // Generate dummy data for demo (remove this in production)
-    app.generateDummyData();
+    // app.generateDummyData(); // Commented out as method doesn't exist
     app.updateDashboard();
 });
 
@@ -265,14 +325,9 @@ const pickupLocations = [
 function setupLocationAutocomplete() {
     const locationInput = document.getElementById('pickup-location');
     if (locationInput) {
-        locationInput.addEventListener('input', function() {
+        locationInput.addEventListener('input', function () {
             // Simple autocomplete implementation could go here
             console.log('Location input changed:', this.value);
         });
     }
 }
-this.donations.push(donation);
-localStorage.setItem('donations', JSON.stringify(this.donations));
-donation.status = "completed";
-localStorage.setItem("donations", JSON.stringify(this.donations));
- 

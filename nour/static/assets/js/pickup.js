@@ -161,7 +161,7 @@ function showError(message) {
         <div style="text-align: center; padding: 3rem;">
             <h3 style="color: var(--danger);">Error</h3>
             <p>${message}</p>
-            <a href="donor_home.html" class="btn">Back to Dashboard</a>
+            <a href="../../../templates/by-dax/donor_home.html" class="btn">Back to Dashboard</a>
         </div>
     `;
 }

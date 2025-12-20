@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donor Dashboard - NourishNet</title>
-    <link rel="stylesheet" href="{% static 'assets/css/donor.css' %}">
+    <link rel="stylesheet" href="static/assets/css/donor.css">
 </head>
+
 <body>
+    <div class="donor-header">
+        <h1>Welcome, Donor!</h1>
+        <p>Thank you for making a difference in the community</p>
+    </div>
+    <hr>
     <div class="donor-container">
-        <!-- Header -->
-        <div class="donor-header">
-            <h1>Welcome, Donor!</h1>
-            <p>Thank you for making a difference in the community</p>
-        </div>
 
         <!-- Navigation -->
         <nav class="donor-nav">
             <ul>
                 {%if request.session.login_id%}
-                <a href="/">Home</a>
+                <li><a href="/">Home</a></li>
                 <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
                 <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
                 <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
-                <li><a href="{% url 'logout' %}" style="color: #e74c3c;">Logout</a></li>
+                <li><a href="/logout" style="color: #e74c3c;">Logout</a></li>
                 {%else%}
-                <a href="/">Home</a>
+                <li><a href="/">Home</a></li>
                 <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
-                <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
                 {%endif%}
             </ul>
         </nav>
@@ -43,35 +43,37 @@
                     <div class="card-number" id="today-count">0</div>
                     <div class="card-label">Today's Donations</div>
                 </div>
-                
+
                 <div class="card month">
                     <div class="card-icon">📈</div>
                     <div class="card-number" id="month-count">0</div>
                     <div class="card-label">This Month</div>
                 </div>
-                
+
                 <div class="card pickup">
                     <div class="card-icon">🚚</div>
                     <div class="card-number" id="pickup-count">0</div>
                     <div class="card-label">Pending Pickups</div>
                 </div>
             </div>
-            {%if request.session.login_id%}
+
             <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 <h2 style="color: #2c3e50; margin-bottom: 20px;">Quick Actions</h2>
                 <p style="color: #666; margin-bottom: 20px;">Start making a difference today!</p>
-                
+                {%if request.session.login_id%}
                 <a href="#" class="btn nav-link" data-page="donate">Make a Donation</a>
                 <a href="#" class="btn" style="background: #27ae60; margin-left: 10px;" data-page="donations">View My Donations</a>
+                {%else%}
+                <a href="#" class="btn" style="background: #27ae60; margin-left: 10px;" data-page="donations">View My Donations</a>
+                {%endif%}
             </div>
-            {%endif%}
         </div>
 
         <!-- Donate Section -->
         <div id="donate-section" class="page-section">
             <div class="donation-form">
                 <h2 style="color: #2c3e50; margin-bottom: 25px;">Make a Food Donation</h2>
-                
+
                 <form id="donation-form">
                     <div class="form-group">
                         <label for="food-type">Food Type *</label>
@@ -90,7 +92,8 @@
 
                     <div class="form-group">
                         <label for="quantity">Quantity *</label>
-                        <input type="text" id="quantity" name="quantity" placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
+                        <input type="text" id="quantity" name="quantity"
+                            placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
                     </div>
 
                     <div class="form-group">
@@ -100,7 +103,8 @@
 
                     <div class="form-group">
                         <label for="pickup-location">Pickup Location *</label>
-                        <input type="text" id="pickup-location" name="pickup-location" placeholder="Enter your address or location" required>
+                        <input type="text" id="pickup-location" name="pickup-location"
+                            placeholder="Enter your address or location" required>
                     </div>
 
                     <button type="submit" class="btn btn-success">Submit Donation</button>
@@ -111,8 +115,9 @@
         <!-- My Donations Section -->
         <div id="donations-section" class="page-section">
             <div class="donations-table">
-                <h2 style="color: #2c3e50; padding: 20px; margin: 0; border-bottom: 1px solid #e1e8ed;">My Donation History</h2>
-                
+                <h2 style="color: #2c3e50; padding: 20px; margin: 0; border-bottom: 1px solid #e1e8ed;">My Donation
+                    History</h2>
+
                 <table>
                     <thead>
                         <tr>
@@ -121,16 +126,37 @@
                             <th>Date</th>
                             <th>Location</th>
                             <th>Status</th>
+                            <th>Pickup Info</th>
+
+
                         </tr>
                     </thead>
                     <tbody id="donations-tbody">
                         <!-- Donations will be loaded dynamically -->
+                         <tbody id="donations-tbody">
+                        <!-- JS will insert rows -->
                     </tbody>
+                    </tbody>
+                    
                 </table>
             </div>
         </div>
     </div>
 
-    <script src="{% static 'assets/js/donor.js' %}"></script>
+    <!-- Pickup Info Modal -->
+    <div id="pickupModal" class="pickup-modal">
+        <div class="pickup-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Pickup Information</h2>
+            <p><strong>NGO:</strong> <span id="modalNgo"></span></p>
+            <p><strong>Pickup Person:</strong> <span id="modalPerson"></span></p>
+            <p><strong>Vehicle:</strong> <span id="modalVehicle"></span></p>
+            <p><strong>Contact:</strong> <span id="modalContact"></span></p>
+            <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+        </div>
+    </div>
+
+    <script src="static/assets/js/donor.js"></script>
 </body>
+
 </html>

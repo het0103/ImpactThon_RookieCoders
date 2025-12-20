@@ -1,24 +1,180 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block content%}
-<div class="grid">
+    <!-- MAIN DASHBOARD -->
+    <div class="dashboard-container">
+        <!-- TOP HEADER -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <h1><i class="fas fa-hand-holding-heart"></i> NGO Dashboard</h1>
+                <p>Welcome back! Here's your operations overview.</p>
+            </div>
+            <div class="header-right">
+                <div class="time-display" id="currentTime"></div>
+                <div class="date-display" id="currentDate"></div>
+            </div>
+        </div>
 
-  <div class="card activity">
-    <h3>Nearby Donor Activity</h3>
-    <ul id="donors"></ul>
-  </div>
+        <!-- STATS CARDS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalDonations">0</h3>
+                    <p>Total Donations</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="pendingPickups">0</h3>
+                    <p>Pending Pickups</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="activeDonors">0</h3>
+                    <p>Active Donors</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="completedPickups">0</h3>
+                    <p>Completed Today</p>
+                </div>
+            </div>
+        </div>
 
-  <div class="card alert">
-    <h3>Live Alerts</h3>
-    <ul id="alerts"></ul>
-  </div>
+        <!-- MAIN CONTENT GRID -->
+        <div class="content-grid">
+            <!-- LEFT PANEL - RECENT ACTIVITY -->
+            <div class="panel activity-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                    <button class="refresh-btn" onclick="refreshActivity()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be populated by JS -->
+                </div>
+            </div>
 
-</div> 
-<br>
-{%if request.session.login_id%}
-<div class="card pending" >
-    <h3>Pending Pickups</h3>
-    <div id="pickups"></div>
-  </div>
-{%endif%}
+            <!-- RIGHT PANEL - ALERTS & NOTIFICATIONS -->
+            <div class="panel alerts-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-bell"></i> Alerts & Notifications</h2>
+                    <span class="alert-count" id="alertCount">0</span>
+                </div>
+                <div class="alerts-list" id="alertsList">
+                    <!-- Alerts will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PENDING PICKUPS SECTION -->
+         {%if request.session.login_id%}
+        <div class="panel pickups-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-truck"></i> Pending Pickups</h2>
+                <div class="panel-actions">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="urgent">Urgent</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                </div>
+            </div>
+            <div class="pickups-grid" id="pickupsGrid">
+                <!-- Pickup cards will be populated by JS -->
+            </div>
+        </div>
+        {%endif%}
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                {%if request.session.login_id%}
+                <button class="action-btn" onclick="openPickupModal()">
+                    <i class="fas fa-plus"></i>
+                    <span>Schedule Pickup</span>
+                </button>
+                 <button class="action-btn" onclick="viewReports()">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>View Reports</span>
+                </button>
+                <button class="action-btn" onclick="manageDonors()">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Manage Donors</span>
+                </button>
+                <button class="action-btn" onclick="settings()">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+                {%else%}
+                <button class="action-btn" onclick="viewReports()">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>View Reports</span>
+                </button>
+                <button class="action-btn" onclick="manageDonors()">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Manage Donors</span>
+                </button>
+                <button class="action-btn" onclick="settings()">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <!-- Pickup Modal -->
+    <div id="pickupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Schedule New Pickup</h3>
+                <span class="close" onclick="closePickupModal()">&times;</span>
+            </div>
+            <form id="pickupForm">
+                <div class="form-group">
+                    <label for="donorName">Donor Name</label>
+                    <input type="text" id="donorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickupAddress">Pickup Address</label>
+                    <textarea id="pickupAddress" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pickupDate">Date & Time</label>
+                    <input type="datetime-local" id="pickupDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="foodType">Food Type</label>
+                    <select id="foodType" required>
+                        <option value="">Select food type</option>
+                        <option value="cooked">Cooked Food</option>
+                        <option value="raw">Raw Ingredients</option>
+                        <option value="canned">Canned Goods</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity (servings)</label>
+                    <input type="number" id="quantity" min="1" required>
+                </div>
+                <button type="submit" class="submit-btn">Schedule Pickup</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

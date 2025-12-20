@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pickup Details - NourishNet</title>
-<link rel="stylesheet" href="donor_new.css">
 <style>
 /* Override some styles for pickup page */
 body {
@@ -216,18 +213,6 @@ body {
 </style>
 </head>
 
-<body>
-    <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="brand">NourishNet</div>
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="donor_home.html">DONOR DASHBOARD</a>
-            <a href="ngo_dashboard.html">NGO DASHBOARD</a>
-            <a href="login.html">LOGIN</a>
-            <a href="register.html">REGISTER</a>
-        </nav>
-    </header>
 
     <div class="pickup-container">
         <div class="pickup-header">
@@ -325,12 +310,9 @@ body {
             <div class="action-buttons">
                 <button class="btn btn-success" id="confirmPickupBtn">Confirm Pickup</button>
                 <button class="btn btn-secondary" id="contactDriverBtn">Contact Driver</button>
-                <a href="donor_home.html" class="btn btn-secondary">Back to Dashboard</a>
+                <a href="by-dax/donor_home.html" class="btn btn-secondary">Back to Dashboard</a>
             </div>
         </div>
     </div>
 
-    <script src="pickup.js"></script>
-
-</body>
-</html>
+{%endblock%}
