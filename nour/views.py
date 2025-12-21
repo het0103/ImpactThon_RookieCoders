@@ -5,6 +5,36 @@ from .models import *
 def index(request):
     return render(request, "index.html")
 
+def about(request):
+    return render(request, 'about.html')
+
+def anonymous_donation(request):
+    return render(request, 'anonymous_donation.html')
+
+def donation_needs(request):
+    return render(request, 'donation_needs.html')
+
+def donor_home(request):
+    return render(request, 'donor_home.html')
+
+def donor_management(request):
+    return render(request, 'donor_management.html')
+
+def loginpage(request):
+    return render(request, 'login.html')
+
+def ngo_dashboard(request):
+    return render(request, "ngo_dashboard.html")
+
+def ngo_pickup_schedule(request):
+    return render(request, "ngo_pickup_schedule.html")
+
+def ngo_request(request):
+    return render(request, "ngo_request.html")
+
+def pickup(request):
+    return render(request, "pickup.html")
+
 # for ngo registration
 def register(request):
     if request.method == "POST":
@@ -19,16 +49,13 @@ def register(request):
             return render(request, "login.html", {"error": "Account already exists. Please log in."})
         else:
             if pwd1 != pwd2:
-                return render(request, "register_ngo.html", {"error": "Passwords do not match."})
+                return render(request, "register.html", {"error": "Passwords do not match."})
             else:
                 user = register_ngo(name=name, email=email,mobile=mobile,addr=addr,pincode=pincode, password=pwd1,timestamp="")
                 user.save()
                 return redirect(index)
+    return render(request, "register.html")
 
-    return render(request, "register_ngo.html")
-
-def loginpage(request):
-    return render(request, 'login.html')
 
 def verifyuser(request):
     if request.method == "POST":
@@ -51,21 +78,8 @@ def logout(request):
     except:
         pass
 
-def about(request):
-    return render(request, 'about.html')
+def reports(request):
+    return render(request, "reports.html")
 
-def donor(request):
-    return render(request, 'donor.html')
-
-def nourishnet(request):
-    return render(request, 'nourishnet.html')
-# def donor_home(request):
-#     # Check if user is logged in
-#     if "login_id" not in request.session:
-#         return redirect('loginpage')
-#
-#     return render(request, 'donor/donor.html')
-#
-# def donor_demo(request):
-#     # Demo page without login requirement for testing
-#     return render(request, 'donor/donor_demo.html')
+def settings(request):
+    return render(request, "settings.html")

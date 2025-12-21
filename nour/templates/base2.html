@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{%load static%}
-<html>
+<html lang="en">
     <head>
         <title> Hello GitHub Desktop </title>
         <meta charset="UTF-8">
@@ -11,29 +10,25 @@
         <link rel="stylesheet" href="static/assets/css/ngo_dashboard.css">
         <link rel="stylesheet" href="static/assets/css/pickup.css">
         <link rel="stylesheet" href="static/assets/css/style.css">
-
     </head>
-    <body>
-<header class="sticky-header">
-     <div class="logo">
-        <div class="brand">NourishNet-NGO</div>
+<body>
+<div class="donor-header">
+        <h1>Welcome, Donor!</h1>
+        <p>Thank you for making a difference in the community</p>
     </div>
-    <nav class="navbar">
-        {%if request.session.login_id%}
-        <a class="cta" href="/donor">Donate</a>
-        <a href="/donation_needs">QUICK NEEDS</a>
-        <a href="/">HOME</a>
-        <a href="/about">ABOUT</a>
-        <a href="/logout">LOGOUT</a>
-        {%else%}
-        <a href="/">HOME</a>
-        <a href="/donation_needs">QUICK NEEDS</a>
-        <a href="/about">ABOUT</a>
-        <a href="/login">LOGIN</a>
-        <a href="/register">REGISTER</a>
-        {%endif%}
-    </nav>
-</header>
+    <hr>
+    <div class="donor-container">
+
+        <!-- Navigation -->
+        <nav class="donor-nav">
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
+                <li><a href="#" class="nav-link" data-page="subscriptions">Subscriptions</a></li>
+                <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
+                <li><a href="/login" style="color: #e74c3c;">Logout</a></li>
+            </ul>
+        </nav>
 
   {%block content%}
         <!--do not write anything here-->

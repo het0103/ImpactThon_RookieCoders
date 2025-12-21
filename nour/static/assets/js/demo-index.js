@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
    AUTO SCROLL SLIDER (INFINITE LOOP FEEL)
    - Smooth horizontal auto scroll
    - No cut effect
-   - Pause on image hover
+   - Pause on images hover
 ========================================================= */
 
 const scrollTrack = document.getElementById("scrollTrack");
@@ -176,7 +176,7 @@ if (scrollTrack) {
   // Duplicate content for seamless loop
   scrollTrack.innerHTML += scrollTrack.innerHTML;
 
-  // 🔹 Pause when mouse is over ANY image
+  // 🔹 Pause when mouse is over ANY images
   const images = scrollTrack.querySelectorAll("img");
 
   images.forEach(img => {

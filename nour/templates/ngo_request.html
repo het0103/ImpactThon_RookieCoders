@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Donations - NourishNet</title>
-    <link rel="stylesheet" href="ngo_dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+<style>
         /* Specific page overrides */
         .request-page-container {
             max-width: 800px;
@@ -65,15 +59,15 @@
         </div>
 
         <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="ngo_dashboard.html">DASHBOARD</a>
-            <a href="donation_needs.html">DONATION NEEDS</a>
-            <a href="about.html">ABOUT</a>
+            <a href="/">HOME</a>
+            <a href="/ngo_dashboard">DASHBOARD</a>
+            <a href="/donation_needs">DONATION NEEDS</a>
+            <a href="/about">ABOUT</a>
         </nav>
     </header>
 
     <div class="request-page-container">
-        <a href="ngo_dashboard.html" class="btn-back">
+        <a href="/ngo_dashboard" class="btn-back">
             <i class="fas fa-arrow-left"></i> Back to Dashboard
         </a>
 
@@ -111,8 +105,4 @@
             </form>
         </div>
     </div>
-
-    <script src="ngo_request.js"></script>
-</body>
-
-</html>
+{%endblock%}

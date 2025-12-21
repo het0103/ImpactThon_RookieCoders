@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Login</title>
-</head>
-
-<body>
-  <header class="sticky-header">
-    <div class="logo">
-      <div class="brand">NourishNet</div>
-    </div>
-
-    <nav class="navbar">
-      <a href="index.html">HOME</a>
-      <a href="login.html" class="active">LOGIN</a>
-      <a href="register.html">REGISTER</a>
-      <a href="about.html">ABOUT</a>
-    </nav>
-  </header>
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
   <br>
   <div class="auth-page">
     <section class="auth-section">
@@ -42,7 +22,7 @@
 
           <div class="login__register">
             Don’t have an account?
-            <a href="register.html">Register</a>
+            <a href="/register">Register</a>
           </div>
         </form>
       </div>
@@ -68,20 +48,20 @@
 
         // Redirect based on role
         if (user.role === 'ngo') {
-          window.location.href = 'ngo_dashboard.html';
+          window.location.href = '/ngo_dashboard';
         } else {
-          window.location.href = 'donor_home.html'; // Assuming donor dashboard is here or index
+          window.location.href = '/donor_home'; // Assuming donor dashboard is here or index
         }
       } else {
         // Admin/Demo backdoor
         if (email === 'admin@nourishnet.org' && password === 'admin') {
           localStorage.setItem('currentUser', JSON.stringify({ name: 'Admin NGO', role: 'ngo' }));
-          window.location.href = 'ngo_dashboard.html';
+          window.location.href = '/ngo_dashboard';
           return;
         }
         if (email === 'donor@test.com' && password === 'donor') {
           localStorage.setItem('currentUser', JSON.stringify({ name: 'Test Donor', role: 'donor' }));
-          window.location.href = 'donor_home.html';
+          window.location.href = '/donor_home';
           return;
         }
 
@@ -96,7 +76,4 @@
       // window.location.href = currentUser.role === 'ngo' ? 'ngo_dashboard.html' : 'donor_home.html';
     }
   </script>
-
-</body>
-
-</html>
+{%endblock%}

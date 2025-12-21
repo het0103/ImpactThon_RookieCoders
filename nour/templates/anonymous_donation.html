@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Donation - NourishNet</title>
-    <link rel="stylesheet" href="donor_new.css">
-</head>
-
-<body>
-    <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="logo">
-            <div class="brand">NourishNet</div>
-        </div>
-
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="donor_home.html">DONOR DASHBOARD</a>
-            <a href="login.html">LOGIN</a>
-            <a href="register.html">REGISTER</a>
-            <a href="about.html">ABOUT</a>
-        </nav>
-    </header>
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
     <br>
 
     <!-- Header -->
@@ -97,8 +75,4 @@
             </form>
         </div>
     </div>
-
-    <script src="anonymous_donation.js"></script>
-</body>
-
-</html>
+{%endblock%}

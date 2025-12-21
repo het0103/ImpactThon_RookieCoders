@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Register</title>
-</head>
-
-<body>
-  <header class="sticky-header">
-    <div class="logo">
-      <div class="brand">NourishNet</div>
-    </div>
-
-    <nav class="navbar">
-      <a href="index.html">HOME</a>
-      <a href="login.html">LOGIN</a>
-      <a href="register.html" class="active">REGISTER</a>
-      <a href="about.html">ABOUT</a>
-    </nav>
-  </header>
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
   <br>
   <div class="auth-page">
     <section class="auth-register">
@@ -35,7 +15,7 @@
               <label class="login_label">I am a:</label>
               <select id="role" class="login_input" onchange="toggleFields()"
                 style="background: rgba(255,255,255,0.25); color: inherit;">
-                <option value="donor">Food Donor</option>
+                <option value="donor">Donor</option>
                 <option value="ngo">NGO / Charity</option>
               </select>
             </div>
@@ -82,7 +62,7 @@
 
           <div class="login__resister">
             Already have an account?
-            <a href="login.html">Login</a>
+            <a href="/login">Login</a>
           </div>
         </form>
       </div>
@@ -135,9 +115,8 @@
         localStorage.setItem('users', JSON.stringify(users));
 
         alert("Registration successful! Please login.");
-        window.location.href = 'login.html';
+        window.location.href = '/login';
       });
     </script>
-</body>
-
-</html>
+    </div>
+{%endblock%}

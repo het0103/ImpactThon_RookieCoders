@@ -1,42 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NourishNet-NGO</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body>
-    <!-- <link rel="stylesheet" href="where.js"> -->
-    <!-- Page Entry Overlay -->
-    <div class="page-entry" id="pageEntry">
-
-        <div class="glass-box">
-            <img src="fav.jpg" alt="Logo" class="entry-logo-img">
-            <h1 class="entry-title">NourishNet</h1>
-            <p class="entry-tagline">Together Against Hunger</p>
-        </div>
-
-    </div>
-
-    <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="logo">
-            <div class="brand">NourishNet</div>
-        </div>
-
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="donation_needs.html">DONATION NEEDS</a>
-            <a href="login.html">LOGIN</a>
-            <a href="register.html">REGISTER</a>
-            <a href="about.html">ABOUT</a>
-        </nav>
-    </header>
-
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
     <!-- MAIN CONTENT GRID -->
     <main class="main-grid">
 
@@ -52,31 +16,31 @@
 
                     <!-- ORIGINAL SET -->
                     <div class="left-card">
-                        <img src="images/community_feeding.png" alt="Community Feeding">
+                        <img src="static/assets/images/community_feeding.png" alt="Community Feeding">
                         <h3>Community Feeding</h3>
                         <p>Daily meal distribution for families in need.</p>
                     </div>
 
                     <div class="left-card">
-                        <img src="images/school_nutrition.png" alt="School Nutrition">
+                        <img src="static/assets/images/school_nutrition.png" alt="School Nutrition">
                         <h3>School Nutrition</h3>
                         <p>Nutritious meals for underprivileged children.</p>
                     </div>
 
                     <div class="left-card">
-                        <img src="images/food_collection.png" alt="Food Collection">
+                        <img src="static/assets/images/food_collection.png" alt="Food Collection">
                         <h3>Food Collection Drives</h3>
                         <p>Collecting surplus food from hotels and events.</p>
                     </div>
 
                     <div class="left-card">
-                        <img src="images/volunteer_network.png" alt="Volunteer Network">
+                        <img src="static/assets/images/volunteer_network.png" alt="Volunteer Network">
                         <h3>Volunteer Network</h3>
                         <p>Thousands of volunteers across cities.</p>
                     </div>
 
                     <div class="left-card">
-                        <img src="images/emergency_relief.png" alt="Emergency Relief">
+                        <img src="static/assets/images/emergency_relief.png" alt="Emergency Relief">
                         <h3>Emergency Relief</h3>
                         <p>Rapid food support during disasters.</p>
                     </div>
@@ -91,25 +55,25 @@
     <section class="three-box-section">
 
         <div class="three-box">
-            <img src="images/ngo_partners.png" alt="NGO Partners">
+            <img src="static/assets/images/ngo_partners.png" alt="NGO Partners">
             <h3>NGO’s</h3>
             <p>Partner NGOs helping us deliver food to people in need.</p>
         </div>
 
         <div class="three-box">
-            <img src="images/food_collection.png" alt="Food Collection Places">
+            <img src="static/assets/images/food_collection.png" alt="Food Collection Places">
             <h3>Food Collection Places</h3>
             <p>Pick-up points where citizens can donate extra food.</p>
         </div>
 
         <div class="three-box">
-            <img src="images/community_feeding.png" alt="Donate For">
+            <img src="static/assets/images/community_feeding.png" alt="Donate For">
             <h3>Donate For</h3>
             <p>Your donation supports hundreds of families every week.</p>
         </div>
 
     </section>
-    <!-- ACCHIVEMENTS DISPLAY -->
+    <!-- ACHIVEMENTS DISPLAY -->
     <div class="container">
 
         <section class="impact-section">
@@ -147,8 +111,8 @@
                     <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
                     <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
                 </ul>
-                <a href="donor_home.html" class="btn btn-donor" style="margin-bottom: 10px;">Explore Donor Dashboard &nbsp; →</a>
-                <a href="anonymous_donation.html" class="btn btn-donor" >Quick Anonymous
+                <a href="/donor_home" class="btn btn-donor" style="margin-bottom: 10px;">Explore Donor Dashboard &nbsp; →</a>
+                <a href="/anonymous_donation" class="btn btn-donor" >Quick Anonymous
                     Donation &nbsp; →</a>
             </div>
 
@@ -161,63 +125,9 @@
                     <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
                     <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
                 </ul>
-                <a href="ngo_dashboard.html" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
+                <a href="/ngo_dashboard" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
             </div>
 
         </div>
     </div>
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-
-            <!-- Left Column -->
-            <div class="footer-left">
-
-                <h3>Locations</h3>
-                <p>Ahmedabad, Gujarat</p>
-                <p>Gandhinagar, Gujarat</p>
-                <p>Surat, Gujarat</p>
-                <p>Vadodara, Gujarat</p>
-
-                <h3>Made By</h3>
-                <p>Developed by LDRP-KSV Students</p>
-
-                <h3>Team Emails</h3>
-                <ul class="email-list">
-                    <li>person1@yourngo.org</li>
-                    <li>person2@yourngo.org</li>
-                    <li>person3@yourngo.org</li>
-                    <li>person4@yourngo.org</li>
-                    <li>person5@yourngo.org</li>
-                </ul>
-
-            </div>
-
-            <!-- Right Column -->
-            <div class="footer-right">
-
-                <h3>Contact Us</h3>
-                <p>Phone: +91 98765 43210</p>
-                <p>Email: info@yourngo.org</p>
-                <p>Address: LDRP Campus, Gandhinagar, Gujarat</p>
-
-                <h3>Terms & Conditions</h3>
-                <p>
-                    By using this website, you agree to our terms and privacy policies.
-                    All information is for public awareness. Misuse of content is prohibited.
-                </p>
-
-            </div>
-
-        </div>
-
-        <p class="footer-bottom">© 2025 Your NGO Name. All Rights Reserved.</p>
-    </footer>
-    <script src="demo-index.js">
-
-    </script>
-
-
-</body>
-
-</html>
+{%endblock%}

@@ -1,48 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donor Dashboard - NourishNet</title>
-    <link rel="stylesheet" href="donor_new.css">
-</head>
-
-<body>
-    <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="logo">
-            <div class="brand">NourishNet-DASHBOARD</div>
-        </div>
-
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="donation_needs.html">DONATION NEEDS</a>
-            <a href="login.html">LOGIN</a>
-            <a href="register.html">REGISTER</a>
-            <a href="about.html">ABOUT</a>
-        </nav>
-    </header>
-    <br>
-    <!-- Header -->
-    <div class="donor-header">
-        <h1>Welcome, Donor!</h1>
-        <p>Thank you for making a difference in the community</p>
-    </div>
-    <hr>
-    <div class="donor-container">
-
-        <!-- Navigation -->
-        <nav class="donor-nav">
-            <ul>
-                <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
-                <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
-                <li><a href="#" class="nav-link" data-page="subscriptions">Subscriptions</a></li>
-                <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
-                <li><a href="login.html" style="color: #e74c3c;">Logout</a></li>
-            </ul>
-        </nav>
-
+{%extends 'base2.html'%}
+{% load static %}
+{%block content%}
         <!-- Success Message -->
         <div id="success-message" class="success-message"></div>
 
@@ -73,9 +31,10 @@
                 <p style="color: #666; margin-bottom: 20px;">Start making a difference today!</p>
 
                 <a href="#" class="btn nav-link" data-page="donate">Make a Donation</a>
-                <a href="donation_needs.html" class="btn btn-donor"
+                <a href="/donation_needs" class="btn btn-donor"
                     style="background: #e74c3c; margin-bottom: 10px;">View Donation Needs &nbsp; →</a>
             </div>
+
         </div>
 
         <!-- Donate Section -->
@@ -284,9 +243,4 @@
             <p><strong>Location:</strong> <span id="modalLocation"></span></p>
         </div>
     </div>
-
-
-    <script src="donor.js"></script>
-</body>
-
-</html>
+{%endblock%}
