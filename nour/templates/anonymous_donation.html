@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Donation - NourishNet</title>
+    <link rel="stylesheet" href="donor_new.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="donor_home.html">DONOR DASHBOARD</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+    <br>
+
+    <!-- Header -->
+    <div class="donor-header">
+        <h1>Make an Anonymous Donation</h1>
+        <p>Help feed those in need without any personal information required</p>
+    </div>
+    <hr>
+
+    <div class="donor-container">
+        <!-- Success Message -->
+        <div id="success-message" class="success-message"></div>
+
+        <!-- Anonymous Donation Form -->
+        <div class="donation-form">
+            <h2 style="color: #2c3e50; margin-bottom: 25px;">One-Time Food Donation</h2>
+            <p style="color: #666; margin-bottom: 20px;">Your donation will remain completely anonymous. No account or personal information required.</p>
+
+            <form id="anonymous-donation-form">
+                <div class="form-group">
+                    <label for="ngo-select">Select NGO *</label>
+                    <select id="ngo-select" name="ngo-select" required>
+                        <option value="">Choose an NGO to donate to</option>
+                        <option value="Helping Hands NGO">Helping Hands NGO</option>
+                        <option value="Food for All Foundation">Food for All Foundation</option>
+                        <option value="Community Kitchen">Community Kitchen</option>
+                        <option value="Hunger Relief Network">Hunger Relief Network</option>
+                        <option value="Care & Share">Care & Share</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="food-type">Food Type *</label>
+                    <select id="food-type" name="food-type" required>
+                        <option value="">Select food type</option>
+                        <option value="Cooked Food">Cooked Food</option>
+                        <option value="Fresh Vegetables">Fresh Vegetables</option>
+                        <option value="Fresh Fruits">Fresh Fruits</option>
+                        <option value="Bread">Bread</option>
+                        <option value="Packaged Food">Packaged Food</option>
+                        <option value="Dairy Products">Dairy Products</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity *</label>
+                    <input type="text" id="quantity" name="quantity"
+                        placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup-time">Preferred Pickup Time *</label>
+                    <input type="time" id="pickup-time" name="pickup-time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup-location">Pickup Location *</label>
+                    <input type="text" id="pickup-location" name="pickup-location"
+                        placeholder="Enter your address or location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-info">Contact Info of Email</label>
+                    <input type="text" id="contact-info" name="contact-info"
+                        placeholder="provides contact info of email">
+                    <small style="color: #666; font-size: 0.9em;">This information is only used for pickup coordination and will not be stored.</small>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit Anonymous Donation</button>
+                <button type="submit" class="btn btn-success">Money Donation</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="anonymous_donation.js"></script>
+</body>
+
+</html>

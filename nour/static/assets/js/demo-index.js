@@ -23,16 +23,7 @@
 
 // animateScroll();
 
-// /* Pause on hover */
-// track.addEventListener("mouseenter", () => speed = 0);
-// track.addEventListener("mouseleave", () => speed = 0.5);
 
-// /* Accessibility: respect reduced motion */
-// if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-//   speed = 0;
-// }
-// let currentOtp = null;
-// let otpVerified = false;
 
 // function randomOtp() {
 //   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -167,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 /* =========================================================
    AUTO SCROLL SLIDER (INFINITE LOOP FEEL)
    - Smooth horizontal auto scroll
@@ -213,6 +205,9 @@ if (scrollTrack) {
   autoScroll();
 }
 
+
+
+
 /* =========================================================
    RESPONSIVE RESIZE FIX
    - Resets slider position on resize or zoom
@@ -249,4 +244,3 @@ window.addEventListener("resize", fixNavbar);
    - Prevent accidental horizontal scroll
 ========================================================= */
 document.body.style.overflowX = "hidden";
-

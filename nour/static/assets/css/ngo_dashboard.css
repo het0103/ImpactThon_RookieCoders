@@ -55,22 +55,33 @@ body::before {
     radial-gradient(circle at 25% 25%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, rgba(78, 205, 196, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(255, 0, 128, 0.03) 0%, transparent 50%),
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       transparent,
       transparent 10px,
       rgba(108, 92, 231, 0.02) 10px,
-      rgba(108, 92, 231, 0.02) 20px
-    );
+      rgba(108, 92, 231, 0.02) 20px);
   animation: backgroundShift 20s ease-in-out infinite;
   z-index: -1;
 }
 
 @keyframes backgroundShift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, -10px) rotate(1deg); }
-  50% { transform: translate(-5px, 5px) rotate(-0.5deg); }
-  75% { transform: translate(-10px, -5px) rotate(0.5deg); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(10px, -10px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-5px, 5px) rotate(-0.5deg);
+  }
+
+  75% {
+    transform: translate(-10px, -5px) rotate(0.5deg);
+  }
 }
 
 /* FLOATING PARTICLES */
@@ -93,8 +104,13 @@ body::after {
 }
 
 @keyframes particleFloat {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-100px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-100px);
+  }
 }
 
 /* =========================
@@ -235,33 +251,18 @@ body::after {
   overflow: hidden;
 }
 
-/* .stat-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(255, 107, 53, 0.1),
-    rgba(78, 205, 196, 0.1),
-    rgba(255, 0, 128, 0.1),
-    transparent
-  );
-  animation: cardAura 6s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-} */
-
 .stat-card:hover::before {
   opacity: 1;
 }
 
 @keyframes cardAura {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .stat-card:hover {
@@ -270,15 +271,37 @@ body::after {
   border-color: var(--neon-orange);
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; }
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
 
-.stat-card:nth-child(1):hover { transform: translateY(-8px) scale(1.03) rotate(-1deg); }
-.stat-card:nth-child(2):hover { transform: translateY(-8px) scale(1.03) rotate(2deg); }
-.stat-card:nth-child(3):hover { transform: translateY(-8px) scale(1.03) rotate(-0.5deg); }
-.stat-card:nth-child(4):hover { transform: translateY(-8px) scale(1.03) rotate(1.5deg); }
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stat-card:nth-child(1):hover {
+  transform: translateY(-8px) scale(1.03) rotate(-1deg);
+}
+
+.stat-card:nth-child(2):hover {
+  transform: translateY(-8px) scale(1.03) rotate(2deg);
+}
+
+.stat-card:nth-child(3):hover {
+  transform: translateY(-8px) scale(1.03) rotate(-0.5deg);
+}
+
+.stat-card:nth-child(4):hover {
+  transform: translateY(-8px) scale(1.03) rotate(1.5deg);
+}
 
 .stat-icon {
   width: 60px;
@@ -301,18 +324,21 @@ body::after {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: conic-gradient(from 0deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   animation: iconSpin 3s linear infinite;
 }
 
 @keyframes iconSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .stat-icon i {
@@ -322,8 +348,15 @@ body::after {
 }
 
 @keyframes iconBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 .stat-content h3 {
@@ -365,8 +398,15 @@ body::after {
 }
 
 @keyframes panelBorderFlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .panel:hover {
@@ -396,8 +436,13 @@ body::after {
 }
 
 @keyframes headerGlow {
-  0% { opacity: 0.3; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .panel-header h2 {
@@ -759,15 +804,24 @@ body::after {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Use flexbox for centering if possible, but JS uses block.
+     We will handle centering in .modal-content */
 }
 
 .modal-content {
-  background: var(--card-bg);
-  margin: 5% auto;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 0;
-  border-radius: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   width: 90%;
   max-width: 500px;
   box-shadow: 0 20px 60px var(--shadow);
@@ -779,6 +833,7 @@ body::after {
     opacity: 0;
     transform: translateY(-50px) scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -825,11 +880,13 @@ body::after {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
 }
 
 .form-group input:focus,
@@ -931,6 +988,7 @@ body::after {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -943,10 +1001,21 @@ body::after {
   animation: fadeIn 0.6s ease forwards;
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; }
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 /* Loading states */
 .loading {
@@ -969,8 +1038,13 @@ body::after {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Scrollbar styling */
@@ -1358,6 +1432,7 @@ RESPONSIVE DESIGN FOR NEW PAGES
 ===================================== */
 
 @media (max-width: 768px) {
+
   .reports-grid,
   .settings-grid,
   .engagement-grid {

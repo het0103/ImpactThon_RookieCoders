@@ -30,6 +30,32 @@ class DonorApp {
                 this.submitDonation();
             });
         }
+
+        // Subscription duration buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.duration-btn')) {
+                const frequency = e.target.dataset.frequency;
+                const duration = e.target.dataset.duration;
+                this.showSubscriptionForm(frequency, duration);
+            }
+        });
+
+        // Subscription form
+        const subscriptionForm = document.getElementById('subscription-form');
+        if (subscriptionForm) {
+            subscriptionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.submitSubscription();
+            });
+        }
+
+        // Cancel subscription
+        const cancelBtn = document.getElementById('cancel-subscription');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                this.hideSubscriptionForm();
+            });
+        }
     }
 
     showPage(pageName) {
@@ -92,6 +118,52 @@ class DonorApp {
 
         // Update dashboard
         this.updateDashboard();
+    }
+
+    showSubscriptionForm(frequency, duration) {
+        document.getElementById('subscription-setup').style.display = 'block';
+        document.getElementById('sub-frequency').value = frequency;
+        document.getElementById('sub-duration').value = duration === '1' ? '1 Month' : '1 Year';
+
+        // Set minimum start date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('sub-start-date').min = tomorrow.toISOString().split('T')[0];
+        document.getElementById('sub-start-date').value = tomorrow.toISOString().split('T')[0];
+    }
+
+    hideSubscriptionForm() {
+        document.getElementById('subscription-setup').style.display = 'none';
+        document.getElementById('subscription-form').reset();
+    }
+
+    submitSubscription() {
+        const form = document.getElementById('subscription-form');
+        const formData = new FormData(form);
+
+        const subscription = {
+            id: Date.now(),
+            foodType: formData.get('sub-food-type'),
+            quantity: formData.get('sub-quantity'),
+            ngo: formData.get('sub-ngo') || 'Any NGO',
+            pickupLocation: formData.get('sub-pickup-location'),
+            frequency: formData.get('sub-frequency'),
+            duration: formData.get('sub-duration'),
+            startDate: formData.get('sub-start-date'),
+            status: 'active',
+            createdDate: new Date().toISOString()
+        };
+
+        // Get existing subscriptions or create new array
+        let subscriptions = JSON.parse(localStorage.getItem('subscriptions')) || [];
+        subscriptions.push(subscription);
+        localStorage.setItem('subscriptions', JSON.stringify(subscriptions));
+
+        // Show success message
+        this.showSuccessMessage(`Subscription created successfully! You'll donate ${subscription.frequency} for ${subscription.duration}.`);
+
+        // Hide form
+        this.hideSubscriptionForm();
     }
 
     updateDashboard() {

@@ -1,6 +1,30 @@
-{%extends 'base.html'%}
-{%load static%}
-{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Dashboard - NourishNet</title>
+    <link rel="stylesheet" href="ngo_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
     <!-- MAIN DASHBOARD -->
     <div class="dashboard-container">
         <!-- TOP HEADER -->
@@ -83,7 +107,6 @@
         </div>
 
         <!-- PENDING PICKUPS SECTION -->
-         {%if request.session.login_id%}
         <div class="panel pickups-panel">
             <div class="panel-header">
                 <h2><i class="fas fa-truck"></i> Pending Pickups</h2>
@@ -97,30 +120,19 @@
                 <!-- Pickup cards will be populated by JS -->
             </div>
         </div>
-        {%endif%}
 
         <!-- QUICK ACTIONS -->
         <div class="quick-actions">
             <h2>Quick Actions</h2>
             <div class="actions-grid">
-                {%if request.session.login_id%}
-                <button class="action-btn" onclick="openPickupModal()">
+                <button class="action-btn" onclick="location.href='ngo_pickup_schedule.html'">
                     <i class="fas fa-plus"></i>
                     <span>Schedule Pickup</span>
                 </button>
-                 <button class="action-btn" onclick="viewReports()">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>View Reports</span>
+                <button class="action-btn" onclick="location.href='ngo_request.html'">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Request Donations</span>
                 </button>
-                <button class="action-btn" onclick="manageDonors()">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Manage Donors</span>
-                </button>
-                <button class="action-btn" onclick="settings()">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </button>
-                {%else%}
                 <button class="action-btn" onclick="viewReports()">
                     <i class="fas fa-chart-bar"></i>
                     <span>View Reports</span>
@@ -133,48 +145,17 @@
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </button>
-                {%endif%}
             </div>
         </div>
     </div>
 
     <!-- MODALS -->
-    <!-- Pickup Modal -->
-    <div id="pickupModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Schedule New Pickup</h3>
-                <span class="close" onclick="closePickupModal()">&times;</span>
-            </div>
-            <form id="pickupForm">
-                <div class="form-group">
-                    <label for="donorName">Donor Name</label>
-                    <input type="text" id="donorName" required>
-                </div>
-                <div class="form-group">
-                    <label for="pickupAddress">Pickup Address</label>
-                    <textarea id="pickupAddress" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="pickupDate">Date & Time</label>
-                    <input type="datetime-local" id="pickupDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="foodType">Food Type</label>
-                    <select id="foodType" required>
-                        <option value="">Select food type</option>
-                        <option value="cooked">Cooked Food</option>
-                        <option value="raw">Raw Ingredients</option>
-                        <option value="canned">Canned Goods</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Quantity (servings)</label>
-                    <input type="number" id="quantity" min="1" required>
-                </div>
-                <button type="submit" class="submit-btn">Schedule Pickup</button>
-            </form>
-        </div>
-    </div>
-{% endblock %}
+    <!-- Pickup Modal Removed (Moved to ngo_pickup_schedule.html) -->
+
+    <!-- Request Donations Modal -->
+    <!-- Request Donations Modal Removed (Moved to ngo_request.html) -->
+
+    <script src="ngo_dashboard.js"></script>
+</body>
+
+</html>

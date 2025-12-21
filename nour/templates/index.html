@@ -1,8 +1,16 @@
-{%extends 'base.html'%}
-{%load static%}
-{%block content%}
-<!-- MAIN CONTENT GRID -->
-<main class="main-grid">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NourishNet-NGO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- <link rel="stylesheet" href="where.js"> -->
     <!-- Page Entry Overlay -->
     <div class="page-entry" id="pageEntry">
 
@@ -14,128 +22,202 @@
 
     </div>
 
-    <!--  SLIDER SECTION -->
-    <section class="left-section">
-        <h1 class="left-title">Our Honrabales Initiatives</h1>
-        <p class="left-subtitle">
-            NourishNet delivers hope through food programs and community partnerships.
-        </p>
-
-        <div class="scroll-wrapper">
-            <div class="scroll-track" id="scrollTrack">
-
-                <!-- ORIGINAL SET -->
-                <div class="left-card">
-                    <img src="https://picsum.photos/400/300?random=1">
-                    <h3>Community Feeding</h3>
-                    <p>Daily meal distribution for families in need.</p>
-                </div>
-
-                <div class="left-card">
-                    <img src="https://picsum.photos/400/300?random=2">
-                    <h3>School Nutrition</h3>
-                    <p>Nutritious meals for underprivileged children.</p>
-                </div>
-
-                <div class="left-card">
-                    <img src="https://picsum.photos/400/300?random=3">
-                    <h3>Food Collection Drives</h3>
-                    <p>Collecting surplus food from hotels and events.</p>
-                </div>
-
-                <div class="left-card">
-                    <img src="https://picsum.photos/400/300?random=4">
-                    <h3>Volunteer Network</h3>
-                    <p>Thousands of volunteers across cities.</p>
-                </div>
-
-                <div class="left-card">
-                    <img src="https://picsum.photos/400/300?random=5">
-                    <h3>Emergency Relief</h3>
-                    <p>Rapid food support during disasters.</p>
-                </div>
-
-            </div>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
         </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT GRID -->
+    <main class="main-grid">
+
+        <!--  SLIDER SECTION -->
+        <section class="left-section">
+            <h1 class="left-title">Our Honrabales Initiatives</h1>
+            <p class="left-subtitle">
+                NourishNet delivers hope through food programs and community partnerships.
+            </p>
+
+            <div class="scroll-wrapper">
+                <div class="scroll-track" id="scrollTrack">
+
+                    <!-- ORIGINAL SET -->
+                    <div class="left-card">
+                        <img src="images/community_feeding.png" alt="Community Feeding">
+                        <h3>Community Feeding</h3>
+                        <p>Daily meal distribution for families in need.</p>
+                    </div>
+
+                    <div class="left-card">
+                        <img src="images/school_nutrition.png" alt="School Nutrition">
+                        <h3>School Nutrition</h3>
+                        <p>Nutritious meals for underprivileged children.</p>
+                    </div>
+
+                    <div class="left-card">
+                        <img src="images/food_collection.png" alt="Food Collection">
+                        <h3>Food Collection Drives</h3>
+                        <p>Collecting surplus food from hotels and events.</p>
+                    </div>
+
+                    <div class="left-card">
+                        <img src="images/volunteer_network.png" alt="Volunteer Network">
+                        <h3>Volunteer Network</h3>
+                        <p>Thousands of volunteers across cities.</p>
+                    </div>
+
+                    <div class="left-card">
+                        <img src="images/emergency_relief.png" alt="Emergency Relief">
+                        <h3>Emergency Relief</h3>
+                        <p>Rapid food support during disasters.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 3 CONTAINERS BEFORE FOOTER -->
+    <section class="three-box-section">
+
+        <div class="three-box">
+            <img src="images/ngo_partners.png" alt="NGO Partners">
+            <h3>NGO’s</h3>
+            <p>Partner NGOs helping us deliver food to people in need.</p>
+        </div>
+
+        <div class="three-box">
+            <img src="images/food_collection.png" alt="Food Collection Places">
+            <h3>Food Collection Places</h3>
+            <p>Pick-up points where citizens can donate extra food.</p>
+        </div>
+
+        <div class="three-box">
+            <img src="images/community_feeding.png" alt="Donate For">
+            <h3>Donate For</h3>
+            <p>Your donation supports hundreds of families every week.</p>
+        </div>
+
     </section>
-</main>
+    <!-- ACCHIVEMENTS DISPLAY -->
+    <div class="container">
 
-<!-- 3 CONTAINERS BEFORE FOOTER -->
-<section class="three-box-section">
+        <section class="impact-section">
+            <h1>Our Impact So Far</h1>
+            <p>Every meal saved is a step towards a hunger-free world</p>
 
-    <div class="three-box">
-        <img src="https://picsum.photos/200/150?random=31">
-        <h3>NGO’s</h3>
-        <p>Partner NGOs helping us deliver food to people in need.</p>
-    </div>
-
-    <div class="three-box">
-        <img src="https://picsum.photos/200/150?random=32">
-        <h3>Food Collection Places</h3>
-        <p>Pick-up points where citizens can donate extra food.</p>
-    </div>
-
-    <div class="three-box">
-        <img src="https://picsum.photos/200/150?random=33">
-        <h3>Donate For</h3>
-        <p>Your donation supports hundreds of families every week.</p>
-    </div>
-
-</section>
-<!-- ACCHIVEMENTS DISPLAY -->
-<div class="container">
-
-    <section class="impact-section">
-        <h1>Our Impact So Far</h1>
-        <p>Every meal saved is a step towards a hunger-free world</p>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">50,000+</span>
-                <p class="stat-label">Meals Saved</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">50,000+</span>
+                    <p class="stat-label">Meals Saved</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <p class="stat-label">Partner NGOs</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <p class="stat-label">Active Donors</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">25+</span>
+                    <p class="stat-label">Cities Covered</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" style="color: #27ae60;">200+</span>
-                <p class="stat-label">Partner NGOs</p>
+        </section>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="icon-box donor-icon">♥</div>
+                <h2>For Donors</h2>
+                <ul class="feature-list">
+                    <li><span class="checkmark donor-check">✓</span> Quick donation posting in under 60 seconds</li>
+                    <li><span class="checkmark donor-check">✓</span> Real-time pickup tracking</li>
+                    <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
+                    <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
+                </ul>
+                <a href="donor_home.html" class="btn btn-donor" style="margin-bottom: 10px;">Explore Donor Dashboard &nbsp; →</a>
+                <a href="anonymous_donation.html" class="btn btn-donor" >Quick Anonymous
+                    Donation &nbsp; →</a>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" style="color: #27ae60;">500+</span>
-                <p class="stat-label">Active Donors</p>
+
+            <div class="feature-card">
+                <div class="icon-box ngo-icon">👥</div>
+                <h2>For NGOs</h2>
+                <ul class="feature-list">
+                    <li><span class="checkmark ngo-check">✓</span> Real-time notifications for nearby donations</li>
+                    <li><span class="checkmark ngo-check">✓</span> Distance-based filtering</li>
+                    <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
+                    <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
+                </ul>
+                <a href="ngo_dashboard.html" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" style="color: #27ae60;">25+</span>
-                <p class="stat-label">Cities Covered</p>
-            </div>
+
         </div>
-    </section>
-
-    <div class="feature-grid">
-
-        <div class="feature-card">
-            <div class="icon-box donor-icon">♥</div>
-            <h2>For Donors</h2>
-            <ul class="feature-list">
-                <li><span class="checkmark donor-check">✓</span> Quick donation posting in under 60 seconds</li>
-                <li><span class="checkmark donor-check">✓</span> Real-time pickup tracking</li>
-                <li><span class="checkmark donor-check">✓</span> Impact dashboard with donation history</li>
-                <li><span class="checkmark donor-check">✓</span> Certificate generation for CSR</li>
-            </ul>
-            <a href="/donor" class="btn btn-donor">Explore Donor Dashboard &nbsp; →</a>
-</div>
-
-        <div class="feature-card">
-            <div class="icon-box ngo-icon">👥</div>
-            <h2>For NGOs</h2>
-            <ul class="feature-list">
-                <li><span class="checkmark ngo-check">✓</span> Real-time notifications for nearby donations</li>
-                <li><span class="checkmark ngo-check">✓</span> Distance-based filtering</li>
-                <li><span class="checkmark ngo-check">✓</span> One-click pickup confirmation</li>
-                <li><span class="checkmark ngo-check">✓</span> Analytics on meals distributed</li>
-            </ul>
-            <a href="/nourishnet" class="btn btn-ngo">Explore NGO Dashboard &nbsp; →</a>
-        </div>
-        <script src="demo-index.js"></script>
-
     </div>
-</div>
-{%endblock%}
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+
+            <!-- Left Column -->
+            <div class="footer-left">
+
+                <h3>Locations</h3>
+                <p>Ahmedabad, Gujarat</p>
+                <p>Gandhinagar, Gujarat</p>
+                <p>Surat, Gujarat</p>
+                <p>Vadodara, Gujarat</p>
+
+                <h3>Made By</h3>
+                <p>Developed by LDRP-KSV Students</p>
+
+                <h3>Team Emails</h3>
+                <ul class="email-list">
+                    <li>person1@yourngo.org</li>
+                    <li>person2@yourngo.org</li>
+                    <li>person3@yourngo.org</li>
+                    <li>person4@yourngo.org</li>
+                    <li>person5@yourngo.org</li>
+                </ul>
+
+            </div>
+
+            <!-- Right Column -->
+            <div class="footer-right">
+
+                <h3>Contact Us</h3>
+                <p>Phone: +91 98765 43210</p>
+                <p>Email: info@yourngo.org</p>
+                <p>Address: LDRP Campus, Gandhinagar, Gujarat</p>
+
+                <h3>Terms & Conditions</h3>
+                <p>
+                    By using this website, you agree to our terms and privacy policies.
+                    All information is for public awareness. Misuse of content is prohibited.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p class="footer-bottom">© 2025 Your NGO Name. All Rights Reserved.</p>
+    </footer>
+    <script src="demo-index.js">
+
+    </script>
+
+
+</body>
+
+</html>

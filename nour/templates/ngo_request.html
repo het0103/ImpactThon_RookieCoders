@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Donations - NourishNet</title>
+    <link rel="stylesheet" href="ngo_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Specific page overrides */
+        .request-page-container {
+            max-width: 800px;
+            margin: 100px auto 40px;
+            /* Top margin for sticky header */
+            padding: 0 20px;
+        }
+
+        .request-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .request-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .request-header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .request-header p {
+            color: var(--text-secondary);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="ngo_dashboard.html">DASHBOARD</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <div class="request-page-container">
+        <a href="ngo_dashboard.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div class="request-card">
+            <div class="request-header">
+                <h1><i class="fas fa-hand-holding-heart"></i> Request Donations</h1>
+                <p>Post a new request for essential food items needed by your NGO.</p>
+            </div>
+
+            <form id="requestForm">
+                <div class="form-group">
+                    <label for="requestItems">Items Needed *</label>
+                    <textarea id="requestItems" placeholder="e.g., Rice, Vegetables, Fruits, Bread..." required
+                        rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="requestQuantity">Quantity Required *</label>
+                    <input type="text" id="requestQuantity" placeholder="e.g., 50 kg rice, 100 servings, 20 boxes..."
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgency Level</label>
+                    <select id="urgency">
+                        <option value="normal">Normal</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="additionalNotes">Additional Notes</label>
+                    <textarea id="additionalNotes"
+                        placeholder="Any specific requirements, pickup instructions, or details..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Post Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ngo_request.js"></script>
+</body>
+
+</html>

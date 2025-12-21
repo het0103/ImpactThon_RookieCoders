@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - NourishNet</title>
+    <link rel="stylesheet" href="ngo_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="ngo_dashboard.html">DASHBOARD</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container" style="margin-top: 80px;">
+        <!-- PAGE HEADER -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1><i class="fas fa-cog"></i> Settings</h1>
+                <p>Configure your NourishNet preferences</p>
+            </div>
+            <div class="header-right">
+                <div class="current-time" id="currentTime">--:-- --</div>
+                <div class="current-date" id="currentDate">--- --, ----</div>
+                <a href="ngo_dashboard.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <div class="dashboard-main">
+            <!-- SETTINGS SECTIONS -->
+            <div class="settings-grid">
+                <!-- PROFILE SETTINGS -->
+                <div class="settings-section">
+                    <h2><i class="fas fa-user"></i> Profile Settings</h2>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <label for="orgName">Organization Name</label>
+                            <input type="text" id="orgName" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label for="orgEmail">Email Address</label>
+                            <input type="email" id="orgEmail" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label for="orgPhone">Phone Number</label>
+                            <input type="tel" id="orgPhone" class="setting-input">
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()">Save Profile</button>
+                    </div>
+                </div>
+
+                <!-- NOTIFICATION SETTINGS -->
+                <div class="settings-section">
+                    <h2><i class="fas fa-bell"></i> Notifications</h2>
+                    <div class="settings-content">
+                        <div class="setting-item checkbox">
+                            <input type="checkbox" id="emailNotif">
+                            <label for="emailNotif">Email notifications</label>
+                        </div>
+                        <div class="setting-item checkbox">
+                            <input type="checkbox" id="smsNotif">
+                            <label for="smsNotif">SMS alerts</label>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()">Save Notifications</button>
+                    </div>
+                </div>
+
+                <!-- PICKUP SETTINGS -->
+                <div class="settings-section">
+                    <h2><i class="fas fa-truck"></i> Pickup Preferences</h2>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <label for="pickupRadius">Service Radius (km)</label>
+                            <input type="number" id="pickupRadius" class="setting-input">
+                        </div>
+                        <div class="setting-item checkbox">
+                            <input type="checkbox" id="emergencyPickup">
+                            <label for="emergencyPickup">Emergency pickup service</label>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()">Save Preferences</button>
+                    </div>
+                </div>
+            </div>
+            <!-- SYSTEM INFO -->
+            <div class="system-info"
+                style="margin-top:20px; padding:20px; background:rgba(255,255,255,0.6); border-radius:10px;">
+                <h2><i class="fas fa-info-circle"></i> System Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Version:</span>
+                        <span class="info-value">NourishNet v2.1.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Storage:</span>
+                        <span class="info-value">Local Browser Storage</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="ngo_dashboard.js"></script>
+    <script>
+        // Initialize time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            const dateString = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('currentTime').textContent = timeString;
+            document.getElementById('currentDate').textContent = dateString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Save settings functionality
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Show success message
+                const notification = document.createElement('div');
+                notification.className = 'notification success';
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>Settings saved successfully!</span>
+                `;
+                document.body.appendChild(notification);
+
+                setTimeout(() => notification.classList.add('show'), 100);
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(notification), 300);
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+
+</html>

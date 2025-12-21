@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Management - NourishNet</title>
+    <link rel="stylesheet" href="ngo_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="ngo_dashboard.html">DASHBOARD</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container" style="margin-top: 80px;">
+        <!-- PAGE HEADER -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1><i class="fas fa-user-friends"></i> Donor Management</h1>
+                <p>Manage and engage with your donor community</p>
+            </div>
+            <div class="header-right">
+                <div class="current-time" id="currentTime">--:-- --</div>
+                <div class="current-date" id="currentDate">--- --, ----</div>
+                <a href="ngo_dashboard.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <div class="dashboard-main">
+            <!-- DONOR STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalDonors">156</h3>
+                        <p>Total Donors</p>
+                    </div>
+                </div>
+                <!-- ... other stats ... -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="statTotalDonations">1,247</h3>
+                        <p>Total Donations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DONOR LIST -->
+            <div class="donors-section">
+                <div class="section-header">
+                    <h2>Donor Directory</h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Search donors..." class="search-input" id="donorSearch">
+                        <button class="btn btn-primary" onclick="promptAddDonor()">
+                            <i class="fas fa-plus"></i> Manual Add
+                        </button>
+                    </div>
+                </div>
+
+                <div class="donors-grid" id="donorsGrid">
+                    <!-- Donor cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- ENGAGEMENT -->
+            <div class="engagement-section">
+                <h2>Donor Engagement</h2>
+                <div class="engagement-grid">
+                    <div class="engagement-card">
+                        <h3><i class="fas fa-envelope"></i> Send Newsletter</h3>
+                        <p>Keep donors informed about your impact</p>
+                        <button class="btn btn-primary" onclick="alert('Newsletter tool loading...')">Compose</button>
+                    </div>
+                    <!-- ... other engagement cards ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="ngo_dashboard.js"></script>
+    <script>
+        // Initialize time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            const dateString = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('currentTime').textContent = timeString;
+            document.getElementById('currentDate').textContent = dateString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Load donor data
+        function loadDonors() {
+            const donations = JSON.parse(localStorage.getItem('donations')) || [];
+            const donors = {};
+
+            // Group donations by donor
+            donations.forEach(donation => {
+                if (!donors[donation.pickupLocation]) {
+                    donors[donation.pickupLocation] = {
+                        name: donation.pickupLocation,
+                        totalDonations: 0,
+                        lastDonation: donation.date,
+                        status: 'active'
+                    };
+                }
+                donors[donation.pickupLocation].totalDonations += 1;
+            });
+
+            const donorsGrid = document.getElementById('donorsGrid');
+            donorsGrid.innerHTML = '';
+
+            Object.values(donors).forEach(donor => {
+                const donorCard = document.createElement('div');
+                donorCard.className = 'donor-card';
+                donorCard.innerHTML = `
+                    <div class="donor-header">
+                        <h4>${donor.name}</h4>
+                        <span class="donor-status ${donor.status}">${donor.status}</span>
+                    </div>
+                    <div class="donor-details">
+                        <p><i class="fas fa-hand-holding-heart"></i> ${donor.totalDonations} donations</p>
+                        <p><i class="fas fa-calendar"></i> Last donation: ${new Date(donor.lastDonation).toLocaleDateString()}</p>
+                    </div>
+                    <div class="donor-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-envelope"></i> Contact
+                        </button>
+                    </div>
+                `;
+                donorsGrid.appendChild(donorCard);
+            });
+        }
+
+        loadDonors();
+
+        function promptAddDonor() {
+            const name = prompt("Enter Donor Name:");
+            if (name) {
+                alert(`Donor "${name}" added to pending review list.`);
+                // In a real app, this would save to a pending list
+            }
+        }
+    </script>
+</body>
+
+</html>

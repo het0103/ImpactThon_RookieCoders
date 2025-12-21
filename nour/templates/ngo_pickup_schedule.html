@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Pickup - NourishNet</title>
+    <link rel="stylesheet" href="ngo_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Specific page overrides matching ngo_request.html */
+        .page-container {
+            max-width: 800px;
+            margin: 100px auto 40px;
+            /* Top margin for sticky header */
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="ngo_dashboard.html">DASHBOARD</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <a href="ngo_dashboard.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div class="form-card">
+            <div class="page-header">
+                <h1><i class="fas fa-truck"></i> Schedule New Pickup</h1>
+                <p>Arrange a pickup for a donation from a donor or partner.</p>
+            </div>
+
+            <form id="pickupForm">
+                <div class="form-group">
+                    <label for="donorName">Donor Name</label>
+                    <input type="text" id="donorName" required placeholder="e.g. John Doe / City Bakery">
+                </div>
+                <div class="form-group">
+                    <label for="pickupAddress">Pickup Address</label>
+                    <textarea id="pickupAddress" required placeholder="Full address for pickup" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pickupDate">Date & Time</label>
+                    <input type="datetime-local" id="pickupDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="foodType">Food Type</label>
+                    <select id="foodType" required>
+                        <option value="">Select food type</option>
+                        <option value="cooked">Cooked Food</option>
+                        <option value="raw">Raw Ingredients</option>
+                        <option value="canned">Canned Goods</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity (servings)</label>
+                    <input type="number" id="quantity" min="1" required placeholder="Number of servings">
+                </div>
+                <button type="submit" class="submit-btn">Schedule Pickup</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ngo_pickup_schedule.js"></script>
+</body>
+
+</html>

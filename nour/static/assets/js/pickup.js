@@ -107,6 +107,21 @@ function loadPickupDetails() {
     document.getElementById('location').textContent = donation.pickupLocation;
     document.getElementById('pickupTime').textContent = formatTime(donation.pickupTime);
 
+    // Dynamic Title based on Order Type
+    const headerTitle = document.querySelector('.pickup-header h1');
+    const headerSubtitle = document.querySelector('.pickup-header p');
+
+    if (donation.type === 'anonymous') {
+        headerTitle.textContent = 'Anonymous Donation Pickup';
+        headerSubtitle.textContent = 'Thank you for your generous anonymous contribution!';
+    } else if (donation.type === 'request-response') {
+        headerTitle.textContent = 'Request Fulfillment Pickup';
+        headerSubtitle.textContent = 'Fulfilling an NGO request via NourishNet';
+    } else {
+        headerTitle.textContent = 'Standard Donation Pickup';
+        headerSubtitle.textContent = 'Track your food donation pickup';
+    }
+
     // Set status with appropriate styling
     const statusElement = document.getElementById('status');
     statusElement.textContent = donation.status.charAt(0).toUpperCase() + donation.status.slice(1);
@@ -127,8 +142,7 @@ function loadPickupDetails() {
     document.getElementById('licensePlate').textContent = driver.license;
     document.getElementById('driverDirect').textContent = driver.phone;
 
-    // Update button states based on status
-    updateButtonStates(donation.status);
+    // Removing button state update logic since button is gone
 }
 
 function formatTime(timeString) {
@@ -140,91 +154,29 @@ function formatTime(timeString) {
     return `${hour12}:${minutes} ${ampm}`;
 }
 
-function updateButtonStates(status) {
-    const confirmBtn = document.getElementById('confirmPickupBtn');
-    const contactBtn = document.getElementById('contactDriverBtn');
-
-    if (status === 'completed') {
-        confirmBtn.textContent = 'Pickup Completed';
-        confirmBtn.disabled = true;
-        confirmBtn.style.opacity = '0.6';
-        confirmBtn.style.cursor = 'not-allowed';
-    } else if (status === 'in-transit') {
-        confirmBtn.textContent = 'Confirm Receipt';
-    } else {
-        confirmBtn.textContent = 'Confirm Pickup';
-    }
-}
-
 function showError(message) {
     document.querySelector('.pickup-content').innerHTML = `
         <div style="text-align: center; padding: 3rem;">
             <h3 style="color: var(--danger);">Error</h3>
             <p>${message}</p>
-            <a href="../../../templates/by-dax/donor_home.html" class="btn">Back to Dashboard</a>
+            <a href="donor_home.html" class="btn">Back to Dashboard</a>
         </div>
     `;
 }
 
 // Event listeners
-document.getElementById('confirmPickupBtn').addEventListener('click', function() {
-    const donations = JSON.parse(localStorage.getItem('donations')) || [];
-    const donation = donations.find(d => d.id === donationId);
+// Confirm Pickup button listener removed
 
-    if (donation) {
-        if (donation.status === 'pending') {
-            donation.status = 'in-transit';
-        } else if (donation.status === 'in-transit') {
-            donation.status = 'completed';
-        }
-
-        localStorage.setItem('donations', JSON.stringify(donations));
-
-        // Update NGO dashboard
-        updateNGOPickupStatus(donationId, donation.status);
-
-        // Reload page to show updated status
-        location.reload();
-    }
-});
-
-document.getElementById('contactDriverBtn').addEventListener('click', function() {
+document.getElementById('contactDriverBtn').addEventListener('click', function () {
     const driverPhone = document.getElementById('driverPhone').textContent;
     window.location.href = `tel:${driverPhone}`;
 });
 
-// Update NGO Dashboard when pickup status changes
-function updateNGOPickupStatus(donationId, status) {
-    let ngoData = JSON.parse(localStorage.getItem('ngoDashboardData'));
-    if (!ngoData) return;
-
-    const pickup = ngoData.pickups.find(p => p.id === donationId);
-    if (pickup) {
-        pickup.status = status;
-
-        // Update stats
-        if (status === 'completed') {
-            ngoData.stats.pendingPickups -= 1;
-            ngoData.stats.completedPickups += 1;
-
-            // Add completion activity
-            const activity = {
-                id: Date.now(),
-                type: 'pickup',
-                title: 'Pickup completed',
-                description: `Pickup completed for donation #${donationId}`,
-                time: 'Just now',
-                icon: 'check-circle'
-            };
-            ngoData.activities.unshift(activity);
-        }
-
-        localStorage.setItem('ngoDashboardData', JSON.stringify(ngoData));
-    }
-}
+// Update NGO Dashboard - Removed here as it was triggered by the button
+// Status updates should now ideally come from the Driver/NGO side (simulated elsewhere or auto-updated)
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (!donationId) {
         showError('No donation ID provided');
         return;

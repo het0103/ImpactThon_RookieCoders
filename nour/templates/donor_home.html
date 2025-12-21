@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard - NourishNet</title>
+    <link rel="stylesheet" href="donor_new.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet-DASHBOARD</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="donation_needs.html">DONATION NEEDS</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+    <br>
+    <!-- Header -->
+    <div class="donor-header">
+        <h1>Welcome, Donor!</h1>
+        <p>Thank you for making a difference in the community</p>
+    </div>
+    <hr>
+    <div class="donor-container">
+
+        <!-- Navigation -->
+        <nav class="donor-nav">
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="dashboard">Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-page="donate">Donate</a></li>
+                <li><a href="#" class="nav-link" data-page="subscriptions">Subscriptions</a></li>
+                <li><a href="#" class="nav-link" data-page="donations">My Donations</a></li>
+                <li><a href="login.html" style="color: #e74c3c;">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Success Message -->
+        <div id="success-message" class="success-message"></div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="page-section active">
+            <div class="dashboard-cards">
+                <div class="card today">
+                    <div class="card-icon">📊</div>
+                    <div class="card-number" id="today-count">0</div>
+                    <div class="card-label">Today's Donations</div>
+                </div>
+
+                <div class="card month">
+                    <div class="card-icon">📈</div>
+                    <div class="card-number" id="month-count">0</div>
+                    <div class="card-label">This Month</div>
+                </div>
+
+                <div class="card pickup">
+                    <div class="card-icon">🚚</div>
+                    <div class="card-number" id="pickup-count">0</div>
+                    <div class="card-label">Pending Pickups</div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">Quick Actions</h2>
+                <p style="color: #666; margin-bottom: 20px;">Start making a difference today!</p>
+
+                <a href="#" class="btn nav-link" data-page="donate">Make a Donation</a>
+                <a href="donation_needs.html" class="btn btn-donor"
+                    style="background: #e74c3c; margin-bottom: 10px;">View Donation Needs &nbsp; →</a>
+            </div>
+        </div>
+
+        <!-- Donate Section -->
+        <div id="donate-section" class="page-section">
+            <div class="donation-form">
+                <h2 style="color: #2c3e50; margin-bottom: 25px;">Make a Food Donation</h2>
+
+                <form id="donation-form">
+                    <div class="form-group">
+                        <label for="food-type">Food Type *</label>
+                        <select id="food-type" name="food-type" required>
+                            <option value="">Select food type</option>
+                            <option value="Cooked Food">Cooked Food</option>
+                            <option value="Fresh Vegetables">Fresh Vegetables</option>
+                            <option value="Fresh Fruits">Fresh Fruits</option>
+                            <option value="Bread">Bread</option>
+                            <option value="Packaged Food">Packaged Food</option>
+                            <option value="Dairy Products">Dairy Products</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="text" id="quantity" name="quantity"
+                            placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickup-time">Preferred Pickup Time *</label>
+                        <input type="time" id="pickup-time" name="pickup-time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickup-location">Pickup Location *</label>
+                        <input type="text" id="pickup-location" name="pickup-location"
+                            placeholder="Enter your address or location" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit Donation</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Subscription Section -->
+        <div id="subscriptions-section" class="page-section">
+            <div class="subscription-plans">
+                <h2 style="color: #2c3e50; margin-bottom: 25px;">Subscription-Based Donations</h2>
+                <p style="color: #666; margin-bottom: 30px;">Set up recurring donations to make a consistent impact in
+                    your community.</p>
+
+                <div class="plans-grid">
+                    <!-- Weekly Plans -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Weekly Donations</h3>
+                            <div class="plan-price">Starting from ₹500/week</div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li>✓ Flexible food selection</li>
+                                <li>✓ Choose your preferred day</li>
+                                <li>✓ Easy cancellation anytime</li>
+                                <li>✓ Impact tracking</li>
+                            </ul>
+                        </div>
+                        <div class="plan-duration">
+                            <h4>Select Duration:</h4>
+                            <button class="duration-btn" data-frequency="weekly" data-duration="1">1 Month</button>
+                            <button class="duration-btn" data-frequency="weekly" data-duration="12">1 Year</button>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Plans -->
+                    <div class="plan-card featured">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Monthly Donations</h3>
+                            <div class="plan-price">Starting from ₹2000/month</div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li>✓ Flexible food selection</li>
+                                <li>✓ Choose your preferred date</li>
+                                <li>✓ Easy cancellation anytime</li>
+                                <li>✓ Priority pickup scheduling</li>
+                                <li>✓ Monthly impact reports</li>
+                            </ul>
+                        </div>
+                        <div class="plan-duration">
+                            <h4>Select Duration:</h4>
+                            <button class="duration-btn" data-frequency="monthly" data-duration="1">1 Month</button>
+                            <button class="duration-btn" data-frequency="monthly" data-duration="12">1 Year</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscription Setup Form -->
+                <div id="subscription-setup" class="subscription-form" style="display: none;">
+                    <h3>Setup Your Subscription</h3>
+                    <form id="subscription-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sub-food-type">Food Type *</label>
+                                <select id="sub-food-type" name="sub-food-type" required>
+                                    <option value="">Select food type</option>
+                                    <option value="Cooked Food">Cooked Food</option>
+                                    <option value="Fresh Vegetables">Fresh Vegetables</option>
+                                    <option value="Fresh Fruits">Fresh Fruits</option>
+                                    <option value="Bread">Bread</option>
+                                    <option value="Packaged Food">Packaged Food</option>
+                                    <option value="Dairy Products">Dairy Products</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub-quantity">Quantity per donation *</label>
+                                <input type="text" id="sub-quantity" name="sub-quantity"
+                                    placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sub-ngo">Preferred NGO</label>
+                                <select id="sub-ngo" name="sub-ngo">
+                                    <option value="">Any NGO (we'll assign optimal)</option>
+                                    <option value="Helping Hands NGO">Helping Hands NGO</option>
+                                    <option value="Food for All Foundation">Food for All Foundation</option>
+                                    <option value="Community Kitchen">Community Kitchen</option>
+                                    <option value="Hunger Relief Network">Hunger Relief Network</option>
+                                    <option value="Care & Share">Care & Share</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub-pickup-location">Pickup Location *</label>
+                                <input type="text" id="sub-pickup-location" name="sub-pickup-location"
+                                    placeholder="Enter your address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sub-frequency">Frequency</label>
+                                <input type="text" id="sub-frequency" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub-duration">Duration</label>
+                                <input type="text" id="sub-duration" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sub-start-date">Start Date *</label>
+                            <input type="date" id="sub-start-date" name="sub-start-date" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Start Subscription</button>
+                        <button type="button" id="cancel-subscription" class="btn"
+                            style="background: #95a5a6; margin-left: 10px;">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Donations Section -->
+        <div id="donations-section" class="page-section">
+            <div class="donations-table">
+                <h2 style="color: #2c3e50; padding: 20px; margin: 0; border-bottom: 1px solid #e1e8ed;">My Donation
+                    History</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Food Type</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Pickup Info</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="donations-tbody">
+                        <!-- Donations will be loaded dynamically -->
+                    <tbody id="donations-tbody">
+                        <!-- JS will insert rows -->
+                    </tbody>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pickup Info Modal -->
+    <div id="pickupModal" class="pickup-modal">
+        <div class="pickup-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Pickup Information</h2>
+            <p><strong>NGO:</strong> <span id="modalNgo"></span></p>
+            <p><strong>Pickup Person:</strong> <span id="modalPerson"></span></p>
+            <p><strong>Vehicle:</strong> <span id="modalVehicle"></span></p>
+            <p><strong>Contact:</strong> <span id="modalContact"></span></p>
+            <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+        </div>
+    </div>
+
+
+    <script src="donor.js"></script>
+</body>
+
+</html>

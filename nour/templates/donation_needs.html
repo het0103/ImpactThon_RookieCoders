@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Needs - NourishNet</title>
+    <link rel="stylesheet" href="donor_new.css">
+</head>
+
+<body>
+    <!-- HEADER STICKY NAVBAR -->
+    <header class="sticky-header">
+        <div class="logo">
+            <div class="brand">NourishNet</div>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="anonymous_donation.html">ANONYMOUS DONATION</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+    <br>
+
+    <!-- Header -->
+    <div class="donor-header">
+        <h1>Current Donation Needs</h1>
+        <p>Help fulfill specific requests from NGOs in your community</p>
+    </div>
+    <hr>
+
+    <div class="donor-container">
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="urgency-filter">Filter by Urgency:</label>
+                    <select id="urgency-filter">
+                        <option value="all">All Requests</option>
+                        <option value="critical">Critical</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search-items">Search Items:</label>
+                    <input type="text" id="search-items" placeholder="e.g., rice, vegetables, bread...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="success-message"></div>
+
+        <!-- Donation Needs Grid -->
+        <div id="needs-grid" class="needs-grid">
+            <!-- NGO requests will be loaded dynamically -->
+            <div class="no-requests">
+                <h3>No donation requests available</h3>
+                <p>Check back later for new requests from NGOs in need.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div id="donationModal" class="pickup-modal">
+        <div class="pickup-modal-content">
+            <span class="close-modal" onclick="closeDonationModal()">&times;</span>
+            <h2>Make a Donation</h2>
+            <div id="request-details">
+                <!-- Request details will be populated here -->
+            </div>
+            <form id="quick-donation-form">
+                <div class="form-group">
+                    <label for="donate-quantity">Quantity to Donate *</label>
+                    <input type="text" id="donate-quantity" name="donate-quantity"
+                        placeholder="e.g., 5 kg, 20 pieces, 10 servings" required>
+                </div>
+                <div class="form-group">
+                    <label for="donate-pickup-time">Preferred Pickup Time *</label>
+                    <input type="time" id="donate-pickup-time" name="donate-pickup-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="donate-pickup-location">Pickup Location *</label>
+                    <input type="text" id="donate-pickup-location" name="donate-pickup-location"
+                        placeholder="Enter your address or location" required>
+                </div>
+                <div class="form-group">
+                    <label for="donate-contact">Optional Contact Info</label>
+                    <input type="text" id="donate-contact" name="donate-contact"
+                        placeholder="Phone number (optional - for coordination only)">
+                </div>
+                <button type="submit" class="btn btn-success">Submit Donation</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="donation_needs.js"></script>
+</body>
+
+</html>

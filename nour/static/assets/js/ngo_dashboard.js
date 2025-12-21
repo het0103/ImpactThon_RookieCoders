@@ -154,6 +154,49 @@ class NGODashboard {
             data.stats.pendingPickups = 3;
         }
 
+        // Initialize demo NGO requests
+        if (!localStorage.getItem('ngoRequests')) {
+            const demoRequests = [
+                {
+                    id: Date.now() + 1,
+                    items: 'Rice, Vegetables, Cooking Oil',
+                    quantity: '100 kg rice, 50 kg vegetables, 20 liters oil',
+                    urgency: 'urgent',
+                    notes: 'Needed for our community kitchen serving 200 families daily. Perishable items required immediately.',
+                    date: new Date().toISOString(),
+                    status: 'active'
+                },
+                {
+                    id: Date.now() + 2,
+                    items: 'Bread, Milk, Fruits',
+                    quantity: '200 loaves bread, 50 liters milk, 100 kg fruits',
+                    urgency: 'normal',
+                    notes: 'Supporting our school feeding program for underprivileged children.',
+                    date: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+                    status: 'active'
+                },
+                {
+                    id: Date.now() + 3,
+                    items: 'Canned Food, Pasta, Soup',
+                    quantity: '300 cans, 100 packets pasta, 150 cans soup',
+                    urgency: 'critical',
+                    notes: 'Emergency relief for flood-affected families. Non-perishable items only.',
+                    date: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+                    status: 'active'
+                },
+                {
+                    id: Date.now() + 4,
+                    items: 'Chicken, Fish, Meat',
+                    quantity: '150 kg chicken, 80 kg fish, 100 kg meat',
+                    urgency: 'normal',
+                    notes: 'Protein supplies for our nutrition program targeting malnourished children.',
+                    date: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+                    status: 'active'
+                }
+            ];
+            localStorage.setItem('ngoRequests', JSON.stringify(demoRequests));
+        }
+
         localStorage.setItem('ngoDashboardData', JSON.stringify(data));
     }
 
@@ -255,8 +298,12 @@ class NGODashboard {
     // =====================================
     renderPickups(pickups) {
         this.pickupsGrid.innerHTML = '';
-        if (pickups && pickups.length > 0) {
-            pickups.forEach(pickup => {
+
+        // Only show pending pickups
+        const pendingPickups = pickups.filter(p => p.status.toLowerCase() === 'pending');
+
+        if (pendingPickups && pendingPickups.length > 0) {
+            pendingPickups.forEach(pickup => {
                 const pickupElement = this.createPickupElement(pickup);
                 this.pickupsGrid.appendChild(pickupElement);
             });
@@ -332,26 +379,29 @@ class NGODashboard {
 
     confirmPickup(pickupId) {
         const data = JSON.parse(localStorage.getItem('ngoDashboardData'));
-        const pickup = data.pickups.find(p => p.id === pickupId);
-        if (pickup) {
-            pickup.status = 'confirmed';
-            data.stats.completedPickups++;
-            data.stats.pendingPickups--;
+        const pickupIndex = data.pickups.findIndex(p => p.id === pickupId);
+
+        if (pickupIndex !== -1) {
+            // Update status instead of deleting
+            data.pickups[pickupIndex].status = 'Confirmed';
+
+            // data.stats.completedPickups++; // Don't incr completed yet, maybe track confirmed?
+            data.stats.pendingPickups = Math.max(0, data.stats.pendingPickups - 1);
 
             // Add to activities
             data.activities.unshift({
                 id: Date.now(),
                 type: 'pickup',
-                title: 'Pickup confirmed',
-                description: `Pickup confirmed for ${pickup.donorName}`,
+                title: 'Pickup Confirmed',
+                description: `Pickup confirmed for ${data.pickups[pickupIndex].donorName}`,
                 time: 'Just now',
                 icon: 'check-circle'
             });
 
             localStorage.setItem('ngoDashboardData', JSON.stringify(data));
 
-            // Sync with donor data
-            this.syncPickupStatusWithDonor(pickupId, 'completed');
+            // Sync with donor data - mark as Confirmed
+            this.syncPickupStatusWithDonor(pickupId, 'Confirmed');
 
             this.loadDashboardData();
             this.showNotification('Pickup confirmed successfully!', 'success');
@@ -361,16 +411,21 @@ class NGODashboard {
     cancelPickup(pickupId) {
         if (confirm('Are you sure you want to cancel this pickup?')) {
             const data = JSON.parse(localStorage.getItem('ngoDashboardData'));
-            data.pickups = data.pickups.filter(p => p.id !== pickupId);
-            data.stats.pendingPickups--;
+            const pickupIndex = data.pickups.findIndex(p => p.id === pickupId);
 
-            localStorage.setItem('ngoDashboardData', JSON.stringify(data));
+            if (pickupIndex !== -1) {
+                // Update status instead of deleting
+                data.pickups[pickupIndex].status = 'cancelled';
+                data.stats.pendingPickups = Math.max(0, data.stats.pendingPickups - 1);
 
-            // Sync with donor data - mark as cancelled
-            this.syncPickupStatusWithDonor(pickupId, 'cancelled');
+                localStorage.setItem('ngoDashboardData', JSON.stringify(data));
 
-            this.loadDashboardData();
-            this.showNotification('Pickup cancelled.', 'info');
+                // Sync with donor data - mark as cancelled
+                this.syncPickupStatusWithDonor(pickupId, 'cancelled');
+
+                this.loadDashboardData();
+                this.showNotification('Pickup cancelled.', 'info');
+            }
         }
     }
 
@@ -409,6 +464,15 @@ Quantity: ${pickup.quantity} servings`);
                 this.schedulePickup();
             });
         }
+
+        // Request form
+        const requestForm = document.getElementById('requestForm');
+        if (requestForm) {
+            requestForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.submitRequest();
+            });
+        }
     }
 
     filterPickups(filter) {
@@ -430,40 +494,9 @@ Quantity: ${pickup.quantity} servings`);
         this.renderPickups(filteredPickups);
     }
 
-    schedulePickup() {
-        const formData = {
-            id: Date.now(),
-            donorName: document.getElementById('donorName').value,
-            address: document.getElementById('pickupAddress').value,
-            dateTime: document.getElementById('pickupDate').value,
-            foodType: document.getElementById('foodType').value,
-            quantity: parseInt(document.getElementById('quantity').value),
-            status: 'pending',
-            urgency: 'normal'
-        };
+    // schedulePickup logic moved to ngo_pickup_schedule.js
 
-        const data = JSON.parse(localStorage.getItem('ngoDashboardData'));
-        data.pickups.push(formData);
-        data.stats.pendingPickups++;
-
-        // Add to activities
-        data.activities.unshift({
-            id: Date.now(),
-            type: 'pickup',
-            title: 'New pickup scheduled',
-            description: `Pickup scheduled for ${formData.donorName}`,
-            time: 'Just now',
-            icon: 'calendar-plus'
-        });
-
-        localStorage.setItem('ngoDashboardData', JSON.stringify(data));
-        this.loadDashboardData();
-        this.closePickupModal();
-        this.showNotification('Pickup scheduled successfully!', 'success');
-
-        // Reset form
-        document.getElementById('pickupForm').reset();
-    }
+    // submitRequest moved to ngo_request.js
 
     // =====================================
     // MODAL MANAGEMENT
@@ -490,51 +523,57 @@ Quantity: ${pickup.quantity} servings`);
             };
         }
 
-        // Check for new donations that aren't in NGO data
-        const existingPickupIds = ngoData.pickups.map(p => p.id);
-        const newDonations = donorDonations.filter(d => !existingPickupIds.includes(d.id));
+        // Map for quick lookup
+        const ngoPickupsMap = new Map(ngoData.pickups.map(p => [p.id, p]));
 
-        newDonations.forEach(donation => {
-            // Update stats
-            ngoData.stats.totalDonations += 1;
-            if (donation.status === 'pending') {
-                ngoData.stats.pendingPickups += 1;
-            } else if (donation.status === 'completed') {
-                ngoData.stats.completedPickups += 1;
+        donorDonations.forEach(donation => {
+            if (ngoPickupsMap.has(donation.id)) {
+                // Update existing if needed (e.g. if donor changed something, though usually NGO drives status)
+                // We mainly want to ensure consistency. 
+                // If donor side has a newer status that matters, we could sync it here.
+                // For now, we assume NGO dashboard is the source of truth for STATUS once it's in the system.
+            } else {
+                // NEW DONATION DETECTED
+                // Add stats
+                ngoData.stats.totalDonations += 1;
+                if (donation.status.toLowerCase() === 'pending') {
+                    ngoData.stats.pendingPickups += 1;
+                }
+
+                // Add activity
+                const activity = {
+                    id: Date.now() + Math.random(),
+                    type: 'donation',
+                    title: 'New donation received',
+                    description: `${donation.foodType} - ${donation.quantity} from ${donation.pickupLocation}`,
+                    time: 'Recently',
+                    icon: 'utensils'
+                };
+                ngoData.activities.unshift(activity);
+
+                // Add pickup
+                const pickupDateTime = `${donation.date}T${donation.pickupTime || '12:00'}`;
+                const pickupEntry = {
+                    id: donation.id,
+                    donorName: donation.pickupLocation,
+                    address: donation.pickupLocation,
+                    dateTime: pickupDateTime,
+                    foodType: donation.foodType,
+                    quantity: this.parseQuantity(donation.quantity),
+                    status: donation.status, // use donor status
+                    urgency: 'normal'
+                };
+                ngoData.pickups.push(pickupEntry);
             }
-
-            // Add activity
-            const activity = {
-                id: Date.now() + Math.random(),
-                type: 'donation',
-                title: donation.status === 'completed' ? 'Donation completed' : 'New donation received',
-                description: `${donation.foodType} - ${donation.quantity} from ${donation.pickupLocation}`,
-                time: 'Recently',
-                icon: donation.status === 'completed' ? 'check-circle' : 'utensils'
-            };
-            ngoData.activities.unshift(activity);
-
-            // Add pickup
-            const pickupDateTime = `${donation.date}T${donation.pickupTime || '12:00'}`;
-            const pickupEntry = {
-                id: donation.id,
-                donorName: donation.pickupLocation,
-                address: donation.pickupLocation,
-                dateTime: pickupDateTime,
-                foodType: donation.foodType,
-                quantity: this.parseQuantity(donation.quantity),
-                status: donation.status === 'completed' ? 'confirmed' : 'pending',
-                urgency: 'normal'
-            };
-            ngoData.pickups.push(pickupEntry);
         });
 
-        if (newDonations.length > 0) {
-            localStorage.setItem('ngoDashboardData', JSON.stringify(ngoData));
-            this.updateStats(ngoData.stats);
-            this.renderActivities(ngoData.activities);
-            this.renderPickups(ngoData.pickups);
-        }
+        localStorage.setItem('ngoDashboardData', JSON.stringify(ngoData));
+
+        // Refresh UI
+        this.updateStats(ngoData.stats);
+        this.renderActivities(ngoData.activities);
+        // Important: renderPickups filters pending, so we pass full list and let it filter
+        this.renderPickups(ngoData.pickups);
     }
 
     // Sync pickup status changes with donor data
@@ -639,13 +678,7 @@ function refreshActivity() {
     dashboard.refreshActivity();
 }
 
-function openPickupModal() {
-    dashboard.openPickupModal();
-}
-
-function closePickupModal() {
-    dashboard.closePickupModal();
-}
+// closePickupModal moved to separate page logic
 
 function viewReports() {
     dashboard.viewReports();
@@ -720,9 +753,4 @@ document.head.appendChild(style);
 const dashboard = new NGODashboard();
 
 // Close modal when clicking outside
-window.onclick = function(event) {
-    const modal = document.getElementById('pickupModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
+// Window click listener specific to pickups removed
