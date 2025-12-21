@@ -13,7 +13,7 @@ urlpatterns = [
     path('ngo_dashboard', ngo_dashboard),
     path('ngo_pickup_schedule', ngo_pickup_schedule),
     path('ngo_request', ngo_request),
-    path('pickup', pickup),
+    path('pickup', pickup,name='pickup'),
     path('register',register),
     path('verifyuser', verifyuser),
     path('reports', reports),

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import *
-# import requests
 
 def index(request):
     return render(request, "index.html")
