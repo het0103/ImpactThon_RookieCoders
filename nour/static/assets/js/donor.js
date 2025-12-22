@@ -221,7 +221,7 @@ class DonorApp {
                     </span>
                 </td>
                 <td>
-                    <button class="pickup-info-btn" onclick="window.open('pickup.html?id=${donation.id}', '_self')">View Info</button>
+                    <button class="pickup-info-btn" onclick="window.open('/pickup.html', '_self')" fdprocessedid="0n44nj">View Info</button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -395,7 +395,7 @@ const pickupLocations = [
 ];
 
 function setupLocationAutocomplete() {
-    const locationInput = document.getElementById('pickup-location');
+    const locationInput = document.getElementById('pickuplocation');
     if (locationInput) {
         locationInput.addEventListener('input', function () {
             // Simple autocomplete implementation could go here
