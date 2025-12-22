@@ -176,7 +176,7 @@ class DonationNeedsApp {
         localStorage.setItem('donations', JSON.stringify(donations));
 
         // Redirect to pickup page
-        window.location.href = `pickup.html?id=${donation.id}`;
+        window.location.href = `/pickup?id=${donation.id}`;
 
         // Close modal (though redirect will happen first)
         this.closeDonationModal();

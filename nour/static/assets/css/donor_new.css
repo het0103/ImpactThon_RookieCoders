@@ -777,12 +777,18 @@ body::after {
   box-shadow: 0 4px 20px var(--shadow);
   border: 1px solid var(--border);
   overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
   transition: all 0.3s ease;
 }
 
-.request-card:hover {
+.request-card:hover,
+.request-card:focus{
   transform: translateY(-5px);
   box-shadow: 0 8px 25px var(--shadow);
+}
+html{
+    overscroll-behavior:none;
 }
 
 .request-header {

@@ -221,7 +221,7 @@ class DonorApp {
                     </span>
                 </td>
                 <td>
-                    <button class="pickup-info-btn" onclick="window.open('pickup.html?id=${donation.id}', '_self')">View Info</button>
+                    <button class="pickup-info-btn" onclick="window.open('/pickup?id=${donation.id}', '_self')">View Info</button>
 
                 </td>
             `;
