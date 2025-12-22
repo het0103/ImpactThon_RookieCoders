@@ -34,9 +34,6 @@ def ngo_request(request):
 def pickup(request):
     return render(request, "pickup.html")
 
-def pickup_view(request):
-    return render(request, 'pickup.html')
-
 # for ngo registration
 def register(request):
     if request.method == "POST":
