@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,16 +6,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pickup Details - NourishNet</title>
-  <link rel="stylesheet" href="static/assets/css/donor_new.css">
-  <link rel="stylesheet" href="static/assets/css/pickup.css">
+  <link rel="stylesheet" href="{% static 'assets/css/donor_new.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/pickup.css' %}" /* Override some styles for pickup page */
+    /*========IF IT NOT CONNECTED TO CSS FILE========*/ /*=======THIS LINE ADDED BY DAX=======JO ANI CSS FILE PICKUP.CSS
+    WORK NA KARE TO DONOR_NEW.CSS LAGAVI DEJE */ </head>
 
-  /* Override some styles for pickup page */
-
-  /*======== IF IT NOT CONNECTED TO CSS FILE ======== */
-  /*=======THIS LINE ADDED BY DAX======= JO ANI CSS FILE PICKUP.CSS WORK NA KARE TO DONOR_NEW.CSS LAGAVI DEJE */
-
-
-</head>
 <body>
   <div class="pickup-container">
     <div class="pickup-header">
@@ -117,7 +113,7 @@
     </div>
   </div>
 
-  <script src="static/assets/js/pickup.js"></script>
+  <script src="{% static 'assets/js/pickup.js' %}"></script>
 
 </body>
 

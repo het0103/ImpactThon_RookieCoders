@@ -221,7 +221,7 @@ class DonorApp {
                     </span>
                 </td>
                 <td>
-                    <button class="pickup-info-btn" onclick="window.open('/pickup.html', '_self')" fdprocessedid="0n44nj">View Info</button>
+                    <button class="pickup-info-btn" onclick="window.location.href='/pickup'">View Info</button>
                 </td>
             `;
             tbody.appendChild(row);
