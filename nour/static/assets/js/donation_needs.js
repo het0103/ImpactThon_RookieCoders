@@ -7,6 +7,7 @@ class DonationNeedsApp {
         this.init();
     }
 
+
     init() {
         this.bindEvents();
         this.loadRequests();
@@ -200,18 +201,22 @@ class DonationNeedsApp {
     }
 }
 
-// Global functions
-function openDonationModal(requestId) {
-    if (window.donationNeedsApp) {
-        window.donationNeedsApp.openDonationModal(requestId);
-    }
+  function openPickupModal() {
+        document.querySelector(".pickup-modal").style.display = "flex";
+        document.body.classList.add("modal-open");
 }
 
-function closeDonationModal() {
-    if (window.donationNeedsApp) {
-        window.donationNeedsApp.closeDonationModal();
-    }
+function closePickupModal() {
+  document.querySelector(".pickup-modal").style.display = "none";
+  document.body.classList.remove("modal-open");
 }
+
+// Global functions
+// function openDonationModal(requestId) {
+//     if (window.donationNeedsApp) {
+//         window.donationNeedsApp.openDonationModal(requestId);
+//     }
+// }
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

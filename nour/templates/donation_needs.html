@@ -52,12 +52,13 @@
     <!-- Donation Modal -->
     <div id="donationModal" class="pickup-modal">
         <div class="pickup-modal-content">
-            <span class="close-modal" onclick="closeDonationModal()">&times;</span>
+            <span class="close-modal" onclick="closePickupModal()">&times;</span>
             <h2>Make a Donation</h2>
             <div id="request-details">
                 <!-- Request details will be populated here -->
             </div>
-            <form id="quick-donation-form">
+            <form id="quick-donation-form" method="post">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="donate-quantity">Quantity to Donate *</label>
                     <input type="text" id="donate-quantity" name="donate-quantity"
@@ -77,7 +78,8 @@
                     <input type="text" id="donate-contact" name="donate-contact"
                         placeholder="Phone number (optional - for coordination only)">
                 </div>
-                <button type="submit" class="btn btn-success">Submit Donation</button>
+                <button type="submit" class="btn btn-success" onclick="submitDonation()">Submit Donation</button>
+<!--                <span class="close-modal" onclick="closePickupModal()">&times;</span>-->
             </form>
         </div>
     </div>

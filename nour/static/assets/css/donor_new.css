@@ -919,3 +919,78 @@ html{
     align-items: flex-start;
   }
 }
+/* =========================
+   MODAL (FIXED & SCROLLABLE)
+========================= */
+.pickup-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000; /* above sticky header */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* prevents edge cut on mobile */
+}
+
+/* Modal box */
+.pickup-modal-content {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 520px;
+
+  max-height: 90vh;              /* 🔑 KEY FIX */
+  overflow-y: auto;              /* 🔑 SCROLL INSIDE MODAL */
+
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px var(--shadow);
+
+  position: relative;
+  animation: modalPop 0.3s ease-out;
+}
+
+/* Hide scrollbar but keep scroll */
+.pickup-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.pickup-modal-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+@keyframes modalPop {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close button */
+.close-modal {
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: white;
+  z-index: 5;
+}
+
+.close-modal:hover {
+  color: var(--danger);
+}
+
+/* Lock background scroll */
+body.modal-open {
+  overflow: hidden;
+}
