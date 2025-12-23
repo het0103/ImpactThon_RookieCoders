@@ -128,23 +128,23 @@ class DonationNeedsApp {
     }
 
     openDonationModal(requestId) {
-        this.currentRequestId = requestId;
-        const request = this.requests.find(r => r.id === requestId);
+    this.currentRequestId = requestId;
+    const request = this.requests.find(r => r.id === requestId);
+    if (!request) return;
 
-        if (!request) return;
+    document.getElementById('request-details').innerHTML = `
+        <div class="request-summary">
+            <h3>Donating to: NGO Request</h3>
+            <p><strong>Items:</strong> ${request.items}</p>
+            <p><strong>Quantity Needed:</strong> ${request.quantity}</p>
+            <p><strong>Urgency:</strong> ${request.urgency || 'Normal'}</p>
+        </div>
+    `;
 
-        const detailsDiv = document.getElementById('request-details');
-        detailsDiv.innerHTML = `
-            <div class="request-summary">
-                <h3>Donating to: NGO Request</h3>
-                <p><strong>Items:</strong> ${request.items}</p>
-                <p><strong>Quantity Needed:</strong> ${request.quantity}</p>
-                <p><strong>Urgency:</strong> ${request.urgency || 'Normal'}</p>
-            </div>
-        `;
+    document.getElementById("donationModal").style.display = "flex";
+    document.body.classList.add("modal-open");
+}
 
-        document.getElementById('donationModal').style.display = 'flex';
-    }
 
     closeDonationModal() {
         document.getElementById('donationModal').style.display = 'none';
@@ -201,22 +201,23 @@ class DonationNeedsApp {
     }
 }
 
-  function openPickupModal() {
+function openPickupModal() {
         document.querySelector(".pickup-modal").style.display = "flex";
         document.body.classList.add("modal-open");
 }
 
 function closePickupModal() {
-  document.querySelector(".pickup-modal").style.display = "none";
+  document.getElementById("donationModal").style.display = "none";
   document.body.classList.remove("modal-open");
 }
 
-// Global functions
-// function openDonationModal(requestId) {
-//     if (window.donationNeedsApp) {
-//         window.donationNeedsApp.openDonationModal(requestId);
-//     }
-// }
+function openDonationModal(requestId) {
+    if (window.donationNeedsApp) {
+        window.donationNeedsApp.openDonationModal(requestId);
+        document.body.classList.add("modal-open");
+    }
+}
+
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
