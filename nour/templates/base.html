@@ -20,14 +20,14 @@
      <div class="logo">
         <div class="brand">NourishNet-NGO</div>
     </div>
-    <nav class="navbar">
-        {%if request.session.login_id%}
+        <nav class="navbar">
+        {%if request.session.user_id%}
         <a class="cta" href="/donor">DONATE</a>
         <a href="/donation_needs">QUICK NEEDS</a>
         <a href="/">HOME</a>
         <a href="/about">ABOUT</a>
         <a href="/logout">LOGOUT</a>
-        {%else%}
+            {%else%}
         <a href="/">HOME</a>
         <a href="/donation_needs">QUICK NEEDS</a>
         <a href="/about">ABOUT</a>

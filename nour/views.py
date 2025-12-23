@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 
+
 def index(request):
     return render(request, "index.html")
 
@@ -37,6 +38,7 @@ def pickup(request):
 # for ngo registration
 def register(request):
     if request.method == "POST":
+        user_type = request.POST["user_type"]
         name = request.POST.get("username", "").strip()
         email = request.POST.get("email", "").strip()
         mobile = request.POST.get("mobile", "")
@@ -50,24 +52,45 @@ def register(request):
             if pwd1 != pwd2:
                 return render(request, "register.html", {"error": "Passwords do not match."})
             else:
-                user = register_ngo(name=name, email=email,mobile=mobile,addr=addr,pincode=pincode, password=pwd1,timestamp="")
+                user = register_ngo(user_type=user_type,name=name, email=email,mobile=mobile,addr=addr,pincode=pincode, password=pwd1,timestamp="")
                 user.save()
                 return redirect(index)
     return render(request, "register.html")
 
-
 def verifyuser(request):
     if request.method == "POST":
-        useremail = request.POST.get("email")
-        password = request.POST.get("password")
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "").strip()
+
         try:
-            userdata = register_ngo.objects.get(email=useremail, password=password)
-            request.session["login_id"] = userdata.id
-            request.session["login_email"] = userdata.email
-            request.session.save()
-            return redirect(index)
-        except:
-            return redirect(loginpage)
+            user = register_ngo.objects.get(email=email)
+        except register_ngo.DoesNotExist:
+            return render(request, "login.html", {
+                "error": "Invalid email or password"
+            })
+
+        if user.password != password:
+            return render(request, "login.html", {
+                "error": "Invalid email or password"
+            })
+
+        # ✅ REDIRECT BASED ON USER TYPE
+        if user.user_type == "ngo":
+            request.session["user_id"] = user.id
+            request.session["user_type"] = "ngo"
+            return redirect("ngo_dashboard")
+
+        elif user.user_type == "donor":
+            request.session["user_id"] = user.id
+            request.session["user_type"] = "donor"
+            return redirect("donor_home")
+
+        else:
+            return render(request, "login.html", {
+                "error": "Invalid user type"
+            })
+
+    return render(request, "login.html")
 
 def logout(request):
     try:

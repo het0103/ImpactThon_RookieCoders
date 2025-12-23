@@ -659,15 +659,15 @@ Quantity: ${pickup.quantity} servings`);
     // QUICK ACTIONS
     // =====================================
     viewReports() {
-        window.location.href = 'reports.html';
+        window.location.href = '/reports';
     }
 
     manageDonors() {
-        window.location.href = 'donor_management.html';
+        window.location.href = '/donor_management';
     }
 
     settings() {
-        window.location.href = 'settings.html';
+        window.location.href = '/settings';
     }
 }
 
