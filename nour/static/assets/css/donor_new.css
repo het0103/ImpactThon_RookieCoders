@@ -132,7 +132,7 @@ body::after {
   background: var(--primary);
   color: white;
   padding: 3rem 2rem;
-  margin: 5rem 2rem 2rem;
+  margin: 5rem 0 0;
   border-radius: 16px;
   position: relative;
   overflow: hidden;
@@ -171,7 +171,7 @@ body::after {
 .donor-nav {
   background: var(--card-bg);
   padding: 2rem;
-  margin: 2rem;
+  margin: 0;
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--shadow);
   border: 1px solid var(--border);
@@ -221,7 +221,7 @@ body::after {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin: 2rem;
+  margin: 0 0 2rem;
 }
 
 .card {
@@ -293,7 +293,7 @@ body::after {
 .donation-form {
   background: var(--card-bg);
   padding: 3rem;
-  margin: 2rem;
+  margin: 0 0 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--shadow);
   border: 1px solid var(--border);
@@ -366,7 +366,7 @@ body::after {
 ========================= */
 .donations-table {
   background: var(--card-bg);
-  margin: 2rem;
+  margin: 0 0 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--shadow);
   border: 1px solid var(--border);
@@ -445,7 +445,7 @@ body::after {
   background: rgba(45, 106, 79, 0.1);
   color: var(--success);
   padding: 1.5rem;
-  margin: 2rem;
+  margin: 0 0 2rem;
   border-radius: 10px;
   border: 1px solid var(--success);
   position: relative;
@@ -783,12 +783,13 @@ body::after {
 }
 
 .request-card:hover,
-.request-card:focus{
+.request-card:focus {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px var(--shadow);
 }
-html{
-    overscroll-behavior:none;
+
+html {
+  overscroll-behavior: none;
 }
 
 .request-header {
@@ -919,6 +920,7 @@ html{
     align-items: flex-start;
   }
 }
+
 /* =========================
    MODAL (FIXED & SCROLLABLE)
 ========================= */
@@ -926,14 +928,16 @@ html{
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 2000; /* above sticky header */
+  z-index: 2000;
+  /* above sticky header */
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
 
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem; /* prevents edge cut on mobile */
+  padding: 1rem;
+  /* prevents edge cut on mobile */
 }
 
 /* Modal box */
@@ -942,8 +946,10 @@ html{
   width: 100%;
   max-width: 520px;
 
-  max-height: 90vh;              /* 🔑 KEY FIX */
-  overflow-y: auto;              /* 🔑 SCROLL INSIDE MODAL */
+  max-height: 90vh;
+  /* 🔑 KEY FIX */
+  overflow-y: auto;
+  /* 🔑 SCROLL INSIDE MODAL */
 
   padding: 2rem;
   border-radius: 16px;
@@ -957,6 +963,7 @@ html{
 .pickup-modal-content::-webkit-scrollbar {
   width: 6px;
 }
+
 .pickup-modal-content::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 10px;
@@ -967,6 +974,7 @@ html{
     transform: translateY(20px) scale(0.95);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
