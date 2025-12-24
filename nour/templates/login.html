@@ -5,17 +5,18 @@
   <div class="auth-page">
     <section class="auth-section">
       <div class="login">
-        <form id="loginForm" class="login_form">
+        <form id="loginForm" class="login_form" method="POST" action="/verifyuser">
+            {% csrf_token %}
           <h1 class="login_title">Welcome Back</h1>
 
           <div class="login__box">
             <label class="login_label">Email</label>
-            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
           </div>
 
           <div class="login__box">
             <label class="login_label">Password</label>
-            <input type="password" id="password" placeholder="Enter Password" required>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
           </div>
 
           <button type="submit" class="login__button">Login</button>
@@ -29,51 +30,51 @@
     </section>
   </div>
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+<!--  <script>-->
+<!--    document.getElementById('loginForm').addEventListener('submit', function (e) {-->
+<!--      e.preventDefault();-->
 
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+<!--      const email = document.getElementById('email').value;-->
+<!--      const password = document.getElementById('password').value;-->
 
-      // Simple client-side simulation
-      // In a real app, this would be an API call
+<!--      // Simple client-side simulation-->
+<!--      // In a real app, this would be an API call-->
 
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      const user = users.find(u => u.email === email && u.password === password);
+<!--      const users = JSON.parse(localStorage.getItem('users')) || [];-->
+<!--      const user = users.find(u => u.email === email && u.password === password);-->
 
-      if (user) {
-        // Save current user session
-        localStorage.setItem('currentUser', JSON.stringify(user));
+<!--      if (user) {-->
+<!--        // Save current user session-->
+<!--        localStorage.setItem('currentUser', JSON.stringify(user));-->
 
-        // Redirect based on role
-        if (user.role === 'ngo') {
-          window.location.href = '/ngo_dashboard';
-        } else {
-          window.location.href = '/donor_home'; // Assuming donor dashboard is here or index
-        }
-      } else {
-        // Admin/Demo backdoor
-        if (email === 'admin@nourishnet.org' && password === 'admin') {
-          localStorage.setItem('currentUser', JSON.stringify({ name: 'Admin NGO', role: 'ngo' }));
-          window.location.href = '/ngo_dashboard';
-          return;
-        }
-        if (email === 'donor@test.com' && password === 'donor') {
-          localStorage.setItem('currentUser', JSON.stringify({ name: 'Test Donor', role: 'donor' }));
-          window.location.href = '/donor_home';
-          return;
-        }
+<!--        // Redirect based on role-->
+<!--        if (user.role === 'ngo') {-->
+<!--          window.location.href = '/ngo_dashboard';-->
+<!--        } else {-->
+<!--          window.location.href = '/donor_home'; // Assuming donor dashboard is here or index-->
+<!--        }-->
+<!--      } else {-->
+<!--        // Admin/Demo backdoor-->
+<!--        if (email === 'admin@nourishnet.org' && password === 'admin') {-->
+<!--          localStorage.setItem('currentUser', JSON.stringify({ name: 'Admin NGO', role: 'ngo' }));-->
+<!--          window.location.href = '/ngo_dashboard';-->
+<!--          return;-->
+<!--        }-->
+<!--        if (email === 'donor@test.com' && password === 'donor') {-->
+<!--          localStorage.setItem('currentUser', JSON.stringify({ name: 'Test Donor', role: 'donor' }));-->
+<!--          window.location.href = '/donor_home';-->
+<!--          return;-->
+<!--        }-->
 
-        alert('Invalid credentials. Try admin@nourishnet.org / admin');
-      }
-    });
+<!--        alert('Invalid credentials. Try admin@nourishnet.org / admin');-->
+<!--      }-->
+<!--    });-->
 
-    // Check if already logged in
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      // Optional: auto-redirect? 
-      // window.location.href = currentUser.role === 'ngo' ? 'ngo_dashboard.html' : 'donor_home.html';
-    }
-  </script>
+<!--    // Check if already logged in-->
+<!--    const currentUser = JSON.parse(localStorage.getItem('currentUser'));-->
+<!--    if (currentUser) {-->
+<!--      // Optional: auto-redirect? -->
+<!--      // window.location.href = currentUser.role === 'ngo' ? 'ngo_dashboard.html' : 'donor_home.html';-->
+<!--    }-->
+<!--  </script>-->
 {%endblock%}

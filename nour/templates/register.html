@@ -5,7 +5,8 @@
   <div class="auth-page">
     <section class="auth-register">
       <div class="login" style="margin-top: 50px;">
-        <form class="login_form" id="regForm">
+        <form class="login_form" id="regForm" method="POST" action="/register">
+          {% csrf_token %}
 
           <h1 class="login_title">Create Account</h1>
 
@@ -68,55 +69,55 @@
       </div>
     </section>
 
-    <script>
-      function toggleFields() {
-        const role = document.getElementById('role').value;
-        const ngoFields = document.getElementById('ngoFields');
-        if (role === 'ngo') {
-          ngoFields.style.display = 'block';
-          document.getElementById('address').required = true;
-        } else {
-          ngoFields.style.display = 'none';
-          document.getElementById('address').required = false;
-        }
-      }
+<!--    <script>-->
+<!--      function toggleFields() {-->
+<!--        const role = document.getElementById('role').value;-->
+<!--        const ngoFields = document.getElementById('ngoFields');-->
+<!--        if (role === 'ngo') {-->
+<!--          ngoFields.style.display = 'block';-->
+<!--          document.getElementById('address').required = true;-->
+<!--        } else {-->
+<!--          ngoFields.style.display = 'none';-->
+<!--          document.getElementById('address').required = false;-->
+<!--        }-->
+<!--      }-->
 
-      document.getElementById('regForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+<!--      document.getElementById('regForm').addEventListener('submit', function (e) {-->
+<!--        e.preventDefault();-->
 
-        const role = document.getElementById('role').value;
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('regEmail').value;
-        const password = document.getElementById('pwd1').value;
-        const confirm = document.getElementById('pwd2').value;
+<!--        const role = document.getElementById('role').value;-->
+<!--        const name = document.getElementById('name').value;-->
+<!--        const email = document.getElementById('regEmail').value;-->
+<!--        const password = document.getElementById('pwd1').value;-->
+<!--        const confirm = document.getElementById('pwd2').value;-->
 
-        if (password !== confirm) {
-          alert("Passwords do not match!");
-          return;
-        }
+<!--        if (password !== confirm) {-->
+<!--          alert("Passwords do not match!");-->
+<!--          return;-->
+<!--        }-->
 
-        // Save user
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+<!--        // Save user-->
+<!--        const users = JSON.parse(localStorage.getItem('users')) || [];-->
 
-        if (users.find(u => u.email === email)) {
-          alert("User already exists!");
-          return;
-        }
+<!--        if (users.find(u => u.email === email)) {-->
+<!--          alert("User already exists!");-->
+<!--          return;-->
+<!--        }-->
 
-        const newUser = {
-          name,
-          email,
-          password,
-          role,
-          mobile: document.getElementById('mobile').value
-        };
+<!--        const newUser = {-->
+<!--          name,-->
+<!--          email,-->
+<!--          password,-->
+<!--          role,-->
+<!--          mobile: document.getElementById('mobile').value-->
+<!--        };-->
 
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
+<!--        users.push(newUser);-->
+<!--        localStorage.setItem('users', JSON.stringify(users));-->
 
-        alert("Registration successful! Please login.");
-        window.location.href = '/login';
-      });
-    </script>
+<!--        alert("Registration successful! Please login.");-->
+<!--        window.location.href = '/login';-->
+<!--      });-->
+<!--    </script>-->
     </div>
 {%endblock%}

@@ -21,7 +21,7 @@
         <div class="brand">NourishNet-NGO</div>
     </div>
         <nav class="navbar">
-        {%if request.session.user_id%}
+        {% if request.session.login_id %}
         <a class="cta" href="/donor">DONATE</a>
         <a href="/donation_needs">QUICK NEEDS</a>
         <a href="/">HOME</a>
@@ -33,7 +33,10 @@
         <a href="/about">ABOUT</a>
         <a href="/login">LOGIN</a>
         <a href="/register">REGISTER</a>
-        {%endif%}
+            {%endif%}
+<!--        User ID: {{ request.session.user_id }} <br>-->
+<!--        Session: {{ request.session }} <br>-->
+
     </nav>
 </header>
 
