@@ -502,7 +502,6 @@ body::after {
   color: white;
   font-weight: 500;
   cursor: pointer;
-  text-decoration: underline;
   display: flex;
   align-items: center;
   justify-content: center;
