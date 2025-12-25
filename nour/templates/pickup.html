@@ -106,7 +106,11 @@
       <div class="action-buttons">
         <!-- Confirm button removed as per requirement -->
         <button class="btn btn-secondary" id="contactDriverBtn">Contact Driver</button>
+          {%if request.sesion.login_id%}
         <a href="/donor_home" class="btn btn-secondary">Back to Dashboard</a>
+          {% else %}
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+          {% endif %}
       </div>
     </div>
   </div>

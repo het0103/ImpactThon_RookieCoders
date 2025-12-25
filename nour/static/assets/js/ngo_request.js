@@ -62,5 +62,5 @@ function submitRequest() {
 
     // 3. Redirect back to Dashboard
     alert('Donation request posted successfully!');
-    window.location.href = 'ngo_dashboard.html';
+    window.location.href = '/ngo_dashboard';
 }

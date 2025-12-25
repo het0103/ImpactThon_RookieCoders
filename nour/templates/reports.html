@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports - NourishNet</title>
-    <link rel="stylesheet" href="ngo_dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body>
-    <!-- HEADER STICKY NAVBAR -->
-    <header class="sticky-header">
-        <div class="logo">
-            <div class="brand">NourishNet</div>
-        </div>
-
-        <nav class="navbar">
-            <a href="index.html">HOME</a>
-            <a href="ngo_dashboard.html">DASHBOARD</a>
-            <a href="donation_needs.html">DONATION NEEDS</a>
-            <a href="about.html">ABOUT</a>
-        </nav>
-    </header>
-
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
     <div class="dashboard-container" style="margin-top: 80px;">
         <!-- PAGE HEADER -->
         <header class="dashboard-header">
@@ -34,9 +11,6 @@
             <div class="header-right">
                 <div class="current-time" id="currentTime">--:-- --</div>
                 <div class="current-date" id="currentDate">--- --, ----</div>
-                <a href="/ngo_dashboard" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back to Dashboard
-                </a>
             </div>
         </header>
 
@@ -237,6 +211,5 @@
             updateTime();
             setInterval(updateTime, 1000);
         </script>
-</body>
-
-</html>
+    </div>
+{%endblock%}

@@ -159,7 +159,7 @@ function showError(message) {
         <div style="text-align: center; padding: 3rem;">
             <h3 style="color: var(--danger);">Error</h3>
             <p>${message}</p>
-            <a href="/donor_home" class="btn">Back to Dashboard</a>
+            <a href="/ngo_dashboard" class="btn">Back to Dashboard</a>
         </div>
     `;
 }

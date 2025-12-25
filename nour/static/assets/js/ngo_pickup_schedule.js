@@ -61,5 +61,5 @@ function schedulePickup() {
 
     // 4. Redirect back to Dashboard
     alert('Pickup scheduled successfully!');
-    window.location.href = 'ngo_dashboard.html';
+    window.location.href = '/ngo_dashboard';
 }
