@@ -35,6 +35,7 @@
 }
 
 body {
+  margin-top: 25px;
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
