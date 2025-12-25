@@ -82,6 +82,7 @@
             </div>
         </div>
         <!-- PENDING PICKUPS SECTION -->
+        {% if request.session.login_id %}
         <div class="panel pickups-panel">
             <div class="panel-header">
                 <h2><i class="fas fa-truck"></i> Pending Pickups</h2>
@@ -121,6 +122,7 @@
                 </button>
             </div>
         </div>
+        {% endif %}
     </div>
     <!-- MODALS -->
     <!-- Pickup Modal Removed (Moved to ngo_pickup_schedule.html) -->

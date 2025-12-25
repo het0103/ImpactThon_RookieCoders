@@ -124,7 +124,9 @@
                 </ul>
                 <a href="/anonymous_donation" class="btn btn-donorone" >Quick Anonymous
                     Donation &nbsp; →</a>
+                {% if request.session.login_id %}
                 <a href="/donor_home" class="btn btn-donortwo" >Explore Donor Dashboard &nbsp; →</a>
+                {% endif %}
             </div>
 
             <div class="feature-card">

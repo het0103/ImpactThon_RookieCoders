@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
 
-
 def index(request):
     return render(request, "index.html")
 
@@ -82,13 +81,13 @@ def pickup(request):
 #     return render(request, "login.html")
 #
 #
-# def logout(request):
-#     try:
-#         del request.session["login_id"]
-#         del request.session["login_email"]
-#         return redirect(index)
-#     except:
-#         pass
+def logout(request):
+    try:
+        del request.session["login_id"]
+        del request.session["login_email"]
+        return redirect(index)
+    except:
+        pass
 def register(request):
     if request.method == "POST":
         user_type = request.POST.get("user_type")
@@ -146,12 +145,10 @@ def verifyuser(request):
 
     return render(request, "login.html")
 
-
-def logout(request):
-    request.session.flush()
-    return redirect("index")
-
-
+#
+# def logout(request):
+#     request.session.flush()
+#     return redirect(index)
 
 def reports(request):
     return render(request, "reports.html")

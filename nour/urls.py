@@ -13,7 +13,7 @@ urlpatterns = [
     path('ngo_request', ngo_request),
     path('pickup', pickup,name='pickup'),
     path("register", register, name="register"),
-    path("login", verifyuser, name="login"),
+    path("login", loginpage, name="login"),
     path("logout", logout, name="logout"),
     path('verifyuser', verifyuser),
     path('reports', reports),
