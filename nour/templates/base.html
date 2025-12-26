@@ -2,7 +2,7 @@
 {%load static%}
 <html>
     <head>
-        <title> Hello GitHub Desktop </title>
+        <title> NourishNet </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -19,12 +19,12 @@
 <header class="sticky-header">
      <div class="logo">
          <img src="static/assets/images/logo.jpg" alt="NourishNet Logo" class="brand" width="50px">
-        <div class="brand">NourishNet-NGO</div>
+        <div class="brand">NourishNet</div>
     </div>
         <nav class="navbar">
         {% if request.session.login_id %}
 <!--        <a class="cta" href="/donor">DONATE</a>-->
-        <a href="/donation_needs">QUICK NEEDS</a>
+        <a href="/anonymous_donation">ANONYMOUS DONATIONS</a>
         <a href="/">HOME</a>
         <a href="/ngo_dashboard">DASHBOARD</a>
         <a href="/about">ABOUT</a>
@@ -32,17 +32,17 @@
         {% elif request.session.volunteer_id %}
         <!-- Volunteer Navigation -->
         <a href="/volunteer_dashboard">DASHBOARD</a>
-        <a href="/donation_needs">QUICK NEEDS</a>
+        <a href="/anonymous_donation">ANONYMOUS DONATIONS</a>
         <a href="/">HOME</a>
         <a href="/about">ABOUT</a>
         <a href="/logout">LOGOUT</a>
             {%else%}
         <a href="/">HOME</a>
-        <a href="/donation_needs">QUICK NEEDS</a>
+        <a href="/anonymous_donation">ANONYMOUS DONATIONS</a>
         <a href="/about">ABOUT</a>
         <a href="/login">LOGIN</a>
         <a href="/register">REGISTER</a>
-        <a href="/volunteer_login" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4); color: white; padding: 8px 16px; border-radius: 20px; margin-left: 10px;">VOLUNTEER</a>
+        <a href="/volunteer_login">VOLUNTEER</a>
             {%endif%}
 <!--        User ID: {{ request.session.user_id }} <br>-->
 <!--        Session: {{ request.session }} <br>-->
