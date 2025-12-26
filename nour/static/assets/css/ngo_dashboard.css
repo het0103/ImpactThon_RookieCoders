@@ -894,6 +894,21 @@ body::after {
   transition: all 0.3s ease;
   color: var(--text-primary);
 }
+#donorName{
+    width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+#donorName:focus{
+    outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(23, 107, 91, 0.1);
+}
 
 .form-group input:focus,
 .form-group select:focus,
