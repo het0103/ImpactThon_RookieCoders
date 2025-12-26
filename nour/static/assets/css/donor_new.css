@@ -325,6 +325,30 @@ body::after {
   color: var(--text-primary);
 }
 
+#pickup-location,
+#quantity,
+#sub-quantity,
+#sub-pickup-location,
+#sub-frequency,
+#sub-duration {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#pickup-location:focus,
+#quantity:focus,
+#sub-quantity:focus,
+#sub-pickup-location:focus,
+#sub-frequency:focus,
+#sub-duration:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(23, 107, 91, 0.1);
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -717,6 +741,7 @@ body::after {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
+  color: #718096;
 }
 
 @media (max-width: 768px) {
@@ -759,7 +784,8 @@ body::after {
 }
 
 .filter-group select,
-.filter-group input {
+.filter-group input,
+#donation-quantity {
   padding: 0.75rem;
   border: 2px solid var(--border);
   border-radius: 8px;
@@ -982,8 +1008,10 @@ html {
     opacity: 1;
   }
 }
+
 .pickup-modal {
-  display: none;          /* ✅ hidden by default */
+  display: none;
+  /* ✅ hidden by default */
   position: fixed;
   inset: 0;
   z-index: 2000;
