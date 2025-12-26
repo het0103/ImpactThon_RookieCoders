@@ -751,6 +751,7 @@ h3 {
 
 /* Transparent Glass Login Box */
 .login {
+  margin-bottom: 18px;
   width: 360px;
   padding: 22px;
   border-radius: 14px;
