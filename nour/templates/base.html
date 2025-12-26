@@ -29,12 +29,20 @@
         <a href="/ngo_dashboard">DASHBOARD</a>
         <a href="/about">ABOUT</a>
         <a href="/logout">LOGOUT</a>
+        {% elif request.session.volunteer_id %}
+        <!-- Volunteer Navigation -->
+        <a href="/volunteer_dashboard">DASHBOARD</a>
+        <a href="/donation_needs">QUICK NEEDS</a>
+        <a href="/">HOME</a>
+        <a href="/about">ABOUT</a>
+        <a href="/logout">LOGOUT</a>
             {%else%}
         <a href="/">HOME</a>
         <a href="/donation_needs">QUICK NEEDS</a>
         <a href="/about">ABOUT</a>
         <a href="/login">LOGIN</a>
         <a href="/register">REGISTER</a>
+        <a href="/volunteer_login" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4); color: white; padding: 8px 16px; border-radius: 20px; margin-left: 10px;">VOLUNTEER</a>
             {%endif%}
 <!--        User ID: {{ request.session.user_id }} <br>-->
 <!--        Session: {{ request.session }} <br>-->

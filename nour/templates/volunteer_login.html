@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+<br>
+<br>
+<div class="auth-page">
+    <section class="auth-register">
+        <div class="login" style="margin-top: 50px;">
+            <form class="login_form" method="POST" action="/verify_volunteer">
+                {% csrf_token %}
+
+                <h1 class="login_title">Volunteer Login</h1>
+
+                {% if error %}
+                <div style="color: red; margin: 10px 0; text-align: center;">{{ error }}</div>
+                {% endif %}
+
+                <div class="login__inputs">
+                    <div class="login__box">
+                        <label for="email" class="login_label">Email:</label>
+                        <input id="email" name="email" type="email" placeholder="Enter your email" required />
+                    </div>
+
+                    <div class="login__box">
+                        <label for="password" class="login_label">Password:</label>
+                        <input id="password" name="password" type="password" placeholder="Enter your password" required />
+                    </div>
+                </div>
+
+                <button type="submit" class="logine__button">Login as Volunteer</button>
+
+                <div class="login__resister">
+                    Don't have an account?
+                    <a href="/volunteer_register">Register as Volunteer</a>
+                </div>
+
+                <div class="login__resister">
+                    Login as Donor/NGO instead?
+                    <a href="/login">Click Here</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+{%endblock%}
