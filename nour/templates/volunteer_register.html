@@ -1,0 +1,146 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+  <br>
+  <br>
+  <div class="auth-page">
+    <section class="auth-register">
+      <div class="login" style="margin-top: 50px;">
+        <form class="login_form" id="volunteerRegForm" method="POST" action="/volunteer_register">
+          {% csrf_token %}
+
+          <h1 class="login_title">Join as Volunteer</h1>
+
+          {% if error %}
+          <div style="color: red; margin: 10px 0;">{{ error }}</div>
+          {% endif %}
+
+          <div class="login__inputs">
+            <!-- VOLUNTEER TYPE SELECTION -->
+            <div class="login__box">
+              <label class="login_label">Volunteer Type:</label>
+              <select id="volunteer_type" name="volunteer_type" class="login_input" onchange="toggleVolunteerFields()"
+                style="background: rgba(255,255,255,0.25); color: inherit;" required>
+                <option value="">Select Type</option>
+                <option value="student">Student Volunteer</option>
+                <option value="organization">Organization Volunteer</option>
+                <option value="individual">Individual Volunteer</option>
+              </select>
+            </div>
+
+            <!-- COMMON FIELDS -->
+            <div class="login__box">
+              <label for="name" class="login_label">Full Name:</label>
+              <input id="name" name="name" type="text" placeholder="Enter Full Name" required />
+            </div>
+
+            <div class="login__box">
+              <label for="email" class="login_label">Email:</label>
+              <input id="email" name="email" type="email" placeholder="Enter Email" required />
+            </div>
+
+            <div class="login__box">
+              <label for="phone" class="login_label">Phone Number:</label>
+              <input id="phone" name="phone" type="tel" maxlength="15" placeholder="Enter Phone Number" required />
+            </div>
+
+            <div class="login__box">
+              <label for="city" class="login_label">City:</label>
+              <input id="city" name="city" type="text" placeholder="Enter City" required />
+            </div>
+
+            <!-- STUDENT SPECIFIC FIELDS -->
+            <div id="studentFields" style="display: none;">
+              <div class="login__box">
+                <label for="college_name" class="login_label">College Name:</label>
+                <input id="college_name" name="college_name" type="text" placeholder="Enter College Name" />
+              </div>
+
+              <div class="login__box">
+                <label for="student_id" class="login_label">Student ID:</label>
+                <input id="student_id" name="student_id" type="text" placeholder="Enter Student ID" />
+              </div>
+            </div>
+
+            <!-- ORGANIZATION SPECIFIC FIELDS -->
+            <div id="organizationFields" style="display: none;">
+              <div class="login__box">
+                <label for="organization_name" class="login_label">Organization Name:</label>
+                <input id="organization_name" name="organization_name" type="text" placeholder="Enter Organization Name" />
+              </div>
+
+              <div class="login__box">
+                <label for="registration_id" class="login_label">Registration ID:</label>
+                <input id="registration_id" name="registration_id" type="text" placeholder="Enter Registration ID" />
+              </div>
+            </div>
+
+            <!-- INDIVIDUAL SPECIFIC FIELDS -->
+            <div id="individualFields" style="display: none;">
+              <div class="login__box">
+                <label for="government_id" class="login_label">Government ID (Optional):</label>
+                <input id="government_id" name="government_id" type="text" placeholder="Enter Government ID" />
+              </div>
+            </div>
+
+            <!-- PASSWORD FIELDS -->
+            <div class="login__box">
+              <label for="pwd1" class="login_label">Password:</label>
+              <input placeholder="Enter Password" id="pwd1" name="pwd1" type="password" required />
+            </div>
+            
+            <div class="login__box">
+              <label for="pwd2" class="login_label">Confirm Password:</label>
+              <input placeholder="Confirm Password" id="pwd2" name="pwd2" type="password" required />
+            </div>
+          </div>
+
+          <button type="submit" class="logine__button">Register as Volunteer</button>
+
+          <div class="login__resister">
+            Already have an account?
+            <a href="/volunteer_login">Login</a>
+          </div>
+
+          <div class="login__resister">
+            Register as Donor/NGO instead?
+            <a href="/register">Click Here</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      function toggleVolunteerFields() {
+        const volunteerType = document.getElementById('volunteer_type').value;
+        const studentFields = document.getElementById('studentFields');
+        const organizationFields = document.getElementById('organizationFields');
+        const individualFields = document.getElementById('individualFields');
+
+        // Hide all fields first
+        studentFields.style.display = 'none';
+        organizationFields.style.display = 'none';
+        individualFields.style.display = 'none';
+
+        // Clear required attributes
+        document.getElementById('college_name').required = false;
+        document.getElementById('student_id').required = false;
+        document.getElementById('organization_name').required = false;
+        document.getElementById('registration_id').required = false;
+
+        // Show relevant fields based on selection
+        if (volunteerType === 'student') {
+          studentFields.style.display = 'block';
+          document.getElementById('college_name').required = true;
+          document.getElementById('student_id').required = true;
+        } else if (volunteerType === 'organization') {
+          organizationFields.style.display = 'block';
+          document.getElementById('organization_name').required = true;
+          document.getElementById('registration_id').required = true;
+        } else if (volunteerType === 'individual') {
+          individualFields.style.display = 'block';
+        }
+      }
+    </script>
+  </div>
+{%endblock%}
