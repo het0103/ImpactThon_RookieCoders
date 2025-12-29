@@ -13,22 +13,29 @@
         <link rel="stylesheet" href="static/assets/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+        <link rel="icon" href="static/assets/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
 <header class="sticky-header">
      <div class="logo">
          <img src="static/assets/images/logo.jpg" alt="NourishNet Logo" class="brand" width="50px">
-        <div class="brand">NourishNet-NGO</div>
+        <div class="brand">NourishNet</div>
     </div>
         <nav class="navbar">
-        {% if request.session.login_id %}
-<!--        <a class="cta" href="/donor">DONATE</a>-->
+             {% if request.session.login_id%}
+        {% if request.session.user_type == "ngo" %}
         <a href="/">HOME</a>
         <a href="/anonymous_donation">ANONYMOUS DONATION</a>
         <a href="/ngo_dashboard">DASHBOARD</a>
         <a href="/about">ABOUT</a>
         <a href="/logout">LOGOUT</a>
+        {% elif request.session.user_type == "donor" %}
+        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-page="donate">Donate</a>
+        <a href="#" class="nav-link" data-page="subscriptions">Subscriptions</a>
+        <a href="#" class="nav-link" data-page="donations">My Donations</a>
+        <a href="/logout" style="color: #e74c3c;">Logout</a>
+            {%endif%}
         {% elif request.session.volunteer_id %}
         <!-- Volunteer Navigation -->
         <a href="/volunteer_dashboard">DASHBOARD</a>

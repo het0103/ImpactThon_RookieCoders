@@ -1,6 +1,6 @@
 from django.db import models
 
-class register_ngo(models.Model):
+class register_users(models.Model):
     USER_TYPE_CHOICES = (
         ('donor', 'Donor'),
         ('ngo', 'NGO'),
@@ -88,8 +88,8 @@ class VolunteerTask(models.Model):
     credit_reward = models.IntegerField(default=10)
     
     # Related entities
-    donor = models.ForeignKey(register_ngo, on_delete=models.CASCADE, related_name='donor_tasks', blank=True, null=True)
-    ngo = models.ForeignKey(register_ngo, on_delete=models.CASCADE, related_name='ngo_tasks', blank=True, null=True)
+    donor = models.ForeignKey(register_users, on_delete=models.CASCADE, related_name='donor_tasks', blank=True, null=True)
+    ngo = models.ForeignKey(register_users, on_delete=models.CASCADE, related_name='ngo_tasks', blank=True, null=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
