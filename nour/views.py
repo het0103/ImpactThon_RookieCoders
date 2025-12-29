@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
@@ -64,7 +65,7 @@ def register(request):
             password=pwd1
         )
         user.save()
-        return redirect("login")
+        return redirect(loginpage)
 
     return render(request, "register.html")
 
@@ -77,7 +78,7 @@ def verifyuser(request):
         try:
             user = register_ngo.objects.get(email=email)
         except register_ngo.DoesNotExist:
-            return render(request, "login.html", {"error": "Invalid email or password"})
+            return render(request, "login.html", {"error": "No account found. Please register"})
 
         if user.password != password:
             return render(request, "login.html", {"error": "Invalid email or password"})
@@ -89,9 +90,8 @@ def verifyuser(request):
 
         if user.user_type == "ngo":
             return redirect(ngo_dashboard)
-
-        return redirect(donor_home)
-
+        else:
+            return redirect(donor_home)
     return render(request, "login.html")
 
 
@@ -142,7 +142,7 @@ def volunteer_register(request):
             volunteer.government_id = government_id
         
         volunteer.save()
-        return redirect("volunteer_login")
+        return redirect(volunteer_login)
 
     return render(request, "volunteer_register.html")
 
@@ -171,7 +171,7 @@ def verify_volunteer(request):
         request.session["volunteer_email"] = volunteer.email
         request.session["user_type"] = "volunteer"
 
-        return redirect("volunteer_dashboard")
+        return redirect(volunteer_dashboard)
 
     return render(request, "volunteer_login.html")
 
@@ -179,7 +179,7 @@ def verify_volunteer(request):
 def volunteer_dashboard(request):
     """Volunteer dashboard showing tasks and credits"""
     if not request.session.get('volunteer_id'):
-        return redirect('volunteer_login')
+        return redirect(volunteer_login)
     
     volunteer = Volunteer.objects.get(id=request.session['volunteer_id'])
     
@@ -284,20 +284,20 @@ def create_sample_tasks():
 def donor_post_food(request):
     """Example view for donors to post available food - creates volunteer tasks automatically"""
     if not request.session.get('login_id'):
-        return redirect('login')
-    
+        return redirect(login)
+
     donor = register_ngo.objects.get(id=request.session['login_id'])
-    
+
     if request.method == "POST":
         food_type = request.POST.get("food_type", "")
         quantity = request.POST.get("quantity", "")
         location = request.POST.get("location", "")
         description = request.POST.get("description", "")
-        
+
         # Create volunteer task automatically
         title = f"Food Collection: {food_type}"
         task_description = f"Collect {quantity} of {food_type} from {donor.name}. {description}"
-        
+
         create_volunteer_task_from_donation(
             donor_or_ngo=donor,
             task_type='pickup',
@@ -306,49 +306,49 @@ def donor_post_food(request):
             location=location,
             quantity=quantity
         )
-        
+
         messages.success(request, "Food posted successfully! Volunteers have been notified.")
-        return redirect('donor_home')
-    
+        return redirect(donor_home)
+
     return render(request, 'donor_post_food.html')
 
 
-def ngo_request_food(request):
-    """Example view for NGOs to request food - creates volunteer tasks automatically"""
-    if not request.session.get('login_id'):
-        return redirect('login')
-    
-    ngo = register_ngo.objects.get(id=request.session['login_id'])
-    
-    if request.method == "POST":
-        food_needed = request.POST.get("food_needed", "")
-        quantity = request.POST.get("quantity", "")
-        location = request.POST.get("location", "")
-        description = request.POST.get("description", "")
-        
-        # Create volunteer task automatically
-        title = f"Food Needed: {food_needed}"
-        task_description = f"Help deliver {quantity} of {food_needed} to {ngo.name}. {description}"
-        
-        create_volunteer_task_from_donation(
-            donor_or_ngo=ngo,
-            task_type='delivery',
-            title=title,
-            description=task_description,
-            location=location,
-            quantity=quantity
-        )
-        
-        messages.success(request, "Food request posted successfully! Volunteers have been notified.")
-        return redirect('ngo_dashboard')
-    
-    return render(request, 'ngo_request_food.html')
+# def ngo_request_food(request):
+#     """Example view for NGOs to request food - creates volunteer tasks automatically"""
+#     if not request.session.get('login_id'):
+#         return redirect(login)
+#
+#     ngo = register_ngo.objects.get(id=request.session['login_id'])
+#
+#     if request.method == "POST":
+#         food_needed = request.POST.get("food_needed", "")
+#         quantity = request.POST.get("quantity", "")
+#         location = request.POST.get("location", "")
+#         description = request.POST.get("description", "")
+#
+#         # Create volunteer task automatically
+#         title = f"Food Needed: {food_needed}"
+#         task_description = f"Help deliver {quantity} of {food_needed} to {ngo.name}. {description}"
+#
+#         create_volunteer_task_from_donation(
+#             donor_or_ngo=ngo,
+#             task_type='delivery',
+#             title=title,
+#             description=task_description,
+#             location=location,
+#             quantity=quantity
+#         )
+#
+#         messages.success(request, "Food request posted successfully! Volunteers have been notified.")
+#         return redirect(ngo_dashboard)
+#
+#     return render(request, 'ngo_request_food.html')
 
 
 def accept_task(request, task_id):
     """Volunteer accepts a task"""
     if not request.session.get('volunteer_id'):
-        return redirect('volunteer_login')
+        return redirect(volunteer_login)
     
     volunteer = Volunteer.objects.get(id=request.session['volunteer_id'])
     
@@ -361,13 +361,13 @@ def accept_task(request, task_id):
     except VolunteerTask.DoesNotExist:
         messages.error(request, 'Task not available or already taken.')
     
-    return redirect('volunteer_dashboard')
+    return redirect(volunteer_dashboard)
 
 
 def complete_task(request, task_id):
     """Mark task as completed and award credits"""
     if not request.session.get('volunteer_id'):
-        return redirect('volunteer_login')
+        return redirect(volunteer_login)
     
     volunteer = Volunteer.objects.get(id=request.session['volunteer_id'])
     
@@ -401,7 +401,7 @@ def complete_task(request, task_id):
     except VolunteerTask.DoesNotExist:
         messages.error(request, 'Task not found or not assigned to you.')
     
-    return redirect('volunteer_dashboard')
+    return redirect(volunteer_dashboard)
 
 
 def logout(request):

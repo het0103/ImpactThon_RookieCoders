@@ -1,15 +1,17 @@
 {%extends 'base.html'%}
 {% load static %}
 {%block content%}
-  <br>
-  <br>
+  <br><br>
   <div class="auth-page">
     <section class="auth-section">
+
       <div class="login">
         <form id="loginForm" class="login_form" method="POST" action="/verifyuser">
             {% csrf_token %}
           <h1 class="login_title">Welcome Back</h1>
-
+            {% if error %}
+                <div style="color: red; margin: 10px 0; text-align: center;">{{ error }}</div>
+        {% endif %}
           <div class="login__box">
             <label class="login_label">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter Email" required>

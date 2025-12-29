@@ -10,7 +10,9 @@
           {% csrf_token %}
 
           <h1 class="login_title">Create Account</h1>
-
+            {% if error %}
+                <div style="color: red; margin: 10px 0; text-align: center;">{{ error }}</div>
+            {% endif %}
           <div class="login__inputs">
             <!-- ROLE SELECTION -->
             <div class="login__box">

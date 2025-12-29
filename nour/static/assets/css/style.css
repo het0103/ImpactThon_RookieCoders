@@ -743,12 +743,6 @@ h3 {
   text-decoration: underline;
 }
 
-.error {
-  color: red;
-  margin-bottom: 10px;
-  background-color: #fff;
-}
-
 /* Transparent Glass Login Box */
 .login {
   margin-bottom: 18px;
