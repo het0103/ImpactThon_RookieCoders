@@ -49,13 +49,13 @@ def register(request):
         pwd1 = request.POST.get("pwd1", "")
         pwd2 = request.POST.get("pwd2", "")
 
-        if register_ngo.objects.filter(email=email).exists():
+        if register_users.objects.filter(email=email).exists():
             return render(request, "login.html", {"error": "Account already exists. Please login"})
 
         if pwd1 != pwd2:
             return render(request, "register.html", {"error": "Passwords do not match"})
 
-        user = register_ngo(
+        user = register_users(
             user_type=user_type,
             name=name,
             email=email,
@@ -76,8 +76,8 @@ def verifyuser(request):
         password = request.POST.get("password", "").strip()
 
         try:
-            user = register_ngo.objects.get(email=email)
-        except register_ngo.DoesNotExist:
+            user = register_users.objects.get(email=email)
+        except register_users.DoesNotExist:
             return render(request, "login.html", {"error": "No account found. Please register"})
 
         if user.password != password:
@@ -286,7 +286,7 @@ def donor_post_food(request):
     if not request.session.get('login_id'):
         return redirect(login)
 
-    donor = register_ngo.objects.get(id=request.session['login_id'])
+    donor = register_users.objects.get(id=request.session['login_id'])
 
     if request.method == "POST":
         food_type = request.POST.get("food_type", "")
@@ -313,36 +313,36 @@ def donor_post_food(request):
     return render(request, 'donor_post_food.html')
 
 
-# def ngo_request_food(request):
-#     """Example view for NGOs to request food - creates volunteer tasks automatically"""
-#     if not request.session.get('login_id'):
-#         return redirect(login)
-#
-#     ngo = register_ngo.objects.get(id=request.session['login_id'])
-#
-#     if request.method == "POST":
-#         food_needed = request.POST.get("food_needed", "")
-#         quantity = request.POST.get("quantity", "")
-#         location = request.POST.get("location", "")
-#         description = request.POST.get("description", "")
-#
-#         # Create volunteer task automatically
-#         title = f"Food Needed: {food_needed}"
-#         task_description = f"Help deliver {quantity} of {food_needed} to {ngo.name}. {description}"
-#
-#         create_volunteer_task_from_donation(
-#             donor_or_ngo=ngo,
-#             task_type='delivery',
-#             title=title,
-#             description=task_description,
-#             location=location,
-#             quantity=quantity
-#         )
-#
-#         messages.success(request, "Food request posted successfully! Volunteers have been notified.")
-#         return redirect(ngo_dashboard)
-#
-#     return render(request, 'ngo_request_food.html')
+def ngo_request_food(request):
+    """Example view for NGOs to request food - creates volunteer tasks automatically"""
+    if not request.session.get('login_id'):
+        return redirect(login)
+
+    ngo = register_users.objects.get(id=request.session['login_id'])
+
+    if request.method == "POST":
+        food_needed = request.POST.get("food_needed", "")
+        quantity = request.POST.get("quantity", "")
+        location = request.POST.get("location", "")
+        description = request.POST.get("description", "")
+
+        # Create volunteer task automatically
+        title = f"Food Needed: {food_needed}"
+        task_description = f"Help deliver {quantity} of {food_needed} to {ngo.name}. {description}"
+
+        create_volunteer_task_from_donation(
+            donor_or_ngo=ngo,
+            task_type='delivery',
+            title=title,
+            description=task_description,
+            location=location,
+            quantity=quantity
+        )
+
+        messages.success(request, "Food request posted successfully! Volunteers have been notified.")
+        return redirect(ngo_dashboard)
+
+    return render(request, 'ngo_request_food.html')
 
 
 def accept_task(request, task_id):

@@ -18,7 +18,7 @@ class SocialCreditAdmin(admin.ModelAdmin):
     list_display = ['volunteer', 'task', 'credits_earned', 'earned_at']
     list_filter = ['earned_at']
 
-admin.site.register(register_ngo, displayngo)
+admin.site.register(register_users, displayngo)
 admin.site.register(Volunteer, VolunteerAdmin)
 admin.site.register(VolunteerTask, VolunteerTaskAdmin)
 admin.site.register(SocialCredit, SocialCreditAdmin)
