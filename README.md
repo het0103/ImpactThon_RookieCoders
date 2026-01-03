@@ -1,70 +1,86 @@
-# 🍽️ NourishNet - Together Against Hunger
+# 🍽️ NourishNet – Where resources find purpose
 
-[![Django](https://img.shields.io/badge/Django-6.0-green.svg)](https://www.djangoproject.com/)
-[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
-[![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey.svg)](https://www.sqlite.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+A hackathon-built web platform that connects **food donors, NGOs, and volunteers** to reduce food waste and fight hunger through efficient coordination and real-time collaboration.
+
+---
 
 ## 🌟 Overview
 
-**NourishNet** is a comprehensive food waste reduction and hunger relief platform built for hackathons and social impact initiatives. The application connects food donors, NGOs, and volunteers in an efficient ecosystem to rescue surplus food and deliver it to those in need.
+**NourishNet** is a social impact web application developed during a hackathon.  
+It creates a unified ecosystem where surplus food can be donated, managed by NGOs, and delivered to people in need with the help of volunteers.
 
 ### 🎯 Mission
-*"Together Against Hunger"* - Reducing food waste while addressing hunger through technology-driven community collaboration.
+**Reducing food waste while addressing hunger through technology-driven community collaboration.**
+
+---
 
 ## 🚀 Key Features
 
 ### 👥 Multi-Role Platform
-- **🍽️ Donors**: Restaurants, hotels, individuals, and organizations can donate surplus food
-- **🏢 NGOs**: Non  & organizations manage food distribution and outreach programs  
-- **🤝 Volunteers**: Community members facilitate food pickup and delivery operations
+- **🍽️ Donors** – Restaurants, hotels, individuals, and organizations donating surplus food
+- **🏢 NGOs** – Manage food collection, requests, and distribution
+- **🤝 Volunteers** – Assist in food pickup and delivery
 
-### ✨ Core Functionalities
+---
 
-#### For Donors 🍽️
-- **Dashboard Analytics**: Track daily, monthly donation statistics
-- **Smart Donation Forms**: Easy food donation with pickup scheduling
-- **History Tracking**: Complete donation history with status updates
-- **Pickup Management**: Schedule and track food pickups
+### 🔧 Core Functionalities
 
-#### For NGOs 🏢  
-- **Distribution Management**: Coordinate food distribution programs
-- **Request System**: Submit requests for specific food types/quantities
-- **Pickup Scheduling**: Manage pickup operations and logistics
-- **Impact Reporting**: Track community impact and distribution metrics
+#### 🍽️ Donors
+- Donate surplus food using a simple and guided form
+- Schedule food pickup
+- Track donation history and status
+- View impact of their contributions
 
-#### For Volunteers 🤝
-- **Social Credit System**: Gamified volunteering with reward points
-- **Flexible Task Management**: Accept/reject tasks based on availability
-- **Multiple Volunteer Types**: 
-  - 🎓 Student Volunteers (College verification)
-  - 🏢 Organization Volunteers (Corporate social responsibility)
-  - 👤 Individual Volunteers (Community members)
-- **Real-time Dashboard**: Live task updates and completion tracking
+#### 🏢 NGOs
+- View and manage incoming food donations
+- Create and manage pickup schedules
+- Coordinate with volunteers
+- Monitor food distribution activities
+- Access impact reports and statistics
 
-### 🛠️ Technical Features
-- **Responsive Design**: Mobile-friendly interface for all user types
-- **Real-time Updates**: Live task status and notification system
-- **Secure Authentication**: Role-based access control
-- **Data Analytics**: Comprehensive reporting and impact tracking
-- **SQLite Database**: Lightweight, embedded database solution
+#### 🤝 Volunteers
+- Register as **Student / Organization / Individual** volunteer
+- View available and assigned tasks
+- Accept and complete food pickup & delivery tasks
+- Earn **social credit points** for completed tasks
+- Track contribution history and impact
 
-## 🏗️ Technology Stack
+---
+
+## ⚡ Platform Highlights
+
+- **Real-time Notifications**  
+  Live updates for donation status, pickup assignments, and task completion.
+
+- **Social Credit System**  
+  Volunteers earn points for successful task completion, encouraging participation and consistency.
+
+- **Impact Reporting**  
+  Graph-based reports showing food donated, tasks completed, and community reach.
+
+- **Role-based Authentication**  
+  Secure login system with dashboards tailored to each user role.
+
+- **Responsive Design**  
+  Optimized for desktop and mobile devices.
+
+---
+
+## 🛠️ Technology Stack
 
 ### Backend
-- **Framework**: Django 6.0
-- **Language**: Python 3.x
+- **Framework**: Django (Python)
 - **Database**: SQLite3
-- **Authentication**: Django's built-in auth system
+- **Authentication**: Django built-in authentication system
 
 ### Frontend
-- **Templates**: Django Templates
-- **Styling**: Custom CSS with responsive design
-- **JavaScript**: Vanilla JS for interactive features
-- **Assets**: Static file management
+- **HTML, CSS**
+- **JavaScript (Vanilla)**
+- **Django Templates**
+
+---
 
 ### Project Structure
-```
 NourishNet/
 ├── manage.py                    # Django management script
 ├── db.sqlite3                   # SQLite database
@@ -80,152 +96,93 @@ NourishNet/
 │   ├── static/                  # CSS, JS, images
 │   └── migrations/              # Database migrations
 └── venv/                        # Virtual environment
-```
-
-## 📊 Database Schema
-
-### Core Models
-- **`register_users`**: Unified registration for donors and NGOs
-- **`Volunteer`**: Volunteer profiles with type-specific fields
-- **`VolunteerTask`**: Task management system for food operations
-- **`SocialCredit`**: Gamification and reward tracking
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Python 3.8+
-- pip package manager
-- Git (for cloning)
-
-### Installation
-
-1. **Clone the Repository**
-```powershell
-git clone https://github.com/het0103/ImpactThon_RookieCoders.git
-cd ImpactThon_RookieCoders
-```
-
-2. **Create Virtual Environment**
-```powershell
-python -m venv venv
-venv\Scripts\Activate.ps1
-```
-
-3. **Install Dependencies**
-```powershell
-pip install django
-```
-
-4. **Database Setup**
-```powershell
-python manage.py makemigrations
-python manage.py migrate
-```
-
-5. **Create Superuser (Optional)**
-```powershell
-python manage.py createsuperuser
-```
-
-6. **Run Development Server**
-```powershell
-python manage.py runserver
-```
-
-7. **Access the Application**
-   - Open browser to `http://127.0.0.1:8000`
-   - Main landing page with role selection
-   - Admin panel at `http://127.0.0.1:8000/admin`
-
-## 🖥️ Usage Guide
-
-### Getting Started
-1. **Visit Homepage**: Navigate to the main landing page
-2. **Choose Role**: Select between Donor, NGO, or Volunteer
-3. **Register/Login**: Create account or login to existing account
-4. **Explore Dashboard**: Access role-specific features and functionalities
-
-### For Donors
-1. Navigate to donor dashboard
-2. Click "Make Donation" to donate food
-3. Fill in food details and pickup information
-4. Track donation status in history section
-
-### For Volunteers
-1. Register with volunteer type (Student/Organization/Individual)
-2. Browse available tasks on dashboard
-3. Accept tasks and complete them to earn social credits
-4. Track your impact through completion history
-
-### For NGOs
-1. Register as NGO organization
-2. Access NGO dashboard for distribution management
-3. Create pickup schedules and requests
-4. Coordinate with volunteers for food operations
-
-## 🎯 Hackathon Context
-
-### Impact Theme
-Focusing on social good and community impact through technology solutions.
-
-### Problem Statement
-- **Food Waste**: Millions of tons of surplus food discarded daily
-- **Hunger Crisis**: Significant population facing food insecurity
-- **Coordination Gap**: Lack of efficient systems connecting food surplus with need
-
-### Our Solution
-NourishNet bridges this gap through:
-- **Technology Integration**: Digital platform for seamless coordination
-- **Community Engagement**: Gamified volunteer system
-- **Real-time Logistics**: Efficient pickup and delivery management
-- **Impact Tracking**: Measurable social impact metrics
-
-### Development Team: RookieCoders
-Passionate developers committed to leveraging technology for social impact and community welfare.
-
-## 🔮 Future Enhancements
-
-### Planned Features
-- [ ] **Mobile Application**: React Native or Flutter mobile app
-- [ ] **AI Integration**: Smart matching algorithms for optimal food distribution
-- [ ] **Geolocation**: GPS-based volunteer task assignment
-- [ ] **Payment Gateway**: Monetary donation processing
-- [ ] **Analytics Dashboard**: Advanced reporting and insights
-- [ ] **Multi-language Support**: Localization for different regions
-- [ ] **Integration APIs**: Third-party service integrations
-- [ ] **Blockchain**: Transparent impact tracking and verification
-
-### Scalability
-- Cloud deployment (AWS/Azure/GCP)
-- PostgreSQL for production database
-- Redis for caching and session management
-- Celery for background task processing
-
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-## 📞 Contact
-
-### Team RookieCoders
-- **GitHub**: [het0103](https://github.com/het0103)
-- **Repository**: [ImpactThon_RookieCoders](https://github.com/het0103/ImpactThon_RookieCoders)
 
 
 ---
 
-## 📈 Project Status
+## 🗄️ Database Models (Simplified)
 
-🚀 **Active Development** - Built during ImpactThon hackathon with ongoing enhancements planned.
+- **User / RegisterUser** – Donor and NGO registration
+- **Volunteer** – Volunteer profiles with role types
+- **Donation** – Food donation details and status
+- **VolunteerTask** – Pickup and delivery task management
+- **SocialCredit** – Volunteer reward and contribution tracking
 
-### Current Version: 1.0.0
-- ✅ Multi-role user system (Donors, NGOs, Volunteers)
-- ✅ Task management and assignment system  
-- ✅ Social credit and gamification system
-- ✅ Responsive web interface
-- ✅ Database design and migrations
-- ✅ Authentication and authorization
+---
 
-*Together, we can make a difference in fighting hunger and reducing food waste!* 🌟
+## 🚀 How to Run the Project Locally
+
+### Prerequisites
+- Python 3.8+
+- pip
+- Git
+
+### Setup Steps
+
+1.
+```bash
+git clone https://github.com/het0103/ImpactThon_RookieCoders.git
+cd ImpactThon_RookieCoders
+
+2.
+python -m venv venv
+venv\Scripts\activate
+
+3. 
+pip install django
+
+4.
+python manage.py makemigrations
+python manage.py migrate
+
+5.
+python manage.py runserver
+
+📍 Open in browser:
+http://127.0.0.1:8000/
+
+📍 Admin Panel:
+http://127.0.0.1:8000/admin/
+
+🎯 Hackathon Context
+**Problem Statement
+
+Large quantities of edible food are wasted daily
+Many communities face food insecurity
+Lack of efficient coordination between donors, NGOs, and volunteers
+
+**Our Solution
+
+NourishNet bridges this gap by:
+Digitally connecting all stakeholders
+Enabling real-time coordination
+Encouraging volunteering through a reward system
+Providing measurable impact through reports and graphs
+
+🔮 Future Enhancements
+
+Mobile application
+Location-based volunteer assignment
+Advanced analytics dashboard
+Multi-language support
+Cloud deployment for scalability
+
+👥 Team
+
+Team Name: RookieCoders
+Hackathon: ImpactThon
+
+🔗 GitHub Repository:
+https://github.com/het0103/ImpactThon_RookieCoders
+
+📌 Project Status
+
+🚀 Hackathon Prototype – Version 1.0
+
+✔ Multi-role user system
+✔ Real-time notifications
+✔ Social credit system
+✔ Impact reporting with graphs
+✔ Food donation and volunteer coordination
+
+Together, we aim to reduce food waste and fight hunger.
